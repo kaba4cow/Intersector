@@ -21,12 +21,13 @@ import kaba4cow.gameobjects.parametercontrols.ThrustControl;
 import kaba4cow.gameobjects.targets.TargetType;
 import kaba4cow.renderEngine.RendererContainer;
 import kaba4cow.toolbox.Measures;
+import kaba4cow.utils.GalaxyUtils;
 import kaba4cow.utils.RenderUtils;
 
 public class Ship extends Machine {
 
 	public static final float HYPER_SPEED = 23.17f * Measures.LIGHT_SECOND;
-	public static final float JUMP_RANGE = 14f;
+	public static final float JUMP_RANGE = 45f;
 
 	private final ThrustControl horizontalControl;
 	private final ThrustControl verticalControl;
@@ -146,12 +147,12 @@ public class Ship extends Machine {
 		SystemObject system = controller.getTargetSystem();
 		if (system == null || system.equals(world.getSystem()))
 			return;
-		float distance = Maths.dist(world.getSystem().getPos(), system.getPos());
+		float distance = GalaxyUtils.lightYears(Maths.dist(world.getSystem().getPos(), system.getPos()));
 		if (distance > JUMP_RANGE)
 			return;
 		Vector3f direction = Maths.direction(world.getSystem().getPos(), system.getPos());
 		float alignment = Vector3f.dot(getDirection().getForward(), direction);
-		if (alignment < 0.9f)
+		if (alignment < 0.95f)
 			return;
 		world.jump(this, system);
 		hyperControl.jump();
