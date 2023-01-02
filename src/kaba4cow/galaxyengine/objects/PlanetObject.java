@@ -67,8 +67,6 @@ public class PlanetObject extends GameObject {
 
 	public boolean station;
 
-	private Planet planet;
-
 	public PlanetObject(SystemObject system, PlanetObject parent, float distance, int position, int parentSkipped,
 			int level, long seedSystem) throws NonExistingObjectException {
 		super(null);
@@ -91,7 +89,6 @@ public class PlanetObject extends GameObject {
 			this.file = PlanetFile.get(system.systemFile.getStar());
 
 		this.station = system.fraction != null && rng.nextFloat(0f, 100f) < file.getStation();
-		this.planet = null;
 
 		this.parent = parent;
 		this.color = file.getColor(rng.nextFloat(0f, 1f), null);
@@ -180,9 +177,7 @@ public class PlanetObject extends GameObject {
 	}
 
 	public Planet getPlanet(World world) {
-		if (planet == null)
-			planet = new Planet(world, this);
-		return planet;
+		return new Planet(world, this);
 	}
 
 	public boolean contains(String planet) {

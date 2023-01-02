@@ -72,13 +72,9 @@ public class MapState extends State {
 	@Override
 	public void create() {
 		galCamera = new Camera();
-		galCameraManager = new CameraManager()
-				.setDistParameters(0.5f, 10f, 0.002f, 4f)
-				.setPointParameters(2f)
-				.setPitchParameters(-Maths.QUARTER_PI, Maths.QUARTER_PI, 0.1f,
-						8f).setYawParameters(0.1f, 8f);
-		galCameraManager.setInitParameters(1f, 0f, 0f).reset()
-				.resetParameters();
+		galCameraManager = new CameraManager().setDistParameters(0.5f, 10f, 0.002f, 4f).setPointParameters(2f)
+				.setPitchParameters(-Maths.QUARTER_PI, Maths.QUARTER_PI, 0.1f, 8f).setYawParameters(0.1f, 8f);
+		galCameraManager.setInitParameters(1f, 0f, 0f).reset().resetParameters();
 		galCameraManager.setInitKey(Keyboard.KEY_X);
 
 		galCursorManager = new CameraManager().setPointParameters(8f);
@@ -86,11 +82,9 @@ public class MapState extends State {
 		galCursorManager.setInitKey(-1);
 
 		sysCamera = new Camera();
-		sysCameraManager = new CameraManager()
-				.setDistParameters(2f, 16f, 0.002f, 4f).setPointParameters(8f)
+		sysCameraManager = new CameraManager().setDistParameters(2f, 16f, 0.002f, 4f).setPointParameters(8f)
 				.setPitchParameters(0f, 0f, 0f, 0f).setYawParameters(0f, 0f);
-		sysCameraManager.setInitParameters(16f, 0f, 0f).reset()
-				.resetParameters();
+		sysCameraManager.setInitParameters(16f, 0f, 0f).reset().resetParameters();
 		sysCameraManager.setInitKey(Keyboard.KEY_X);
 
 		galCursor = new Vector3f();
@@ -179,15 +173,9 @@ public class MapState extends State {
 				target = selectGalacticTarget();
 				ship.getController().setTargetSystem(target);
 			}
-			if (Input.isKeyDown(Keyboard.KEY_O)) {
-				ship.getWorld()
-						.setSystem(
-								GalaxyUtils.generateSystem(SystemFile
-										.getList()
-										.get(RNG.randomInt(SystemFile.getList()
-												.size())).getFileName()));
-				home = ship.getWorld().getSystem();
-			}
+			if (Input.isKeyDown(Keyboard.KEY_O))
+				home = GalaxyUtils.generateSystem(
+						SystemFile.getList().get(RNG.randomInt(SystemFile.getList().size())).getFileName());
 		}
 
 		game.updateParticles(this, dt);
@@ -198,8 +186,7 @@ public class MapState extends State {
 	public void render(RendererContainer renderers) {
 		if (showSystemMap) {
 			game.getRenderer().setCamera(sysCamera);
-			sysCamera.orbit(sysCameraManager.getPoint(), 0f, 0f, 1f,
-					sysCameraManager);
+			sysCamera.orbit(sysCameraManager.getPoint(), 0f, 0f, 1f, sysCameraManager);
 			game.getRenderer().prepare();
 
 			for (int i = 0; i < planets.size(); i++)
@@ -207,18 +194,15 @@ public class MapState extends State {
 
 			renderers.processModelRenderers(null);
 
-			MapHud.renderSysHud(ship, planets, target,
-					systemMap[sysCursorX][sysCursorY]);
+			MapHud.renderSysHud(ship, planets, target, systemMap[sysCursorX][sysCursorY]);
 		} else {
 			game.getRenderer().setCamera(galCamera);
-			galCamera.orbit(galCursorManager.getPoint(), 0f, 0f, 1f,
-					galCameraManager);
+			galCamera.orbit(galCursorManager.getPoint(), 0f, 0f, 1f, galCameraManager);
 			game.getRenderer().prepare();
 
 			game.renderParticles(this);
 
-			MapHud.renderGalHud(ship, systems, home, target,
-					selectGalacticTarget());
+			MapHud.renderGalHud(ship, systems, home, target, selectGalacticTarget());
 		}
 
 		game.doPostProcessing();
@@ -250,8 +234,7 @@ public class MapState extends State {
 			nextY = systemMap[0].length - 1;
 
 		if (sysCursorX != nextX) {
-			if (systemMap[nextX][sysCursorY] == null || nextX > 1
-					&& systemMap[nextX][sysCursorY].parent != parent)
+			if (systemMap[nextX][sysCursorY] == null || nextX > 1 && systemMap[nextX][sysCursorY].parent != parent)
 				nextX = sysCursorX;
 		}
 		sysCursorX = nextX;
@@ -272,8 +255,7 @@ public class MapState extends State {
 							break;
 						}
 				}
-			} else if (systemMap[sysCursorX][nextY] == null
-					|| systemMap[sysCursorX][nextY].parent != parent
+			} else if (systemMap[sysCursorX][nextY] == null || systemMap[sysCursorX][nextY].parent != parent
 					&& systemMap[sysCursorX][nextY].parent.parent != parent
 					&& systemMap[sysCursorX][nextY].parent != parent.parent)
 				nextY = sysCursorY;
@@ -305,18 +287,15 @@ public class MapState extends State {
 				planet = planets.get(i);
 				planet.getPos().set(planet.getPlanetObject().getPos());
 				if (planet.getLight() != null)
-					game.getRenderer().getLights().get(0).getColor()
-							.set(planet.getLight().getColor());
+					game.getRenderer().getLights().get(0).getColor().set(planet.getLight().getColor());
 			}
 
 			int width = 0;
 			int height = 0;
 
 			for (int i = 0; i < planets.size(); i++) {
-				width = Maths.max(width,
-						1 + planets.get(i).getPlanetObject().mapX);
-				height = Maths.max(height,
-						1 + planets.get(i).getPlanetObject().mapY);
+				width = Maths.max(width, 1 + planets.get(i).getPlanetObject().mapX);
+				height = Maths.max(height, 1 + planets.get(i).getPlanetObject().mapY);
 			}
 			systemMap = new PlanetObject[width][height];
 			for (int i = 0; i < planets.size(); i++) {
@@ -337,8 +316,7 @@ public class MapState extends State {
 	}
 
 	public SystemObject selectGalacticTarget() {
-		List<Target> targetList = Target.getOnGalMapObjects(systems,
-				game.getRenderer());
+		List<Target> targetList = Target.getOnGalMapObjects(systems, game.getRenderer());
 		float minDist = Float.POSITIVE_INFINITY;
 		float maxSize = 0f;
 		float mouseX = WindowUtils.toNormalizedX(Mouse.getX());
@@ -347,12 +325,9 @@ public class MapState extends State {
 		Target current = null;
 		for (int i = 0; i < targetList.size(); i++) {
 			current = targetList.get(i);
-			float size = 0.35f * current.getObject().getSize()
-					/ current.getScreenCoords().z;
-			if (current.getScreenCoords().z > minDist
-					|| current.getObject().getSize() < maxSize
-					|| Maths.dist(mouseX, mouseY, current.getScreenCoords().x,
-							current.getScreenCoords().y) > size)
+			float size = 0.35f * current.getObject().getSize() / current.getScreenCoords().z;
+			if (current.getScreenCoords().z > minDist || current.getObject().getSize() < maxSize
+					|| Maths.dist(mouseX, mouseY, current.getScreenCoords().x, current.getScreenCoords().y) > size)
 				continue;
 			minDist = current.getScreenCoords().z;
 			maxSize = size;
@@ -373,20 +348,16 @@ public class MapState extends State {
 		NebulaObject nebula = null;
 		for (int i = systems.size() - 1; i >= 0; i--) {
 			system = systems.get(i);
-			if (Maths.distSq(offX, 2f * offY, offZ, system.posX,
-					2f * system.posY, system.posZ) >= rangeSq) {
+			if (Maths.distSq(offX, 2f * offY, offZ, system.posX, 2f * system.posY, system.posZ) >= rangeSq) {
 				systems.remove(i);
-				freeSystemParticles.add(system.getParticle(null)
-						.removeFromSystem());
+				freeSystemParticles.add(system.getParticle(null).removeFromSystem());
 			}
 		}
 		for (int i = nebulas.size() - 1; i >= 0; i--) {
 			nebula = nebulas.get(i);
-			if (Maths.distSq(offX, 2f * offY, offZ, nebula.posX,
-					2f * nebula.posY, nebula.posZ) >= rangeSq) {
+			if (Maths.distSq(offX, 2f * offY, offZ, nebula.posX, 2f * nebula.posY, nebula.posZ) >= rangeSq) {
 				nebulas.remove(i);
-				freeNebulaParticles.add(nebula.getParticle(null)
-						.removeFromSystem());
+				freeNebulaParticles.add(nebula.getParticle(null).removeFromSystem());
 			}
 		}
 		for (int y = -range / 2; y < range / 2; y++)
@@ -454,8 +425,7 @@ public class MapState extends State {
 				galCursor.set(target.offX, target.offY, target.offZ);
 		}
 
-		return prevX != (int) galCursor.x || prevY != (int) galCursor.y
-				|| prevZ != (int) galCursor.z;
+		return prevX != (int) galCursor.x || prevY != (int) galCursor.y || prevZ != (int) galCursor.z;
 	}
 
 }

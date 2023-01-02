@@ -95,7 +95,7 @@ public class MapTesting extends MainProgram {
 
 		Fraction fraction = Fraction.get("FRACTION0");
 		ship = new Ship(new World(), fraction, ShipFile.get("SHIP0"), new Vector3f(), new ShipStaticController());
-		ship.getWorld().setSystem(GalaxyUtils.generateSystem(0, 0, 0));
+		ship.getWorld().create(GalaxyUtils.generateSystem(0, 0, 0));
 
 		postProcessing = new PostProcessingPipeline();
 
@@ -182,7 +182,7 @@ public class MapTesting extends MainProgram {
 			if (Input.isKey(Keyboard.KEY_T))
 				target = selectGalacticTarget();
 			if (Input.isKeyDown(Keyboard.KEY_O)) {
-				ship.getWorld().setSystem(GalaxyUtils.generateSystem(
+				ship.getWorld().create(GalaxyUtils.generateSystem(
 						SystemFile.getList().get(RNG.randomInt(SystemFile.getList().size())).getFileName()));
 				home = ship.getWorld().getSystem();
 			}

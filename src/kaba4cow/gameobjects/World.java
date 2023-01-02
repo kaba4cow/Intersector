@@ -5,14 +5,20 @@ import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
 
+import kaba4cow.Game;
 import kaba4cow.GameSettings;
 import kaba4cow.engine.renderEngine.Cubemap;
+import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.octtree.OctTree;
 import kaba4cow.engine.toolbox.particles.ParticleSystemManager;
+import kaba4cow.engine.toolbox.rng.RNG;
 import kaba4cow.galaxyengine.objects.SystemObject;
+import kaba4cow.gameobjects.machines.Ship;
 import kaba4cow.renderEngine.RendererContainer;
 import kaba4cow.renderEngine.fborendering.EnvironmentRendering;
+import kaba4cow.renderEngine.fborendering.SkyRendering;
 import kaba4cow.toolbox.flocking.FlockManager;
+import kaba4cow.utils.GalaxyUtils;
 
 public class World {
 
@@ -43,8 +49,7 @@ public class World {
 		FlockManager.update(dt);
 
 		GameObject current;
-		int listSize = list.size();
-		for (int i = 0; i < listSize; i++) {
+		for (int i = 0; i < list.size(); i++) {
 			current = list.get(i);
 			if (!current.isAlive())
 				continue;
@@ -55,7 +60,7 @@ public class World {
 		float stepSize = 1f / (float) steps;
 		float cdt = stepSize * dt;
 		for (int step = 0; step < steps; step++)
-			for (int i = 0; i < listSize; i++) {
+			for (int i = 0; i < list.size(); i++) {
 				current = list.get(i);
 				if (!current.isAlive())
 					continue;
@@ -86,6 +91,28 @@ public class World {
 		renderers.getCubemapRenderer().process();
 
 		renderers.processModelRenderers(EnvironmentRendering.getCubemap());
+	}
+
+	public List<Planet> create(SystemObject system) {
+		if (system == null)
+			return new ArrayList<Planet>();
+		clear();
+		this.system = system;
+		List<Planet> planets = GalaxyUtils.createPlanets(this, system);
+		system.print();
+		SkyRendering.render(system, skybox);
+		return planets;
+	}
+
+	public void jump(Ship player, SystemObject newSystem) {
+		Vector3f direction = Maths.direction(newSystem.getPos(), system.getPos());
+
+		List<Planet> planets = create(newSystem);
+		addObject(player);
+
+		float distance = RNG.randomFloat(2f, 4f) * planets.get(0).getSize();
+		direction.scale(distance);
+		player.getPos().set(direction);
 	}
 
 	private void move(Vector3f offset) {
@@ -128,14 +155,12 @@ public class World {
 		list.clear();
 		queue.clear();
 		octTree.clear();
+		Game.getInstance().getRenderer().clearLights();
+		Game.getInstance().clearParticles(Game.getState());
 	}
 
 	public SystemObject getSystem() {
 		return system;
-	}
-
-	public void setSystem(SystemObject system) {
-		this.system = system;
 	}
 
 	public List<GameObject> getList() {

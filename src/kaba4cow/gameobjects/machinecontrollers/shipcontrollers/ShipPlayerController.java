@@ -42,6 +42,9 @@ public class ShipPlayerController extends ShipController {
 
 			if (Input.isKey(Keyboard.KEY_LSHIFT))
 				hyperControl.brake(dt);
+			
+			if (Input.isKeyDown(Keyboard.KEY_G))
+				getMachine().jump();
 		} else {
 			if (Input.isKey(Keyboard.KEY_W))
 				horizontalControl.forward(dt);

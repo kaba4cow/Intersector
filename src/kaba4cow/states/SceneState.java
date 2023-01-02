@@ -16,7 +16,6 @@ import kaba4cow.gameobjects.machines.Machine;
 import kaba4cow.gameobjects.machines.Ship;
 import kaba4cow.gameobjects.machines.classes.ShipClass;
 import kaba4cow.renderEngine.RendererContainer;
-import kaba4cow.renderEngine.fborendering.SkyRendering;
 import kaba4cow.renderEngine.renderers.HologramRenderer;
 import kaba4cow.renderEngine.renderers.ThrustRenderer;
 import kaba4cow.toolbox.flocking.Flock;
@@ -63,11 +62,8 @@ public class SceneState extends State {
 
 		Fraction fraction = Fraction.getRandom();
 
-		SystemObject system = GalaxyUtils.generateSystem(fraction
-				.getFractionFile().getCapital());
-		world.setSystem(system);
-		List<Planet> planets = GalaxyUtils.createPlanets(world, system);
-		SkyRendering.render(system, world.getSkybox());
+		SystemObject system = GalaxyUtils.generateSystem(fraction.getFractionFile().getCapital());
+		List<Planet> planets = world.create(system);
 		Planet planet = planets.get(RNG.randomInt(planets.size()));
 
 		flock = new Flock(true);
@@ -103,11 +99,10 @@ public class SceneState extends State {
 		world.update(0f, null);
 	}
 
-	private void addShips(Planet planet, Fraction fraction,
-			ShipClass shipClass, int amount) {
+	private void addShips(Planet planet, Fraction fraction, ShipClass shipClass, int amount) {
 		for (int i = 0; i < amount; i++)
-			new Ship(world, fraction, fraction.getRandomShip(shipClass),
-					randVec(planet), new ShipAIController()).setFlock(flock);
+			new Ship(world, fraction, fraction.getRandomShip(shipClass), randVec(planet), new ShipAIController())
+					.setFlock(flock);
 	}
 
 	@Override
@@ -141,10 +136,8 @@ public class SceneState extends State {
 		game.switchPostProcessing(false);
 		game.setRenderer(GameUtils.getPlayerPov());
 		game.getRenderer().setCamera(camera);
-		float dist = Maths.blend(nextDist, currentDist, 0.8f * elapsedTime
-				/ maxTime);
-		camera.orbit(ship.getPos(), dist * ship.getSize(), pitch, yaw, flock
-				.getLeader().getDirection());
+		float dist = Maths.blend(nextDist, currentDist, 0.8f * elapsedTime / maxTime);
+		camera.orbit(ship.getPos(), dist * ship.getSize(), pitch, yaw, flock.getLeader().getDirection());
 		game.getRenderer().prepare();
 
 		// AudioManager.setListenerData(camera.getPos(), ship.getVel());

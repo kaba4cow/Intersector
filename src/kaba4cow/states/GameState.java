@@ -26,7 +26,6 @@ import kaba4cow.gameobjects.machines.classes.ShipClass;
 import kaba4cow.hud.ShipHud;
 import kaba4cow.menu.MenuElement;
 import kaba4cow.renderEngine.RendererContainer;
-import kaba4cow.renderEngine.fborendering.SkyRendering;
 import kaba4cow.renderEngine.renderers.HologramRenderer;
 import kaba4cow.renderEngine.renderers.ThrustRenderer;
 import kaba4cow.toolbox.flocking.Flock;
@@ -57,12 +56,9 @@ public class GameState extends State {
 	@Override
 	public void create() {
 		camera = new Camera();
-		cameraManager = new CameraManager()
-				.setDistParameters(1f, 4f, 0.002f, 1f).setPointParameters(16f)
-				.setPitchParameters(-Maths.HALF_PI, Maths.HALF_PI, 0.2f, 8f)
-				.setYawParameters(0.2f, 8f);
-		cameraManager.setInitParameters(2f, 0.1f * Maths.HALF_PI, 0f).reset()
-				.resetParameters();
+		cameraManager = new CameraManager().setDistParameters(1f, 4f, 0.002f, 1f).setPointParameters(16f)
+				.setPitchParameters(-Maths.HALF_PI, Maths.HALF_PI, 0.2f, 8f).setYawParameters(0.2f, 8f);
+		cameraManager.setInitParameters(2f, 0.1f * Maths.HALF_PI, 0f).reset().resetParameters();
 		cameraManager.setInitKey(Keyboard.KEY_X);
 	}
 
@@ -82,8 +78,7 @@ public class GameState extends State {
 
 	@Override
 	public void update(float dt) {
-		if (Input.isKeyDown(Keyboard.KEY_M) && !ship.isDestroyed()
-				&& ship.isAlive())
+		if (Input.isKeyDown(Keyboard.KEY_M) && !ship.isDestroyed() && ship.isAlive())
 			Game.switchState(States.map);
 		else if (Input.isKeyDown(Keyboard.KEY_ESCAPE)) {
 			MenuElement.playSound();
@@ -104,8 +99,7 @@ public class GameState extends State {
 
 	@Override
 	public void render(RendererContainer renderers) {
-		camera.orbit(ship.getPos(), 0f, 0f, Maths.SQRT2 * ship.getSize(),
-				cameraManager, ship.getDirection());
+		camera.orbit(ship.getPos(), 0f, 0f, Maths.SQRT2 * ship.getSize(), cameraManager, ship.getDirection());
 		game.getRenderer().prepare();
 
 		world.render(renderers);
@@ -117,15 +111,10 @@ public class GameState extends State {
 
 	public void reset() {
 		FlockManager.clear();
-		game.getRenderer().clearLights();
 		world.clear();
-		game.clearParticles(this);
 
 		SystemObject system = GalaxyUtils.getRandomSystem();
-		world.setSystem(system);
-		List<Planet> planets = GalaxyUtils.createPlanets(world, system);
-		system.print();
-		SkyRendering.render(system, world.getSkybox());
+		List<Planet> planets = world.create(system);
 		Planet planet = planets.get(RNG.randomInt(planets.size()));
 
 		// createFlock(planet, Fraction.getRandom().getFractionFile()
@@ -135,16 +124,14 @@ public class GameState extends State {
 
 		Fraction fraction0 = Fraction.getRandom();
 		Flock flock0 = new Flock(false);
-		ship = new Ship(world, fraction0,
-				fraction0.getRandomShip(ShipClass.CORVETTE), randVec(planet),
+		ship = new Ship(world, fraction0, fraction0.getRandomShip(ShipClass.CORVETTE), randVec(planet),
 				new ShipPlayerController());
 		ship.setFlock(flock0);
 		Fraction fraction1 = Fraction.getRandom();
 		Flock flock1 = new Flock(false);
 		for (int i = 0; i < 2; i++) {
-			Ship ship = new Ship(world, fraction1,
-					fraction1.getRandomShip(ShipClass.SHUTTLE),
-					randVec(planet), new ShipStaticController());
+			Ship ship = new Ship(world, fraction1, fraction1.getRandomShip(ShipClass.SHUTTLE), randVec(planet),
+					new ShipStaticController());
 			ship.setFlock(flock1);
 		}
 
@@ -162,38 +149,31 @@ public class GameState extends State {
 		return ship;
 	}
 
-	public void createFlock(Planet planet, String fractionName,
-			boolean addPlayer, boolean addStation) {
+	public void createFlock(Planet planet, String fractionName, boolean addPlayer, boolean addStation) {
 		Fraction fraction = Fraction.get(fractionName);
 		Flock flock = new Flock(false);
 		for (int i = 0; i < 1; i++)
-			new Ship(world, fraction,
-					fraction.getRandomShip(ShipClass.CRUISER), randVec(planet),
+			new Ship(world, fraction, fraction.getRandomShip(ShipClass.CRUISER), randVec(planet),
 					new ShipAIController()).setFlock(flock);
 		for (int i = 0; i < 1; i++)
-			new Ship(world, fraction,
-					fraction.getRandomShip(ShipClass.FRIGATE), randVec(planet),
+			new Ship(world, fraction, fraction.getRandomShip(ShipClass.FRIGATE), randVec(planet),
 					new ShipAIController()).setFlock(flock);
 		for (int i = 0; i < 2; i++)
-			new Ship(world, fraction,
-					fraction.getRandomShip(ShipClass.CORVETTE),
-					randVec(planet), new ShipAIController()).setFlock(flock);
+			new Ship(world, fraction, fraction.getRandomShip(ShipClass.CORVETTE), randVec(planet),
+					new ShipAIController()).setFlock(flock);
 		for (int i = 0; i < 4; i++)
-			new Ship(world, fraction,
-					fraction.getRandomShip(ShipClass.FIGHTER), randVec(planet),
+			new Ship(world, fraction, fraction.getRandomShip(ShipClass.FIGHTER), randVec(planet),
 					new ShipAIController()).setFlock(flock);
 
 		ship = (Ship) flock.randomMachine();
 
 		if (addPlayer)
-			ship = (Ship) new Ship(world, fraction,
-					fraction.getRandomShip(ShipClass.CORVETTE),
-					randVec(planet), new ShipPlayerController())
-					.setFlock(flock);
+			ship = (Ship) new Ship(world, fraction, fraction.getRandomShip(ShipClass.CORVETTE), randVec(planet),
+					new ShipPlayerController()).setFlock(flock);
 
 		if (addStation)
-			new Station(world, fraction, StationFile.get("STATION2"),
-					randVec(planet), new StationAIController()).setFlock(flock);
+			new Station(world, fraction, StationFile.get("STATION2"), randVec(planet), new StationAIController())
+					.setFlock(flock);
 	}
 
 	public static Vector3f randVec(Planet planet) {

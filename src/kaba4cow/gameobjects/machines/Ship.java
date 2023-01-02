@@ -8,6 +8,7 @@ import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.toolbox.rng.RNG;
 import kaba4cow.files.ShipFile;
+import kaba4cow.galaxyengine.objects.SystemObject;
 import kaba4cow.gameobjects.Fraction;
 import kaba4cow.gameobjects.GameObject;
 import kaba4cow.gameobjects.World;
@@ -25,6 +26,7 @@ import kaba4cow.utils.RenderUtils;
 public class Ship extends Machine {
 
 	public static final float HYPER_SPEED = 23.17f * Measures.LIGHT_SECOND;
+	public static final float JUMP_RANGE = 14f;
 
 	private final ThrustControl horizontalControl;
 	private final ThrustControl verticalControl;
@@ -138,6 +140,21 @@ public class Ship extends Machine {
 		Matrix4f matrix = direction.getMatrix(pos, true, size);
 		RenderUtils.renderThrusts(thrustModel, horizontalControl.getThrust(), afterburnerControl.getPower(), size,
 				matrix, renderers, thrusts);
+	}
+
+	public void jump() {
+		SystemObject system = controller.getTargetSystem();
+		if (system == null || system.equals(world.getSystem()))
+			return;
+		float distance = Maths.dist(world.getSystem().getPos(), system.getPos());
+		if (distance > JUMP_RANGE)
+			return;
+		Vector3f direction = Maths.direction(world.getSystem().getPos(), system.getPos());
+		float alignment = Vector3f.dot(getDirection().getForward(), direction);
+		if (alignment < 0.9f)
+			return;
+		world.jump(this, system);
+		hyperControl.jump();
 	}
 
 	@Override

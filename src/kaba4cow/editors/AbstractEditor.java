@@ -53,7 +53,7 @@ public abstract class AbstractEditor extends JFrame implements ActionListener {
 		setLocationRelativeTo(null);
 		setVisible(true);
 		setEnabled(false);
-		setResizable(false);
+		setResizable(true);
 
 		contentPanel = new JPanel();
 		contentPanel.setBorder(new BevelBorder(EditorUtils.BEVEL_BORDER, null,

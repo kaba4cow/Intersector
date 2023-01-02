@@ -51,6 +51,12 @@ public class HyperControl extends ParameterControl {
 		dThrust = 0f;
 		engaged = false;
 	}
+	
+	public void jump() {
+		shift = 0;
+		thrust = 0f;
+		dThrust = 0f;
+	}
 
 	public void shiftUp() {
 		if (shift >= SHIFTS.length - 2 || thrust < 1f)

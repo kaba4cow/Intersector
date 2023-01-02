@@ -162,6 +162,10 @@ public class Game extends MainProgram {
 		return instance;
 	}
 
+	public static State getState() {
+		return currentState;
+	}
+
 	public static State getScene() {
 		return renderScene ? States.scene : States.game;
 	}
