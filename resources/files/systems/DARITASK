@@ -1,0 +1,6 @@
+name = Daritask
+pos = 187,-1,136
+star = STAR_K
+planets = 8
+stations = 5
+seed = 4769799705652102144

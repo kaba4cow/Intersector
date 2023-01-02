@@ -1,0 +1,47 @@
+name = PWQh Shell Launcher
+size = 26.39
+originpoint = 0.0,0.0,0.0
+projectile = SHELL0
+
+models
+{
+	static = WEAPON/cannon9s
+	yaw = null
+	pitch = null
+}
+
+fireinfo
+{
+	particle = false
+	automatic = false
+	reload = 4.43
+	cooldown = 0.0
+	scale = 0.15
+	repeat = 1
+	damage = 82.2
+	deviation = 0.13
+}
+
+rotation
+{
+	speed = 0.0
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+}
+
+firepoints
+{
+	0 = 0.0,0.0,-0.35999998
+}

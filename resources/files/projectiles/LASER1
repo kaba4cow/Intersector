@@ -1,0 +1,15 @@
+name = empty
+model = PROJECTILE/laserC1
+texture = PROJECTILE/LASER_BLUE
+type = LASER
+lifelength = 11.7
+speedscale = 1.67
+
+fireinfo
+{
+	sound = laser2
+	explode = false
+	autoaim = false
+	aiming = 0.0
+	delay = 0.0
+}

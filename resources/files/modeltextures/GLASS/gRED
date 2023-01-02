@@ -1,0 +1,7 @@
+name = GLASS/gRED
+shininess = 0.6
+shinedamper = 4.0
+reflectivity = 0.45
+emission = -1.0
+transparent = false
+additive = false

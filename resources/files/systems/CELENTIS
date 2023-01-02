@@ -1,0 +1,6 @@
+name = Celentis
+pos = 182,2,128
+star = STAR_G
+planets = 13
+stations = 6
+seed = 3105634254701641728

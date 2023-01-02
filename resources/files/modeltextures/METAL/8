@@ -1,0 +1,7 @@
+name = METAL/8
+shininess = 0.15
+shinedamper = 4.0
+reflectivity = 0.0
+emission = -1.0
+transparent = false
+additive = false

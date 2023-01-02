@@ -1,0 +1,48 @@
+name = NF5 Twin Defense Cannon
+size = 4.43
+originpoint = 0.0,-1.15,0.0
+projectile = LASER0
+
+models
+{
+	static = WEAPON/turret10s
+	yaw = WEAPON/turret10y
+	pitch = WEAPON/turret10p
+}
+
+fireinfo
+{
+	particle = false
+	automatic = true
+	reload = 2.61
+	cooldown = 2.2351741E-10
+	scale = 0.66
+	repeat = 1
+	damage = 42.699997
+	deviation = 0.06
+}
+
+rotation
+{
+	speed = 0.66
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = -0.08
+		max = 0.08
+	}
+}
+
+firepoints
+{
+	0 = 0.26700002,-1.137,-0.51
+	1 = -0.26700002,-1.137,-0.51
+}

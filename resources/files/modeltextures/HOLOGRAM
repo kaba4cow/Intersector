@@ -1,0 +1,7 @@
+name = HOLOGRAM
+shininess = 0.0
+shinedamper = 1.0
+reflectivity = 0.0
+emission = 1.0
+transparent = true
+additive = true

@@ -1,0 +1,50 @@
+name = LV4 Rocket Launcher
+size = 0.9
+originpoint = 0.0,0.0,0.0
+projectile = ROCKET0
+
+models
+{
+	static = WEAPON/launcher6s
+	yaw = null
+	pitch = null
+}
+
+fireinfo
+{
+	particle = true
+	automatic = false
+	reload = 9.82
+	cooldown = 0.68
+	scale = 1.2
+	repeat = 1
+	damage = 9.0
+	deviation = 0.09
+}
+
+rotation
+{
+	speed = 0.0
+
+	yaw
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+}
+
+firepoints
+{
+	0 = 0.117,-0.6560001,-0.075
+	1 = -0.117,-0.6560001,-0.075
+	2 = 0.117,-0.421,-0.075
+	3 = -0.117,-0.421,-0.075
+}

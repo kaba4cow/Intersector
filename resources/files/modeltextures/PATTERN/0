@@ -1,0 +1,7 @@
+name = PATTERN/0
+shininess = 0.4
+shinedamper = 2.0
+reflectivity = 0.05
+emission = -1.0
+transparent = false
+additive = false

@@ -1,0 +1,7 @@
+easing = null
+errorlife = 0.4
+errorscale = 0.26
+dscale = 3.93
+drotation = 0.05
+texture = SMOKE
+tag = GAME

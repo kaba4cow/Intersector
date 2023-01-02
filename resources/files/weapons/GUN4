@@ -1,0 +1,49 @@
+name = VE-4 Triple Laser Gun
+size = 0.95
+originpoint = 0.0,0.0,0.0
+projectile = LASER0
+
+models
+{
+	static = WEAPON/gun4s
+	yaw = null
+	pitch = null
+}
+
+fireinfo
+{
+	particle = false
+	automatic = false
+	reload = 1.12
+	cooldown = 0.04
+	scale = 0.44
+	repeat = 1
+	damage = 11.299999
+	deviation = 0.02
+}
+
+rotation
+{
+	speed = 0.0
+
+	yaw
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+}
+
+firepoints
+{
+	0 = 0.049000002,-0.044999998,-0.58000004
+	1 = -0.049000002,-0.044999998,-0.58000004
+	2 = 0.0,0.044999998,-0.58000004
+}

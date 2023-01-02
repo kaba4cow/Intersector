@@ -1,0 +1,48 @@
+name = DSJ Twin Battle Cannon
+size = 8.88
+originpoint = 0.0,-0.82,-0.34
+projectile = LASER0
+
+models
+{
+	static = WEAPON/cannon11s
+	yaw = WEAPON/cannon11y
+	pitch = WEAPON/cannon11p
+}
+
+fireinfo
+{
+	particle = false
+	automatic = true
+	reload = 3.48
+	cooldown = 0.12
+	scale = 0.55
+	repeat = 1
+	damage = 49.5
+	deviation = 0.11
+}
+
+rotation
+{
+	speed = 0.6
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = -0.01
+		max = 0.3
+	}
+}
+
+firepoints
+{
+	0 = 0.232,-0.825,-1.35
+	1 = -0.232,-0.825,-1.35
+}

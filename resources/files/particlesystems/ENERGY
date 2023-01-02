@@ -1,0 +1,7 @@
+easing = EASE_OUT_SINE
+errorlife = 0.39
+errorscale = 0.33
+dscale = 0.0
+drotation = 0.35
+texture = BLUE
+tag = GAME

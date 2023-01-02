@@ -1,0 +1,48 @@
+name = IJ-19 Twin Cannon
+size = 0.6
+originpoint = 0.0,-1.2,0.0
+projectile = LASER2
+
+models
+{
+	static = WEAPON/turret3s
+	yaw = WEAPON/turret3y
+	pitch = WEAPON/turret3p
+}
+
+fireinfo
+{
+	particle = false
+	automatic = true
+	reload = 1.49
+	cooldown = 0.0
+	scale = 0.6
+	repeat = 1
+	damage = 17.699999
+	deviation = 0.03
+}
+
+rotation
+{
+	speed = 0.88
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = -0.05
+		max = 0.3
+	}
+}
+
+firepoints
+{
+	0 = 0.194,-1.2,-1.0
+	1 = -0.194,-1.2,-1.0
+}

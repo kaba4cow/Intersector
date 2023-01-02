@@ -1,0 +1,7 @@
+name = MACHINE/LIGHT0
+shininess = 0.0
+shinedamper = 0.0
+reflectivity = 0.0
+emission = 1.0
+transparent = false
+additive = false

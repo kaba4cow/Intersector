@@ -1,0 +1,15 @@
+name = empty
+model = PROJECTILE/bullet0
+texture = PROJECTILE/BULLET_1
+type = PROJECTILE
+lifelength = 6.0
+speedscale = 0.96
+
+fireinfo
+{
+	sound = fire1
+	explode = false
+	autoaim = false
+	aiming = 0.0
+	delay = 0.0
+}

@@ -1,0 +1,50 @@
+name = XC-L4 Rocket Launcher
+size = 1.35
+originpoint = 0.0,0.0,0.0
+projectile = ROCKET0
+
+models
+{
+	static = WEAPON/launcher1s
+	yaw = null
+	pitch = null
+}
+
+fireinfo
+{
+	particle = true
+	automatic = true
+	reload = 18.28
+	cooldown = 0.65
+	scale = 1.0
+	repeat = 1
+	damage = 10.5
+	deviation = 0.1
+}
+
+rotation
+{
+	speed = 0.0
+
+	yaw
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+}
+
+firepoints
+{
+	0 = 0.303,-0.90200007,-0.085
+	1 = 0.103,-0.90200007,-0.085
+	2 = -0.103,-0.90200007,-0.085
+	3 = -0.303,-0.90200007,-0.085
+}

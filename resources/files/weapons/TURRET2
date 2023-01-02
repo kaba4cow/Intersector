@@ -1,0 +1,48 @@
+name = AT-2 Defense Turret
+size = 0.58
+originpoint = 0.0,-1.05,0.12
+projectile = LASER0
+
+models
+{
+	static = WEAPON/turret2s
+	yaw = WEAPON/turret2y
+	pitch = WEAPON/turret2p
+}
+
+fireinfo
+{
+	particle = false
+	automatic = true
+	reload = 2.24
+	cooldown = 0.51
+	scale = 0.6
+	repeat = 4
+	damage = 13.199999
+	deviation = 0.02
+}
+
+rotation
+{
+	speed = 0.91
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = -0.08
+		max = 1.18
+	}
+}
+
+firepoints
+{
+	0 = 0.0,-0.888,-0.17
+	1 = 0.0,-1.205,-0.17
+}

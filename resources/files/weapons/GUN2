@@ -1,0 +1,47 @@
+name = RJ-14a Laser Cannon
+size = 3.97
+originpoint = 0.0,0.0,0.0
+projectile = LASER0
+
+models
+{
+	static = WEAPON/gun2s
+	yaw = null
+	pitch = null
+}
+
+fireinfo
+{
+	particle = false
+	automatic = false
+	reload = 0.86
+	cooldown = 0.0
+	scale = 0.65
+	repeat = 1
+	damage = 25.400002
+	deviation = 0.06
+}
+
+rotation
+{
+	speed = 0.0
+
+	yaw
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+}
+
+firepoints
+{
+	0 = 0.0,0.0,-0.16000001
+}

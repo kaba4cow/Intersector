@@ -1,0 +1,47 @@
+name = DBV-11 Laser Gun
+size = 0.77
+originpoint = 0.0,0.0,0.0
+projectile = LASER0
+
+models
+{
+	static = WEAPON/gun0s
+	yaw = null
+	pitch = null
+}
+
+fireinfo
+{
+	particle = false
+	automatic = false
+	reload = 0.53
+	cooldown = 0.08
+	scale = 0.4
+	repeat = 4
+	damage = 9.6
+	deviation = 0.02
+}
+
+rotation
+{
+	speed = 0.0
+
+	yaw
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+}
+
+firepoints
+{
+	0 = 0.0,-2.2351744E-11,-0.309
+}

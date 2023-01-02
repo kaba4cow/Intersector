@@ -1,0 +1,17 @@
+beginaa = abe,inu,atu,are,itu,eka,aiu,efa,ati,exe,ena,epo,ete,eje,iku,obe,ene
+beginab = ort,af,em,ast,arn,ath,en,al,an,arf,isk,art,aif,alf,ors,uf,irm,inc
+beginba = da,bo,hau,se,tu,sha,ba,ru,tau,mo,vu,fo,phi,fai,dae,ka,ko,ha,ta,zae,khe,kon,fon,tu,wu,dau,wa,ho,ga,che,za,sca,kha,cha,zy,to,va,ty,ca,lu
+beginbb = mez,lan,nit,kar,pal,fal,cal,kir,gal,tak,wak,men,mak,kin,ruk,bor,kel,pel,mit,mal,bes
+
+midaa = u,ho,ha,oi,we,eto,hi,a,i,he,ui,hu,ai,e,o,wa
+midab = or,on,ab,al,et,em,ut,ak,ar,it,ik,ak,ur
+midba = na,ma,ta,de,ra,gi,za,fa,li,mi,ni,da,vi,ke,ka,zu
+midbb = lid,mal,rig,cas,nf,r,s,m,k,lf,f,lik,t,l,far
+
+endaa = ea,a,ina,ae,ida,ei,ia,eia,ai,i
+endab = ar,ath,al,uf,on,an,or,us,ol,id,ur,ith,uth,un,ak,in,is,um,ek
+endba = lla,lta,tla,za,mi,na,lsa,ki,la,ra,da,sla,ma
+endbb = nar,res,z,kes,lon,nus,des,x,nt,son,dis,th,kh,mon,bar,s,dsi,tis,fin,r,tum,tin,kip,kin,ris,nis,tar
+
+prefix = alpha,beta,nu,psi,gamma,zeta,delta,tau,eta,xi,mu,epsilon,prima
+suffix = prime,theta,zeta,eta,delta,lambda,tau,omega

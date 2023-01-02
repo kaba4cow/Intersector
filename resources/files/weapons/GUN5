@@ -1,0 +1,52 @@
+name = KCN-F3 Machine Gun
+size = 0.55
+originpoint = 0.0,0.0,0.0
+projectile = BULLET0
+
+models
+{
+	static = WEAPON/gun5s
+	yaw = null
+	pitch = null
+}
+
+fireinfo
+{
+	particle = false
+	automatic = false
+	reload = 1.73
+	cooldown = 0.1
+	scale = 0.1
+	repeat = 2
+	damage = 9.200001
+	deviation = 0.02
+}
+
+rotation
+{
+	speed = 0.0
+
+	yaw
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+}
+
+firepoints
+{
+	0 = 0.0,-0.057,-0.481
+	1 = 0.051,-0.031000001,-0.481
+	2 = 0.051,0.031000001,-0.481
+	3 = 0.0,0.057,-0.481
+	4 = -0.051,0.031000001,-0.481
+	5 = -0.051,-0.031000001,-0.481
+}

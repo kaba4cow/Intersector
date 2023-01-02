@@ -1,0 +1,7 @@
+name = GLASS/gYELLOW
+shininess = 0.75
+shinedamper = 5.0
+reflectivity = 0.55
+emission = -1.0
+transparent = false
+additive = false

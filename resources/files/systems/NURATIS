@@ -1,0 +1,6 @@
+name = Nuratis
+pos = 197,0,122
+star = STAR_M
+planets = 7
+stations = 5
+seed = 4068476402657396736

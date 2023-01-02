@@ -1,0 +1,7 @@
+name = METAL/5
+shininess = 0.65
+shinedamper = 6.0
+reflectivity = 0.35
+emission = -1.0
+transparent = false
+additive = false

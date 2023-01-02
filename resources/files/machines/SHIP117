@@ -1,0 +1,224 @@
+controls
+{
+	horizontal
+	{
+		speed = 352.8
+		thrust = 0.57
+		brake = 2.04
+	}
+
+	vertical
+	{
+		speed = 43.4
+		thrust = 1.05
+		brake = 0.0
+	}
+
+	rotation
+	{
+		pitch = 1.127
+		yaw = 1.133
+		roll = 1.677
+	}
+
+	hyper
+	{
+		speed = 0.96
+		thrust = 0.478
+	}
+
+	afterburn
+	{
+		power = 1.3
+		time = 4.2
+		cooldown = 7.8
+		smoothness = 6.0
+	}
+}
+name = Unknown
+manufacturer = DHT
+
+class
+{
+	rank = 1
+	name = 0
+}
+
+info
+{
+	size = 5.8
+	health = 117.0
+	shield = 22.0
+	mass = 6.0
+	maxcargo = 2
+}
+
+model
+{
+	uselight = false
+	metal = SHIP/117m
+	glass = SHIP/117g
+}
+
+thrust
+{
+	model = THRUST/3
+	texture = YELLOW0
+}
+
+components
+{
+	thrust
+	{
+		0
+		{
+			pos = 0.11799999,0.022,0.41500002
+			size = 0.11000001
+			rotation = -0.1745329
+		}
+
+		1
+		{
+			pos = 0.191,0.035,0.375
+			size = 0.085
+			rotation = -0.1745329
+		}
+
+		2
+		{
+			pos = -0.11799999,0.022,0.41500002
+			size = 0.11000001
+			rotation = 0.1745329
+		}
+
+		3
+		{
+			pos = -0.191,0.035,0.375
+			size = 0.085
+			rotation = 0.1745329
+		}
+	}
+
+	collider
+	{
+		0
+		{
+			pos = 0.0,0.0,-0.44000003
+			size = 0.125
+			strength = 0
+		}
+
+		1
+		{
+			pos = 0.0,-0.010000001,-0.23
+			size = 0.17
+			strength = 0
+		}
+
+		2
+		{
+			pos = 0.0,-0.010000001,-0.020000001
+			size = 0.175
+			strength = 0
+		}
+
+		3
+		{
+			pos = 0.0,-0.010000001,0.16000001
+			size = 0.175
+			strength = 0
+		}
+
+		4
+		{
+			pos = 0.0,-0.010000001,0.31500003
+			size = 0.14500001
+			strength = 0
+		}
+
+		5
+		{
+			pos = 0.185,0.025,-0.17
+			size = 0.14
+			strength = 0
+		}
+
+		6
+		{
+			pos = 0.185,0.025,0.040000003
+			size = 0.14
+			strength = 0
+		}
+
+		7
+		{
+			pos = 0.185,0.025,0.235
+			size = 0.14
+			strength = -1
+		}
+
+		8
+		{
+			pos = 0.375,0.120000005,0.040000003
+			size = 0.105
+			strength = 2
+		}
+
+		9
+		{
+			pos = -0.185,0.025,-0.17
+			size = 0.14
+			strength = 0
+		}
+
+		10
+		{
+			pos = -0.185,0.025,0.040000003
+			size = 0.14
+			strength = 0
+		}
+
+		11
+		{
+			pos = -0.185,0.025,0.235
+			size = 0.14
+			strength = -1
+		}
+
+		12
+		{
+			pos = -0.375,0.120000005,0.040000003
+			size = 0.105
+			strength = 2
+		}
+	}
+
+	weapon
+	{
+		0
+		{
+			pos = 0.15,0.0,-0.385
+			copytarget = true
+			weaponname = GUN3
+			direction = 4.371139E-8/1.0/0.0/-1.0/4.371139E-8/-0.0/0.0/0.0/-0.99999994/-4.371139E-8/1.0/0.0/0.0/-1.0/-4.371139E-8/-0.0/-0.0/0.0/0.0/0.99999994/0.0/0.0/0.0/0.0/1.0
+		}
+
+		1
+		{
+			pos = -0.15,0.0,-0.385
+			copytarget = true
+			weaponname = GUN3
+			direction = 4.371139E-8/-1.0/-0.0/1.0/4.371139E-8/0.0/0.0/0.0/-0.99999994/-4.371139E-8/-1.0/-0.0/-0.0/1.0/-4.371139E-8/0.0/0.0/0.0/0.0/0.99999994/0.0/0.0/0.0/0.0/1.0
+		}
+
+		2
+		{
+			pos = 0.0,-0.035,0.355
+			copytarget = false
+			weaponname = TURRET2
+			direction = -1.0/0.0/0.0/0.0/-0.9961947/0.08715574/0.0/-0.08715574/-0.9961947/1.0/0.0/0.0/0.0/0.0/0.9961947/0.08715574/0.0/0.0/-0.08715574/0.9961947/0.0/0.0/0.0/0.0/1.0
+		}
+	}
+	container = 
+	port = 
+}

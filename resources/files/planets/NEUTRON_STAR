@@ -1,0 +1,47 @@
+name = Neutron Star
+object = true
+light = 2.0
+image = 0.14
+minhabitability = -1
+ring = 0.0
+station = 0.0
+flares = 4,6
+children = -1,4
+childbias = 0.262
+size = 0.08,0.12
+scale = E
+sizebias = 0.191
+distance = 15400.0,132600.0
+axisoffset = 0.087
+
+terrain
+{
+	colors
+	{
+		0 = 0.52,0.72,1.0
+		1 = 0.4,0.67,1.0
+		2 = 0.51,0.7,1.0
+		3 = 0.61,0.75,1.0
+		4 = 0.54,0.82,1.0
+	}
+	cubemap = 0
+	emission = 6.07,6.11
+	bands = 13,16
+	avgcolorblend = 0.841,0.873
+	blendpower = 6.771,7.185
+	positionfactor = 0.895,0.909
+	invertposition = false
+
+	scale
+	{
+		min = 1.0,1.0,18.72
+		max = 1.0,1.0,21.185
+	}
+
+	info
+	{
+		sign = -1,-1,-1
+		min = 3.54,17.93,0.35
+		max = 3.58,21.34,0.61
+	}
+}

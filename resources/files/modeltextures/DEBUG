@@ -1,0 +1,7 @@
+name = DEBUG
+shininess = 0.4
+shinedamper = 4.0
+reflectivity = 0.5
+emission = -1.0
+transparent = false
+additive = false

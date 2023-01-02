@@ -1,0 +1,47 @@
+name = LRB Torpedo Launcher
+size = 12.85
+originpoint = 0.0,0.0,0.0
+projectile = ROCKET1
+
+models
+{
+	static = WEAPON/launcher3s
+	yaw = null
+	pitch = null
+}
+
+fireinfo
+{
+	particle = true
+	automatic = false
+	reload = 11.94
+	cooldown = 0.0
+	scale = 0.9
+	repeat = 1
+	damage = 17.4
+	deviation = 0.18
+}
+
+rotation
+{
+	speed = 0.0
+
+	yaw
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+}
+
+firepoints
+{
+	0 = 0.0,-0.33699998,-0.1
+}

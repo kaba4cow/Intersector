@@ -1,0 +1,50 @@
+name = FDX-70 Homing Launcher
+size = 1.3
+originpoint = 0.0,-1.14,0.13
+projectile = ROCKET3
+
+models
+{
+	static = WEAPON/launcher8s
+	yaw = WEAPON/launcher8y
+	pitch = WEAPON/launcher8p
+}
+
+fireinfo
+{
+	particle = true
+	automatic = true
+	reload = 16.68
+	cooldown = 1.79
+	scale = 1.3
+	repeat = 1
+	damage = 16.6
+	deviation = 0.11
+}
+
+rotation
+{
+	speed = 1.0
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = -0.05
+		max = 0.15
+	}
+}
+
+firepoints
+{
+	0 = 0.345,-1.275,0.040000003
+	1 = -0.345,-1.275,0.040000003
+	2 = 0.345,-0.995,0.040000003
+	3 = -0.345,-0.995,0.040000003
+}

@@ -1,0 +1,9 @@
+name
+{
+
+	short = DHT
+	long = Dragonfly Hypertechs
+
+}
+overprice = 0.98
+texturesets = SET0

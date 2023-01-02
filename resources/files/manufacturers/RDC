@@ -1,0 +1,9 @@
+name
+{
+
+	short = RDC
+	long = Raven Drive Corporation
+
+}
+overprice = 0.97
+texturesets = SET0

@@ -1,0 +1,7 @@
+name = GLASS/gBLACK
+shininess = 0.85
+shinedamper = 6.0
+reflectivity = 0.7
+emission = -1.0
+transparent = false
+additive = false

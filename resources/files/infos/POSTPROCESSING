@@ -1,0 +1,15 @@
+border = 2
+
+effects
+{
+	0 = EXPOSURE,1.09
+	1 = BLOOM,2,0.98,1.38
+	2 = BLOOM,1,0.95,1.05
+	3 = BLEND,overlay,0.08
+	4 = SATURATION,1.39,1.17,1.26
+	5 = GAMMA,1.14
+	6 = NOISE,0.01
+	7 = SHARPNESS,0.26
+	8 = EXPOSURE,0.74
+	9 = CRT,7.6,0.5,28.0
+}

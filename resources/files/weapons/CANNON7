@@ -1,0 +1,47 @@
+name = HWE-910 Artillery Cannon
+size = 9.41
+originpoint = 0.0,-1.07,0.53
+projectile = SHELL0
+
+models
+{
+	static = WEAPON/cannon7s
+	yaw = WEAPON/cannon7y
+	pitch = WEAPON/cannon7p
+}
+
+fireinfo
+{
+	particle = true
+	automatic = true
+	reload = 2.82
+	cooldown = 0.0
+	scale = 0.7
+	repeat = 1
+	damage = 82.2
+	deviation = 0.13
+}
+
+rotation
+{
+	speed = 0.45
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = -0.05
+		max = 0.4
+	}
+}
+
+firepoints
+{
+	0 = 0.0,-1.071,-1.0
+}

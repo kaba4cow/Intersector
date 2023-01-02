@@ -1,0 +1,50 @@
+name = HRN Quad Defence Cannon
+size = 10.71
+originpoint = 0.0,-1.05,0.0
+projectile = LASER4
+
+models
+{
+	static = WEAPON/cannon8s
+	yaw = WEAPON/cannon8y
+	pitch = WEAPON/cannon8p
+}
+
+fireinfo
+{
+	particle = false
+	automatic = true
+	reload = 3.43
+	cooldown = 0.28
+	scale = 0.56
+	repeat = 1
+	damage = 82.5
+	deviation = 0.16
+}
+
+rotation
+{
+	speed = 0.56
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = -0.05
+		max = 1.05
+	}
+}
+
+firepoints
+{
+	0 = 0.221,-1.183,-0.63000005
+	1 = -0.221,-1.183,-0.63000005
+	2 = 0.221,-0.928,-0.63000005
+	3 = -0.221,-0.928,-0.63000005
+}

@@ -1,0 +1,7 @@
+name = METAL/1
+shininess = 0.3
+shinedamper = 5.0
+reflectivity = 0.05
+emission = -1.0
+transparent = false
+additive = false

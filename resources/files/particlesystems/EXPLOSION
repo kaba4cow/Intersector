@@ -1,0 +1,7 @@
+easing = EASE_IN_QUART
+errorlife = 0.65
+errorscale = 0.52
+dscale = -0.51
+drotation = 0.03
+texture = ORANGE
+tag = GAME

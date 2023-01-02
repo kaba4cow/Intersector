@@ -1,0 +1,24 @@
+name = empty
+model = PROJECTILE/rocket2
+texture = PROJECTILE/ROCKET_0
+type = ROCKET
+lifelength = 14.2
+speedscale = 0.99
+
+fireinfo
+{
+	sound = rocket1
+	explode = true
+	autoaim = true
+	aiming = 2.14
+	delay = 2.09
+}
+
+thrust
+{
+	model = THRUST/0
+	texture = YELLOW1
+	pos = 0.0,0.0,0.4
+	size = 0.16
+	rotation = 0.0
+}

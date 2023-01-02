@@ -1,0 +1,47 @@
+name = DF-80 Artillery Cannon
+size = 31.83
+originpoint = 0.0,0.0,0.0
+projectile = SHELL0
+
+models
+{
+	static = WEAPON/cannon0s
+	yaw = null
+	pitch = null
+}
+
+fireinfo
+{
+	particle = true
+	automatic = false
+	reload = 7.25
+	cooldown = 0.0
+	scale = 0.2
+	repeat = 1
+	damage = 105.2
+	deviation = 0.23
+}
+
+rotation
+{
+	speed = 0.0
+
+	yaw
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+}
+
+firepoints
+{
+	0 = 0.0,0.0,-0.35
+}

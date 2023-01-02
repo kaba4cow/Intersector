@@ -1,0 +1,40 @@
+galaxy
+{
+
+	size = 1024
+	height = 8
+
+}
+
+sector
+{
+
+	size = 16
+	density = 0.553
+
+}
+
+system
+{
+
+	density = 0.791
+	maxoffset = 0.286
+
+}
+
+nebula
+{
+
+	cutoff = 0.086
+	threshold = 0.878,0.895
+	
+	noise
+	{
+	
+		density = 0.083
+		size = 0.033
+		color = -0.027
+	
+	}
+
+}

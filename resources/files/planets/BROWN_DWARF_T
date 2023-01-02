@@ -1,0 +1,45 @@
+name = T-class Brown Dwarf
+object = true
+light = 0.85
+image = 0.5
+minhabitability = -1
+ring = 0.0
+station = 0.0
+flares = 0,0
+children = -2,4
+childbias = 0.035
+size = 3.02,3.17
+scale = J
+sizebias = 0.197
+distance = 10.0,27.0
+axisoffset = 0.076
+
+terrain
+{
+	colors
+	{
+		0 = 0.58,0.28,0.45
+		1 = 0.64,0.21,0.44
+		2 = 0.68,0.15,0.36
+	}
+	cubemap = 2
+	emission = 1.07,1.09
+	bands = 8,11
+	avgcolorblend = 0.884,0.937
+	blendpower = 1.56,2.25
+	positionfactor = 0.349,0.456
+	invertposition = true
+
+	scale
+	{
+		min = 0.014,1.964,1.105
+		max = 0.146,2.322,1.806
+	}
+
+	info
+	{
+		sign = 0,-1,0
+		min = 1.46,0.04,0.48
+		max = 2.03,1.43,0.92
+	}
+}

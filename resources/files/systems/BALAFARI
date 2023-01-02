@@ -1,0 +1,6 @@
+name = Balafari
+pos = 191,1,133
+star = STAR_A
+planets = 9
+stations = 6
+seed = 8272428689010086912

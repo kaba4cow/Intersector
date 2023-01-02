@@ -1,0 +1,47 @@
+name = L5-11 Rocket Launcher
+size = 1.8
+originpoint = 0.0,0.0,0.0
+projectile = ROCKET3
+
+models
+{
+	static = WEAPON/launcher5s
+	yaw = null
+	pitch = null
+}
+
+fireinfo
+{
+	particle = true
+	automatic = false
+	reload = 6.75
+	cooldown = 0.0
+	scale = 0.95
+	repeat = 1
+	damage = 8.2
+	deviation = 0.08
+}
+
+rotation
+{
+	speed = 0.0
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+}
+
+firepoints
+{
+	0 = 0.0,0.0,-0.030000001
+}

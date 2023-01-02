@@ -1,0 +1,47 @@
+name = DDP Heavy Emitter
+size = 19.71
+originpoint = 0.0,0.0,0.0
+projectile = LASER3
+
+models
+{
+	static = WEAPON/cannon3s
+	yaw = null
+	pitch = null
+}
+
+fireinfo
+{
+	particle = false
+	automatic = false
+	reload = 3.83
+	cooldown = 0.0
+	scale = 0.85
+	repeat = 1
+	damage = 74.100006
+	deviation = 0.14
+}
+
+rotation
+{
+	speed = 0.0
+
+	yaw
+	{
+		limit = true
+		min = 2.2351743E-10
+		max = 2.2351743E-10
+	}
+
+	pitch
+	{
+		limit = true
+		min = 2.2351743E-10
+		max = 2.2351743E-10
+	}
+}
+
+firepoints
+{
+	0 = 0.0,0.0,-0.2
+}

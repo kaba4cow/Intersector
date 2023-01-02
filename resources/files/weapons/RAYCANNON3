@@ -1,0 +1,47 @@
+name = BXD-400 Heavy Ray Cannon
+size = 27.51
+originpoint = 0.0,0.0,0.0
+projectile = RAY2
+
+models
+{
+	static = WEAPON/raycannon3s
+	yaw = null
+	pitch = null
+}
+
+fireinfo
+{
+	particle = false
+	automatic = false
+	reload = 15.4
+	cooldown = 1.07
+	scale = 0.4
+	repeat = 8
+	damage = 39.6
+	deviation = 0.21
+}
+
+rotation
+{
+	speed = 0.0
+
+	yaw
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+}
+
+firepoints
+{
+	0 = 0.0,0.0,-0.26
+}

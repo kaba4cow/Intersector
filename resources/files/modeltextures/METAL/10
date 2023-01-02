@@ -1,0 +1,7 @@
+name = METAL/10
+shininess = 0.25
+shinedamper = 4.0
+reflectivity = 0.05
+emission = -1.0
+transparent = false
+additive = false

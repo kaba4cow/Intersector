@@ -1,0 +1,45 @@
+name = G-class Supergiant
+object = true
+light = 1.3
+image = 1.0
+minhabitability = -1
+ring = 0.0
+station = 0.0
+flares = 52,57
+children = -3,8
+childbias = 0.354
+size = 100.0,150.0
+scale = S
+sizebias = 0.686
+distance = 0.3,2.4
+axisoffset = 0.003
+
+terrain
+{
+	colors
+	{
+		0 = 1.0,0.66,0.33
+		1 = 1.0,0.69,0.38
+		2 = 1.0,0.7,0.41
+	}
+	cubemap = 2
+	emission = 5.21,5.42
+	bands = 14,17
+	avgcolorblend = 0.887,0.942
+	blendpower = 4.854,5.185
+	positionfactor = 0.885,0.892
+	invertposition = false
+
+	scale
+	{
+		min = 1.0,1.0,13.753
+		max = 1.0,1.0,16.185
+	}
+
+	info
+	{
+		sign = -1,-1,-1
+		min = 3.72,9.24,0.66
+		max = 4.84,16.11,0.73
+	}
+}

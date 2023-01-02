@@ -1,0 +1,50 @@
+name = XF8 Quad Laser Turret
+size = 2.2
+originpoint = 0.0,-0.92,0.0
+projectile = LASER1
+
+models
+{
+	static = WEAPON/turret4s
+	yaw = null
+	pitch = WEAPON/turret4p
+}
+
+fireinfo
+{
+	particle = false
+	automatic = true
+	reload = 2.94
+	cooldown = 0.4
+	scale = 0.6
+	repeat = 1
+	damage = 35.2
+	deviation = 0.09
+}
+
+rotation
+{
+	speed = 0.5
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = -0.02
+		max = 1.02
+	}
+}
+
+firepoints
+{
+	0 = 0.135,-0.973,-0.51500005
+	1 = -0.135,-0.973,-0.51500005
+	2 = 0.135,-0.875,-0.51500005
+	3 = -0.135,-0.875,-0.51500005
+}

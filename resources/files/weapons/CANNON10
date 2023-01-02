@@ -1,0 +1,47 @@
+name = PSF-400 Heavy Emitter
+size = 8.7
+originpoint = 0.0,-0.97,0.0
+projectile = LASER3
+
+models
+{
+	static = WEAPON/cannon10s
+	yaw = null
+	pitch = WEAPON/cannon10p
+}
+
+fireinfo
+{
+	particle = false
+	automatic = true
+	reload = 3.5
+	cooldown = 0.0
+	scale = 1.5
+	repeat = 1
+	damage = 70.2
+	deviation = 0.12
+}
+
+rotation
+{
+	speed = 0.4
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = -0.030000001
+		max = 1.03
+	}
+}
+
+firepoints
+{
+	0 = 0.0,-0.963,-0.4
+}

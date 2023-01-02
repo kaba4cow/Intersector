@@ -1,0 +1,48 @@
+name = XBR-93 Twin Defense Turret
+size = 1.35
+originpoint = 0.0,-1.03,0.0
+projectile = LASER0
+
+models
+{
+	static = WEAPON/turret14s
+	yaw = WEAPON/turret14y
+	pitch = WEAPON/turret14p
+}
+
+fireinfo
+{
+	particle = false
+	automatic = true
+	reload = 2.48
+	cooldown = 0.84
+	scale = 0.45
+	repeat = 1
+	damage = 18.199997
+	deviation = 0.02
+}
+
+rotation
+{
+	speed = 0.85
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = -0.1
+		max = 1.1
+	}
+}
+
+firepoints
+{
+	0 = 0.396,-1.0300001,-0.745
+	1 = -0.396,-1.0300001,-0.745
+}

@@ -1,0 +1,47 @@
+name = BH12 Laser Cannon
+size = 3.46
+originpoint = 0.0,-0.79,0.0
+projectile = LASER1
+
+models
+{
+	static = WEAPON/turret7s
+	yaw = WEAPON/turret7y
+	pitch = WEAPON/turret7p
+}
+
+fireinfo
+{
+	particle = false
+	automatic = true
+	reload = 2.81
+	cooldown = 0.0
+	scale = 0.6
+	repeat = 1
+	damage = 39.1
+	deviation = 0.06
+}
+
+rotation
+{
+	speed = 0.6
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = 2.2351743E-10
+		max = 0.2
+	}
+}
+
+firepoints
+{
+	0 = 0.0,-0.79,-1.0
+}

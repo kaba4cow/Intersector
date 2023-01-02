@@ -1,0 +1,48 @@
+name = XLB-7 Twin Laser Gun
+size = 0.68
+originpoint = 0.0,0.0,0.0
+projectile = LASER2
+
+models
+{
+	static = WEAPON/gun1s
+	yaw = null
+	pitch = null
+}
+
+fireinfo
+{
+	particle = false
+	automatic = false
+	reload = 1.18
+	cooldown = 0.12
+	scale = 0.66
+	repeat = 2
+	damage = 11.6
+	deviation = 0.01
+}
+
+rotation
+{
+	speed = 0.0
+
+	yaw
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+}
+
+firepoints
+{
+	0 = 0.089999996,0.0,-0.175
+	1 = -0.089999996,0.0,-0.175
+}

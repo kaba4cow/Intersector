@@ -1,0 +1,7 @@
+easing = EASE_OUT_CUBIC
+errorlife = 0.35
+errorscale = 0.28
+dscale = 2.76
+drotation = 0.0
+texture = LIGHT
+tag = GAME

@@ -1,0 +1,48 @@
+name = W14 Battle Cannon
+size = 13.17
+originpoint = 0.0,-0.62,0.06
+projectile = LASER4
+
+models
+{
+	static = WEAPON/cannon4s
+	yaw = WEAPON/cannon4y
+	pitch = WEAPON/cannon4p
+}
+
+fireinfo
+{
+	particle = false
+	automatic = true
+	reload = 3.29
+	cooldown = 0.67
+	scale = 0.3
+	repeat = 1
+	damage = 47.1
+	deviation = 0.12
+}
+
+rotation
+{
+	speed = 0.56
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = -2.2351743E-10
+		max = 0.25
+	}
+}
+
+firepoints
+{
+	0 = 0.13600002,-0.648,-0.8600001
+	1 = -0.136,-0.648,-0.8600001
+}

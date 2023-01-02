@@ -1,0 +1,45 @@
+name = B-class Supergiant
+object = true
+light = 1.45
+image = 1.0
+minhabitability = -1
+ring = 0.0
+station = 0.0
+flares = 54,59
+children = -3,8
+childbias = 0.354
+size = 100.0,150.0
+scale = S
+sizebias = 0.308
+distance = 0.3,2.4
+axisoffset = 0.003
+
+terrain
+{
+	colors
+	{
+		0 = 1.0,0.96,0.96
+		1 = 0.97,0.97,1.0
+		2 = 0.89,0.98,1.0
+	}
+	cubemap = 2
+	emission = 4.4,4.61
+	bands = 12,17
+	avgcolorblend = 0.87,0.943
+	blendpower = 3.877,4.386
+	positionfactor = 0.91,0.922
+	invertposition = false
+
+	scale
+	{
+		min = 1.0,1.0,24.711
+		max = 1.0,1.0,28.974
+	}
+
+	info
+	{
+		sign = -1,-1,-1
+		min = 3.95,6.72,0.44
+		max = 4.01,13.14,0.57
+	}
+}

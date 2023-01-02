@@ -1,0 +1,47 @@
+name = YPW Heavy Laser Cannon
+size = 21.53
+originpoint = 0.0,0.0,0.0
+projectile = LASER3
+
+models
+{
+	static = WEAPON/cannon2s
+	yaw = null
+	pitch = null
+}
+
+fireinfo
+{
+	particle = false
+	automatic = false
+	reload = 2.25
+	cooldown = 0.0
+	scale = 0.36
+	repeat = 1
+	damage = 70.5
+	deviation = 0.11
+}
+
+rotation
+{
+	speed = 0.0
+
+	yaw
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+}
+
+firepoints
+{
+	0 = 0.0,0.0,-0.3
+}

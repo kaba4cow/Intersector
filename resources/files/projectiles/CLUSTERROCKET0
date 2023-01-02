@@ -1,0 +1,24 @@
+name = empty
+model = PROJECTILE/clusterrocket0
+texture = PROJECTILE/ROCKET_0
+type = CLUSTERROCKET
+lifelength = 12.0
+speedscale = 0.92
+
+fireinfo
+{
+	sound = rocket2
+	explode = true
+	autoaim = true
+	aiming = 1.82
+	delay = 0.81
+}
+
+thrust
+{
+	model = THRUST/3
+	texture = YELLOW1
+	pos = 0.0,0.0,0.45
+	size = 0.22
+	rotation = 0.0
+}

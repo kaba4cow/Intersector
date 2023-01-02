@@ -1,0 +1,45 @@
+name = M-class Brown Dwarf
+object = true
+light = 0.9
+image = 0.5
+minhabitability = -1
+ring = 0.0
+station = 0.0
+flares = 0,0
+children = -3,5
+childbias = 0.071
+size = 3.34,3.48
+scale = J
+sizebias = 0.149
+distance = 10.0,27.0
+axisoffset = 0.062
+
+terrain
+{
+	colors
+	{
+		0 = 0.82,0.34,0.2
+		1 = 0.87,0.38,0.22
+		2 = 0.89,0.41,0.23
+	}
+	cubemap = 2
+	emission = 1.19,1.22
+	bands = 9,14
+	avgcolorblend = 0.892,0.951
+	blendpower = 1.58,2.14
+	positionfactor = 0.38,0.435
+	invertposition = true
+
+	scale
+	{
+		min = 0.022,1.977,1.119
+		max = 0.171,2.321,1.833
+	}
+
+	info
+	{
+		sign = 0,-1,0
+		min = 1.51,0.08,0.47
+		max = 2.08,1.54,0.81
+	}
+}

@@ -1,0 +1,7 @@
+easing = null
+errorlife = 0.0
+errorscale = 0.0
+dscale = 0.0
+drotation = 0.0
+texture = NEBULA
+tag = MAP

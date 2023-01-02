@@ -1,0 +1,54 @@
+name = XF-L8 Rocket Launcher
+size = 2.55
+originpoint = 0.0,0.0,0.0
+projectile = ROCKET0
+
+models
+{
+	static = WEAPON/launcher0s
+	yaw = null
+	pitch = null
+}
+
+fireinfo
+{
+	particle = true
+	automatic = true
+	reload = 18.28
+	cooldown = 0.75
+	scale = 1.0
+	repeat = 1
+	damage = 13.6
+	deviation = 0.2
+}
+
+rotation
+{
+	speed = 0.0
+
+	yaw
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+}
+
+firepoints
+{
+	0 = 0.283,-0.92399997,-0.120000005
+	1 = 0.095,-0.92399997,-0.120000005
+	2 = -0.095,-0.92399997,-0.120000005
+	3 = -0.283,-0.92399997,-0.120000005
+	4 = 0.283,-0.771,-0.120000005
+	5 = 0.095,-0.771,-0.120000005
+	6 = -0.095,-0.771,-0.120000005
+	7 = -0.283,-0.771,-0.120000005
+}

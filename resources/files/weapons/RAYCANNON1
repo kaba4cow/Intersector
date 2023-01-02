@@ -1,0 +1,47 @@
+name = BP-14 Ray Gun
+size = 1.14
+originpoint = 0.0,0.0,0.0
+projectile = RAY1
+
+models
+{
+	static = WEAPON/raycannon1s
+	yaw = null
+	pitch = null
+}
+
+fireinfo
+{
+	particle = false
+	automatic = false
+	reload = 8.24
+	cooldown = 0.42
+	scale = 1.5
+	repeat = 6
+	damage = 12.200001
+	deviation = 0.08
+}
+
+rotation
+{
+	speed = 0.0
+
+	yaw
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = 0.0
+		max = 0.0
+	}
+}
+
+firepoints
+{
+	0 = 0.0,0.0,-1.3000001
+}

@@ -1,0 +1,49 @@
+name = JMC-6 Machine Gun
+size = 1.81
+originpoint = 0.0,-1.1,0.19
+projectile = BULLET1
+
+models
+{
+	static = WEAPON/turret13s
+	yaw = WEAPON/turret13y
+	pitch = WEAPON/turret13p
+}
+
+fireinfo
+{
+	particle = true
+	automatic = true
+	reload = 0.97
+	cooldown = 0.11
+	scale = 0.12
+	repeat = 2
+	damage = 13.1
+	deviation = 0.03
+}
+
+rotation
+{
+	speed = 0.72
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = -0.1
+		max = 0.4
+	}
+}
+
+firepoints
+{
+	0 = 0.072000004,-1.182,-0.70600003
+	1 = -0.072000004,-1.182,-0.70600003
+	2 = 0.0,-1.0560001,-0.70600003
+}

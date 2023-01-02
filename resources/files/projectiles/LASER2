@@ -1,0 +1,15 @@
+name = empty
+model = PROJECTILE/laserT0
+texture = PROJECTILE/LASER_YELLOW
+type = LASER
+lifelength = 7.2
+speedscale = 1.72
+
+fireinfo
+{
+	sound = laser3
+	explode = false
+	autoaim = false
+	aiming = 0.0
+	delay = 0.0
+}

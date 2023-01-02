@@ -1,0 +1,47 @@
+name = DAX-10 Ray Cannon
+size = 6.39
+originpoint = 0.0,-0.9,0.0
+projectile = RAY0
+
+models
+{
+	static = WEAPON/raycannon2s
+	yaw = null
+	pitch = WEAPON/raycannon2p
+}
+
+fireinfo
+{
+	particle = false
+	automatic = true
+	reload = 13.39
+	cooldown = 1.05
+	scale = 0.42
+	repeat = 4
+	damage = 18.3
+	deviation = 0.11
+}
+
+rotation
+{
+	speed = 0.39
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = -0.1
+		max = 1.1
+	}
+}
+
+firepoints
+{
+	0 = 0.0,-0.907,-0.83000004
+}

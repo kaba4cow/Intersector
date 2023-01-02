@@ -1,0 +1,9 @@
+name
+{
+
+	short = MCM
+	long = Mining Clan Machinery
+
+}
+overprice = 0.91
+texturesets = SET0

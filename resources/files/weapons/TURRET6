@@ -1,0 +1,50 @@
+name = GGX-308 Quad Assault Cannon
+size = 1.41
+originpoint = 0.0,-1.16,0.0
+projectile = LASER3
+
+models
+{
+	static = WEAPON/turret6s
+	yaw = WEAPON/turret6y
+	pitch = WEAPON/turret6p
+}
+
+fireinfo
+{
+	particle = false
+	automatic = true
+	reload = 4.49
+	cooldown = 0.29
+	scale = 0.96
+	repeat = 1
+	damage = 24.199997
+	deviation = 0.08
+}
+
+rotation
+{
+	speed = 0.67
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = -0.1
+		max = 1.1
+	}
+}
+
+firepoints
+{
+	0 = 0.263,-1.2800001,-0.07
+	1 = -0.263,-1.2800001,-0.07
+	2 = 0.263,-1.044,-0.07
+	3 = -0.263,-1.044,-0.07
+}

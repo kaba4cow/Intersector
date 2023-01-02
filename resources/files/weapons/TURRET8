@@ -1,0 +1,48 @@
+name = KSR Heavy Twin Turret
+size = 5.62
+originpoint = 0.0,-1.04,0.0
+projectile = LASER3
+
+models
+{
+	static = WEAPON/turret8s
+	yaw = WEAPON/turret8y
+	pitch = WEAPON/turret8p
+}
+
+fireinfo
+{
+	particle = false
+	automatic = true
+	reload = 3.71
+	cooldown = 0.43
+	scale = 0.32
+	repeat = 1
+	damage = 49.199997
+	deviation = 0.09
+}
+
+rotation
+{
+	speed = 0.54
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = -0.030000001
+		max = 1.03
+	}
+}
+
+firepoints
+{
+	0 = 0.109000005,-1.048,-0.80100006
+	1 = -0.109000005,-1.048,-0.80100006
+}

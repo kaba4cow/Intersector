@@ -1,0 +1,45 @@
+name = F-class Star
+object = true
+light = 1.15
+image = 0.73
+minhabitability = -1
+ring = 0.0
+station = 0.0
+flares = 21,25
+children = -3,13
+childbias = 0.213
+size = 1.15,1.4
+scale = S
+sizebias = 0.231
+distance = 2.5,70.0
+axisoffset = 0.003
+
+terrain
+{
+	colors
+	{
+		0 = 1.0,0.73,0.46
+		1 = 1.0,0.75,0.47
+		2 = 1.0,0.75,0.49
+	}
+	cubemap = 2
+	emission = 5.53,5.58
+	bands = 10,13
+	avgcolorblend = 0.792,0.871
+	blendpower = 3.853,5.171
+	positionfactor = 0.925,0.928
+	invertposition = false
+
+	scale
+	{
+		min = 1.0,1.0,38.776
+		max = 1.0,1.0,44.185
+	}
+
+	info
+	{
+		sign = -1,-1,-1
+		min = 3.613,5.12,0.484
+		max = 3.687,16.03,0.589
+	}
+}

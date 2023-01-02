@@ -1,0 +1,45 @@
+name = K-class Star
+object = true
+light = 1.05
+image = 0.71
+minhabitability = -1
+ring = 0.0
+station = 0.0
+flares = 19,23
+children = -3,13
+childbias = 0.213
+size = 0.7,0.96
+scale = S
+sizebias = 0.287
+distance = 3.5,74.0
+axisoffset = 0.006
+
+terrain
+{
+	colors
+	{
+		0 = 1.0,0.63,0.26
+		1 = 1.0,0.65,0.3
+		2 = 1.0,0.68,0.31
+	}
+	cubemap = 2
+	emission = 5.3,5.44
+	bands = 13,18
+	avgcolorblend = 0.886,0.953
+	blendpower = 5.564,5.935
+	positionfactor = 0.896,0.91
+	invertposition = false
+
+	scale
+	{
+		min = 1.0,1.0,18.747
+		max = 1.0,1.0,24.185
+	}
+
+	info
+	{
+		sign = -1,-1,-1
+		min = 3.829,8.209,0.362
+		max = 3.975,12.15,0.66
+	}
+}

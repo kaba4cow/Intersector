@@ -1,0 +1,45 @@
+name = A-class Star
+object = true
+light = 1.2
+image = 0.75
+minhabitability = -1
+ring = 0.0
+station = 0.0
+flares = 22,26
+children = -3,13
+childbias = 0.213
+size = 1.4,1.8
+scale = S
+sizebias = 0.201
+distance = 2.0,68.0
+axisoffset = 0.012
+
+terrain
+{
+	colors
+	{
+		0 = 1.0,0.73,0.46
+		1 = 1.0,0.75,0.47
+		2 = 1.0,0.75,0.49
+	}
+	cubemap = 2
+	emission = 4.98,5.04
+	bands = 12,15
+	avgcolorblend = 0.932,0.988
+	blendpower = 6.891,7.486
+	positionfactor = 0.881,0.909
+	invertposition = false
+
+	scale
+	{
+		min = 1.0,1.0,31.378
+		max = 1.0,1.0,35.217
+	}
+
+	info
+	{
+		sign = -1,-1,-1
+		min = 3.784,5.01,0.421
+		max = 3.887,7.08,0.63
+	}
+}

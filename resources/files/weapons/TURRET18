@@ -1,0 +1,50 @@
+name = MBL-188 Heavy Laser Turret
+size = 3.52
+originpoint = 0.0,-0.95,0.27
+projectile = LASER4
+
+models
+{
+	static = WEAPON/turret18s
+	yaw = WEAPON/turret18y
+	pitch = WEAPON/turret18p
+}
+
+fireinfo
+{
+	particle = false
+	automatic = true
+	reload = 2.26
+	cooldown = 0.24
+	scale = 0.35
+	repeat = 1
+	damage = 29.800003
+	deviation = 0.04
+}
+
+rotation
+{
+	speed = 0.68
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = -0.05
+		max = 0.45
+	}
+}
+
+firepoints
+{
+	0 = 0.56400007,-1.0290002,-0.7
+	1 = -0.564,-1.029,-0.7
+	2 = 0.56400007,-0.864,-0.7
+	3 = -0.564,-0.864,-0.7
+}

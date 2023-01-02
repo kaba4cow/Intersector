@@ -1,0 +1,6 @@
+name = Kahearia
+pos = 191,2,125
+star = STAR_B
+planets = 12
+stations = 5
+seed = 701907143347129344

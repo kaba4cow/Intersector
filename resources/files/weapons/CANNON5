@@ -1,0 +1,47 @@
+name = VAF108 Heavy Laser Cannon
+size = 11.06
+originpoint = 0.0,-0.84,0.0
+projectile = LASER4
+
+models
+{
+	static = WEAPON/cannon5s
+	yaw = WEAPON/cannon5y
+	pitch = WEAPON/cannon5p
+}
+
+fireinfo
+{
+	particle = false
+	automatic = true
+	reload = 2.96
+	cooldown = 0.0
+	scale = 0.72
+	repeat = 1
+	damage = 67.9
+	deviation = 0.09
+}
+
+rotation
+{
+	speed = 0.53
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = -0.02
+		max = 1.02
+	}
+}
+
+firepoints
+{
+	0 = 0.0,-0.837,-1.235
+}

@@ -1,0 +1,50 @@
+name = ALC11 Quad Laser Gun
+size = 1.4
+originpoint = 0.0,-0.74,0.04
+projectile = LASER2
+
+models
+{
+	static = WEAPON/turret11s
+	yaw = WEAPON/turret11y
+	pitch = WEAPON/turret11p
+}
+
+fireinfo
+{
+	particle = false
+	automatic = true
+	reload = 1.73
+	cooldown = 0.0
+	scale = 0.44
+	repeat = 1
+	damage = 17.3
+	deviation = 0.03
+}
+
+rotation
+{
+	speed = 0.71
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = -0.02
+		max = 0.45
+	}
+}
+
+firepoints
+{
+	0 = 0.105,-0.7610001,-0.385
+	1 = -0.105,-0.7610001,-0.385
+	2 = 0.105,-0.70600003,-0.385
+	3 = -0.105,-0.70600003,-0.385
+}

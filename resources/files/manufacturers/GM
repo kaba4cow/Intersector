@@ -1,0 +1,9 @@
+name
+{
+
+	short = GM
+	long = Galactic Military
+
+}
+overprice = 1.21
+texturesets = SET0

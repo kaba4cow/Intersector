@@ -1,0 +1,48 @@
+name = KQR Heavy Twin Turret
+size = 6.82
+originpoint = 0.0,-1.0,0.13
+projectile = LASER4
+
+models
+{
+	static = WEAPON/turret9s
+	yaw = WEAPON/turret9y
+	pitch = WEAPON/turret9p
+}
+
+fireinfo
+{
+	particle = false
+	automatic = true
+	reload = 3.36
+	cooldown = 2.2351741E-10
+	scale = 0.49
+	repeat = 1
+	damage = 44.6
+	deviation = 0.04
+}
+
+rotation
+{
+	speed = 0.52
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = 0.0
+		max = 0.3
+	}
+}
+
+firepoints
+{
+	0 = 0.14,-1.0100001,-0.629
+	1 = -0.14,-1.0100001,-0.629
+}

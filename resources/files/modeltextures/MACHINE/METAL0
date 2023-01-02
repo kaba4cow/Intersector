@@ -1,0 +1,7 @@
+name = MACHINE/METAL0
+shininess = 0.25
+shinedamper = 5.0
+reflectivity = 0.2
+emission = -1.0
+transparent = false
+additive = false

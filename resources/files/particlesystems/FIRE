@@ -1,0 +1,7 @@
+easing = null
+errorlife = 0.8
+errorscale = 0.6
+dscale = 0.82
+drotation = 0.02
+texture = FIRE
+tag = GAME

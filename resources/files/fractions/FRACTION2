@@ -1,0 +1,19 @@
+name = Republic of Celentis
+friendly = 
+enemy = FRACTION1,FRACTION0,FRACTION3
+
+colors
+{
+	0 = 0.65,0.682,0.776
+	1 = 0.615,0.65,0.705
+	2 = 0.623,0.65,0.752
+	3 = 0.725,0.76,0.815
+	4 = 0.647,0.678,0.772
+}
+maincolor = 0.3,0.34,0.9
+manufacturers = IGT
+capital = CELENTIS
+center = 180,1,131
+range = 7.19
+densityseed = 19672724
+density = 0.514

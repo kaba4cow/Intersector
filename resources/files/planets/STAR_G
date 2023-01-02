@@ -1,0 +1,45 @@
+name = G-class Star
+object = true
+light = 1.1
+image = 0.72
+minhabitability = -1
+ring = 0.0
+station = 0.0
+flares = 20,24
+children = -3,13
+childbias = 0.213
+size = 0.96,1.15
+scale = S
+sizebias = 0.263
+distance = 3.0,72.0
+axisoffset = 0.004
+
+terrain
+{
+	colors
+	{
+		0 = 1.0,0.66,0.33
+		1 = 1.0,0.69,0.38
+		2 = 1.0,0.7,0.41
+	}
+	cubemap = 2
+	emission = 5.21,5.42
+	bands = 14,17
+	avgcolorblend = 0.887,0.942
+	blendpower = 4.854,5.185
+	positionfactor = 0.885,0.892
+	invertposition = false
+
+	scale
+	{
+		min = 1.0,1.0,23.753
+		max = 1.0,1.0,26.185
+	}
+
+	info
+	{
+		sign = -1,-1,-1
+		min = 3.72,9.24,0.66
+		max = 4.84,16.11,0.73
+	}
+}

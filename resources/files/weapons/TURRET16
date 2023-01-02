@@ -1,0 +1,47 @@
+name = BP-5 Light Laser Cannon
+size = 1.04
+originpoint = 0.0,-0.61,0.0
+projectile = LASER1
+
+models
+{
+	static = WEAPON/turret16s
+	yaw = WEAPON/turret16y
+	pitch = WEAPON/turret16p
+}
+
+fireinfo
+{
+	particle = false
+	automatic = true
+	reload = 1.72
+	cooldown = 0.0
+	scale = 0.55
+	repeat = 1
+	damage = 18.099998
+	deviation = 0.04
+}
+
+rotation
+{
+	speed = 0.72
+
+	yaw
+	{
+		limit = false
+		min = 0.0
+		max = 0.0
+	}
+
+	pitch
+	{
+		limit = true
+		min = -0.02
+		max = 0.25
+	}
+}
+
+firepoints
+{
+	0 = 0.0,-0.609,-0.52
+}

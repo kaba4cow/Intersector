@@ -1,0 +1,45 @@
+name = M-class Supergiant
+object = true
+light = 1.2
+image = 1.0
+minhabitability = -1
+ring = 0.0
+station = 0.0
+flares = 50,55
+children = -3,8
+childbias = 0.354
+size = 100.0,150.0
+scale = S
+sizebias = 0.783
+distance = 0.3,2.4
+axisoffset = 0.003
+
+terrain
+{
+	colors
+	{
+		0 = 1.0,0.42,0.09
+		1 = 1.0,0.46,0.11
+		2 = 1.0,0.49,0.15
+	}
+	cubemap = 2
+	emission = 5.06,5.11
+	bands = 14,19
+	avgcolorblend = 0.841,0.873
+	blendpower = 6.551,6.875
+	positionfactor = 0.904,0.92
+	invertposition = false
+
+	scale
+	{
+		min = 1.0,1.0,5.72
+		max = 1.0,1.0,8.185
+	}
+
+	info
+	{
+		sign = -1,-1,-1
+		min = 3.38,7.93,0.34
+		max = 3.614,11.34,0.61
+	}
+}
