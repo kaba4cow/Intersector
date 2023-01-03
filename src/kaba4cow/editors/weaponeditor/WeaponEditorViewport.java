@@ -12,8 +12,8 @@ import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.files.ProjectileFile;
 import kaba4cow.files.WeaponFile;
-import kaba4cow.renderEngine.models.LaserModel;
-import kaba4cow.utils.RenderUtils;
+import kaba4cow.intersector.renderEngine.models.LaserModel;
+import kaba4cow.intersector.utils.RenderUtils;
 
 public class WeaponEditorViewport extends AbstractEditorViewport {
 

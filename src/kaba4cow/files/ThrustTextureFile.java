@@ -7,7 +7,7 @@ import java.util.Map;
 
 import kaba4cow.engine.toolbox.Loaders;
 import kaba4cow.engine.toolbox.files.DataFile;
-import kaba4cow.renderEngine.textures.ThrustTexture;
+import kaba4cow.intersector.renderEngine.textures.ThrustTexture;
 
 public class ThrustTextureFile extends GameFile {
 

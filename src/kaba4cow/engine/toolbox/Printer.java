@@ -1,5 +1,7 @@
 package kaba4cow.engine.toolbox;
 
+import javax.swing.JOptionPane;
+
 public abstract class Printer {
 
 	private static final String COMMA = ", ";
@@ -8,6 +10,12 @@ public abstract class Printer {
 
 	private static StringBuilder history = new StringBuilder();
 
+	public static void error(Exception e) {
+		println(e);
+		JOptionPane.showMessageDialog(null, e.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
+		System.exit(-1);
+	}
+	
 	public static void print(Object... args) {
 		int length = args.length;
 		for (int i = 0; i < length - 1; i++) {

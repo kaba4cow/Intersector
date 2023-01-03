@@ -2,8 +2,6 @@ package testing;
 
 import org.lwjgl.input.Keyboard;
 
-import kaba4cow.Game;
-import kaba4cow.GameSettings;
 import kaba4cow.engine.Input;
 import kaba4cow.engine.MainProgram;
 import kaba4cow.engine.renderEngine.postProcessing.PostProcessingPipeline;
@@ -11,16 +9,18 @@ import kaba4cow.engine.toolbox.Fonts;
 import kaba4cow.engine.toolbox.MemoryAnalyzer;
 import kaba4cow.engine.toolbox.ScreenshotManager;
 import kaba4cow.engine.toolbox.rng.RNG;
-import kaba4cow.menu.ButtonElement;
-import kaba4cow.menu.CheckboxElement;
-import kaba4cow.menu.IteratorElement;
-import kaba4cow.menu.MenuPanel;
-import kaba4cow.menu.MenuPanelManager;
-import kaba4cow.menu.PercentSliderElement;
-import kaba4cow.menu.SliderElement;
-import kaba4cow.renderEngine.RendererContainer;
-import kaba4cow.toolbox.SoundContainer;
-import kaba4cow.utils.GameUtils;
+import kaba4cow.intersector.Intersector;
+import kaba4cow.intersector.GameSettings;
+import kaba4cow.intersector.menu.ButtonElement;
+import kaba4cow.intersector.menu.CheckboxElement;
+import kaba4cow.intersector.menu.IteratorElement;
+import kaba4cow.intersector.menu.MenuPanel;
+import kaba4cow.intersector.menu.MenuPanelManager;
+import kaba4cow.intersector.menu.PercentSliderElement;
+import kaba4cow.intersector.menu.SliderElement;
+import kaba4cow.intersector.renderEngine.RendererContainer;
+import kaba4cow.intersector.toolbox.SoundContainer;
+import kaba4cow.intersector.utils.GameUtils;
 
 public class MenuTesting extends MainProgram {
 
@@ -67,7 +67,7 @@ public class MenuTesting extends MainProgram {
 		panel1.addElement(new ButtonElement() {
 			@Override
 			public void onSelect() {
-				Game.requestClosing();
+				Intersector.requestClosing();
 			}
 		}, "Quit");
 
@@ -88,7 +88,7 @@ public class MenuTesting extends MainProgram {
 		panel2.addElement(new ButtonElement() {
 			@Override
 			public void onSelect() {
-				Game.requestClosing();
+				Intersector.requestClosing();
 			}
 		}, "Quit");
 	}

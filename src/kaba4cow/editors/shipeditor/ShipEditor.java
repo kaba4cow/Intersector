@@ -24,8 +24,8 @@ import kaba4cow.engine.MainProgram;
 import kaba4cow.files.ShipFile;
 import kaba4cow.files.TextureSetFile;
 import kaba4cow.files.ThrustTextureFile;
-import kaba4cow.gameobjects.machines.classes.ShipClass;
-import kaba4cow.toolbox.RawModelContainer;
+import kaba4cow.intersector.gameobjects.machines.classes.ShipClass;
+import kaba4cow.intersector.toolbox.RawModelContainer;
 
 public class ShipEditor extends AbstractEditor {
 

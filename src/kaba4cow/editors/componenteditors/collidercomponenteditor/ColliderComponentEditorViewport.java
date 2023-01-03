@@ -9,9 +9,9 @@ import kaba4cow.engine.renderEngine.Cubemap;
 import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.files.MachineFile;
-import kaba4cow.gameobjects.objectcomponents.ColliderComponent;
-import kaba4cow.renderEngine.renderers.ThrustRenderer;
-import kaba4cow.utils.RenderUtils;
+import kaba4cow.intersector.gameobjects.objectcomponents.ColliderComponent;
+import kaba4cow.intersector.renderEngine.renderers.ThrustRenderer;
+import kaba4cow.intersector.utils.RenderUtils;
 
 public class ColliderComponentEditorViewport extends AbstractEditorViewport {
 

@@ -23,8 +23,8 @@ import kaba4cow.engine.MainProgram;
 import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.files.MachineFile;
 import kaba4cow.files.TextureSetFile;
-import kaba4cow.gameobjects.objectcomponents.ColliderComponent;
-import kaba4cow.gameobjects.objectcomponents.ObjectComponent;
+import kaba4cow.intersector.gameobjects.objectcomponents.ColliderComponent;
+import kaba4cow.intersector.gameobjects.objectcomponents.ObjectComponent;
 
 public class ColliderComponentEditor extends AbstractEditor implements
 		ComponentEditor {

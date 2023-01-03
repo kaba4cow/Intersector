@@ -30,7 +30,7 @@ import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.files.ModelTextureFile;
 import kaba4cow.files.ProjectileFile;
 import kaba4cow.files.WeaponFile;
-import kaba4cow.toolbox.RawModelContainer;
+import kaba4cow.intersector.toolbox.RawModelContainer;
 
 public class WeaponEditor extends AbstractEditor {
 

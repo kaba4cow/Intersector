@@ -9,9 +9,9 @@ import kaba4cow.engine.renderEngine.models.RawModel;
 import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.files.ThrustTextureFile;
-import kaba4cow.renderEngine.models.ThrustModel;
-import kaba4cow.renderEngine.renderers.ThrustRenderer;
-import kaba4cow.toolbox.RawModelContainer;
+import kaba4cow.intersector.renderEngine.models.ThrustModel;
+import kaba4cow.intersector.renderEngine.renderers.ThrustRenderer;
+import kaba4cow.intersector.toolbox.RawModelContainer;
 
 public class ThrustTextureEditorViewport extends AbstractEditorViewport {
 

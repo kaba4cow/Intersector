@@ -20,7 +20,7 @@ import javax.swing.SpinnerNumberModel;
 import kaba4cow.editors.AbstractEditor;
 import kaba4cow.engine.MainProgram;
 import kaba4cow.files.ModelTextureFile;
-import kaba4cow.toolbox.RawModelContainer;
+import kaba4cow.intersector.toolbox.RawModelContainer;
 
 public class ModelTextureEditor extends AbstractEditor {
 

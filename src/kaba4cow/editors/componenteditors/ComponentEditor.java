@@ -11,7 +11,7 @@ import org.lwjgl.util.vector.Vector3f;
 import kaba4cow.editors.EditorUtils;
 import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.engine.toolbox.maths.Maths;
-import kaba4cow.gameobjects.objectcomponents.ObjectComponent;
+import kaba4cow.intersector.gameobjects.objectcomponents.ObjectComponent;
 
 public interface ComponentEditor {
 

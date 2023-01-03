@@ -15,10 +15,10 @@ import kaba4cow.engine.MainProgram;
 import kaba4cow.engine.toolbox.Printer;
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.files.PlanetFile;
-import kaba4cow.galaxyengine.objects.PlanetObject;
-import kaba4cow.galaxyengine.objects.SystemObject;
-import kaba4cow.utils.FileUtils;
-import kaba4cow.utils.GalaxyUtils;
+import kaba4cow.intersector.galaxyengine.objects.PlanetObject;
+import kaba4cow.intersector.galaxyengine.objects.SystemObject;
+import kaba4cow.intersector.utils.FileUtils;
+import kaba4cow.intersector.utils.GalaxyUtils;
 
 public class GalaxyTesting extends MainProgram {
 

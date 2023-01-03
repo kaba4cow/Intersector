@@ -4,7 +4,6 @@ import java.io.File;
 
 import org.lwjgl.util.vector.Vector3f;
 
-import kaba4cow.GameSettings;
 import kaba4cow.engine.MainProgram;
 import kaba4cow.engine.renderEngine.Camera;
 import kaba4cow.engine.renderEngine.Cubemap;
@@ -17,11 +16,12 @@ import kaba4cow.engine.toolbox.Cubemaps;
 import kaba4cow.engine.toolbox.Fonts;
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.files.GameFile;
-import kaba4cow.gameobjects.Fraction;
-import kaba4cow.renderEngine.RendererContainer;
-import kaba4cow.toolbox.RawModelContainer;
-import kaba4cow.toolbox.SoundContainer;
-import kaba4cow.utils.FileUtils;
+import kaba4cow.intersector.GameSettings;
+import kaba4cow.intersector.gameobjects.Fraction;
+import kaba4cow.intersector.renderEngine.RendererContainer;
+import kaba4cow.intersector.toolbox.RawModelContainer;
+import kaba4cow.intersector.toolbox.SoundContainer;
+import kaba4cow.intersector.utils.FileUtils;
 
 public abstract class AbstractEditorViewport extends MainProgram {
 

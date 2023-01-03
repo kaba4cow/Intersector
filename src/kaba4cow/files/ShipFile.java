@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import kaba4cow.engine.toolbox.files.DataFile;
-import kaba4cow.gameobjects.machines.classes.ShipClass;
+import kaba4cow.intersector.gameobjects.machines.classes.ShipClass;
 
 public class ShipFile extends MachineFile {
 

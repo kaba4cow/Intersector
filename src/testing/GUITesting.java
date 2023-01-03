@@ -3,7 +3,6 @@ package testing;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector3f;
 
-import kaba4cow.GameSettings;
 import kaba4cow.engine.Input;
 import kaba4cow.engine.MainProgram;
 import kaba4cow.engine.renderEngine.postProcessing.PostProcessingPipeline;
@@ -13,19 +12,20 @@ import kaba4cow.engine.toolbox.ScreenshotManager;
 import kaba4cow.engine.toolbox.rng.RNG;
 import kaba4cow.files.GameFile;
 import kaba4cow.files.ShipFile;
-import kaba4cow.gameobjects.Fraction;
-import kaba4cow.gameobjects.machinecontrollers.shipcontrollers.ShipStaticController;
-import kaba4cow.gameobjects.machines.Ship;
-import kaba4cow.gui.ButtonElement;
-import kaba4cow.gui.GUIPanel;
-import kaba4cow.gui.GUIPanelManager;
-import kaba4cow.gui.HologramElement;
-import kaba4cow.gui.InfoElement;
-import kaba4cow.renderEngine.RendererContainer;
-import kaba4cow.renderEngine.renderers.HologramRenderer;
-import kaba4cow.toolbox.SoundContainer;
-import kaba4cow.utils.FileUtils;
-import kaba4cow.utils.GameUtils;
+import kaba4cow.intersector.GameSettings;
+import kaba4cow.intersector.gameobjects.Fraction;
+import kaba4cow.intersector.gameobjects.machinecontrollers.shipcontrollers.ShipStaticController;
+import kaba4cow.intersector.gameobjects.machines.Ship;
+import kaba4cow.intersector.gui.ButtonElement;
+import kaba4cow.intersector.gui.GUIPanel;
+import kaba4cow.intersector.gui.GUIPanelManager;
+import kaba4cow.intersector.gui.HologramElement;
+import kaba4cow.intersector.gui.InfoElement;
+import kaba4cow.intersector.renderEngine.RendererContainer;
+import kaba4cow.intersector.renderEngine.renderers.HologramRenderer;
+import kaba4cow.intersector.toolbox.SoundContainer;
+import kaba4cow.intersector.utils.FileUtils;
+import kaba4cow.intersector.utils.GameUtils;
 
 public class GUITesting extends MainProgram {
 

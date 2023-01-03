@@ -14,7 +14,7 @@ import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 
-public abstract class MainProgram {
+public abstract class MainProgram implements Runnable {
 
 	private Canvas CANVAS;
 	private String TITLE;
@@ -112,51 +112,51 @@ public abstract class MainProgram {
 	public static void start(MainProgram program) {
 		Printer.println("STARTING PROGRAM...");
 		mainProgram = program;
-		new Thread("Main Program Thread") {
-			@Override
-			public void run() {
-				DisplayManager.create(mainProgram.FULLSCREEN,
-						mainProgram.RESIZABLE, mainProgram.CANVAS);
-				AudioManager.init();
-				mainProgram.create();
-				mainProgram.init();
-				mainProgram.closeRequested = false;
-				lastFrameTime = getCurrentTime();
-				elapsedTime = 0f;
+		new Thread(program, "Main Thread").start();
+	}
 
-				Printer.println("PROGRAM STARTED");
-				Printer.println("FULLSCREEN: " + mainProgram.FULLSCREEN
-						+ ", WIDTH: " + mainProgram.WIDTH + ", HEIGHT: "
-						+ mainProgram.HEIGHT);
+	@Override
+	public void run() {
+		DisplayManager.create(mainProgram.FULLSCREEN,
+				mainProgram.RESIZABLE, mainProgram.CANVAS);
+		AudioManager.init();
+		mainProgram.create();
+		mainProgram.init();
+		mainProgram.closeRequested = false;
+		lastFrameTime = getCurrentTime();
+		elapsedTime = 0f;
 
-				while (isRunning()) {
-					Loaders.update();
-					MemoryAnalyzer.update();
-					AudioManager.update();
-					Input.update();
-					mainProgram.update(deltaTime);
+		Printer.println("PROGRAM STARTED");
+		Printer.println("FULLSCREEN: " + mainProgram.FULLSCREEN
+				+ ", WIDTH: " + mainProgram.WIDTH + ", HEIGHT: "
+				+ mainProgram.HEIGHT);
 
-					mainProgram.startPostProcessing();
-					mainProgram.render();
-					DisplayManager.update();
+		while (isRunning()) {
+			Loaders.update();
+			MemoryAnalyzer.update();
+			AudioManager.update();
+			Input.update();
+			mainProgram.update(deltaTime);
 
-					long currentFrameTime = getCurrentTime();
-					deltaTime = 0.001f * (currentFrameTime - lastFrameTime);
-					lastFrameTime = currentFrameTime;
-					elapsedTime += deltaTime;
-				}
+			mainProgram.startPostProcessing();
+			mainProgram.render();
+			DisplayManager.update();
 
-				Printer.println("FINISHING PROGRAM...");
-				mainProgram.closeRequested = true;
-				mainProgram.onClose();
-				FrameBufferObject.cleanUp();
-				Loaders.cleanUp();
-				AudioManager.cleanUp();
-				DisplayManager.close();
-				Printer.println("PROGRAM FINISHED");
-				System.exit(0);
-			}
-		}.start();
+			long currentFrameTime = getCurrentTime();
+			deltaTime = 0.001f * (currentFrameTime - lastFrameTime);
+			lastFrameTime = currentFrameTime;
+			elapsedTime += deltaTime;
+		}
+
+		Printer.println("FINISHING PROGRAM...");
+		mainProgram.closeRequested = true;
+		mainProgram.onClose();
+		FrameBufferObject.cleanUp();
+		Loaders.cleanUp();
+		AudioManager.cleanUp();
+		DisplayManager.close();
+		Printer.println("PROGRAM FINISHED");
+		System.exit(0);
 	}
 
 	public static boolean isRunning() {

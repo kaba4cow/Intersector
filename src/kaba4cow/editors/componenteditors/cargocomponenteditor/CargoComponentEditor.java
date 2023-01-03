@@ -24,8 +24,8 @@ import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.files.ContainerGroupFile;
 import kaba4cow.files.MachineFile;
 import kaba4cow.files.TextureSetFile;
-import kaba4cow.gameobjects.objectcomponents.ContainerComponent;
-import kaba4cow.gameobjects.objectcomponents.ObjectComponent;
+import kaba4cow.intersector.gameobjects.objectcomponents.ContainerComponent;
+import kaba4cow.intersector.gameobjects.objectcomponents.ObjectComponent;
 
 public class CargoComponentEditor extends AbstractEditor implements
 		ComponentEditor {

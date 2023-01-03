@@ -23,9 +23,9 @@ import kaba4cow.engine.audio.AudioManager;
 import kaba4cow.engine.audio.Source;
 import kaba4cow.files.GameFile;
 import kaba4cow.files.ThrustTextureFile;
-import kaba4cow.toolbox.Constants;
-import kaba4cow.toolbox.RawModelContainer;
-import kaba4cow.toolbox.SoundContainer;
+import kaba4cow.intersector.toolbox.Constants;
+import kaba4cow.intersector.toolbox.RawModelContainer;
+import kaba4cow.intersector.toolbox.SoundContainer;
 
 public class ThrustTextureEditor extends AbstractEditor {
 

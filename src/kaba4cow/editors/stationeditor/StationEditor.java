@@ -22,8 +22,8 @@ import kaba4cow.editors.AbstractEditor;
 import kaba4cow.engine.MainProgram;
 import kaba4cow.files.StationFile;
 import kaba4cow.files.TextureSetFile;
-import kaba4cow.gameobjects.machines.classes.StationClass;
-import kaba4cow.toolbox.RawModelContainer;
+import kaba4cow.intersector.gameobjects.machines.classes.StationClass;
+import kaba4cow.intersector.toolbox.RawModelContainer;
 
 public class StationEditor extends AbstractEditor {
 

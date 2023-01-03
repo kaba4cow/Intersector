@@ -7,7 +7,6 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
-import kaba4cow.GameSettings;
 import kaba4cow.engine.Input;
 import kaba4cow.engine.MainProgram;
 import kaba4cow.engine.renderEngine.Camera;
@@ -23,22 +22,23 @@ import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.toolbox.particles.ParticleSystemManager;
 import kaba4cow.files.GameFile;
-import kaba4cow.galaxyengine.objects.SystemObject;
-import kaba4cow.gameobjects.Fraction;
-import kaba4cow.gameobjects.Planet;
-import kaba4cow.gameobjects.World;
-import kaba4cow.renderEngine.RendererContainer;
-import kaba4cow.renderEngine.fborendering.RingRendering;
-import kaba4cow.renderEngine.fborendering.SkyRendering;
-import kaba4cow.renderEngine.fborendering.TerrainRendering;
-import kaba4cow.renderEngine.renderers.HologramRenderer;
-import kaba4cow.renderEngine.renderers.ThrustRenderer;
-import kaba4cow.toolbox.FontContainer;
-import kaba4cow.toolbox.Measures;
-import kaba4cow.utils.FileUtils;
-import kaba4cow.utils.GalaxyUtils;
-import kaba4cow.utils.GameUtils;
-import kaba4cow.utils.InfoUtils;
+import kaba4cow.intersector.GameSettings;
+import kaba4cow.intersector.galaxyengine.objects.SystemObject;
+import kaba4cow.intersector.gameobjects.Fraction;
+import kaba4cow.intersector.gameobjects.Planet;
+import kaba4cow.intersector.gameobjects.World;
+import kaba4cow.intersector.renderEngine.RendererContainer;
+import kaba4cow.intersector.renderEngine.fborendering.RingRendering;
+import kaba4cow.intersector.renderEngine.fborendering.SkyRendering;
+import kaba4cow.intersector.renderEngine.fborendering.TerrainRendering;
+import kaba4cow.intersector.renderEngine.renderers.HologramRenderer;
+import kaba4cow.intersector.renderEngine.renderers.ThrustRenderer;
+import kaba4cow.intersector.toolbox.FontContainer;
+import kaba4cow.intersector.toolbox.Measures;
+import kaba4cow.intersector.utils.FileUtils;
+import kaba4cow.intersector.utils.GalaxyUtils;
+import kaba4cow.intersector.utils.GameUtils;
+import kaba4cow.intersector.utils.InfoUtils;
 
 public class SystemTesting extends MainProgram {
 

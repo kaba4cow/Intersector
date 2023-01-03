@@ -11,7 +11,7 @@ import kaba4cow.engine.renderEngine.models.RawModel;
 import kaba4cow.engine.renderEngine.models.TexturedModel;
 import kaba4cow.engine.renderEngine.textures.ModelTexture;
 import kaba4cow.engine.toolbox.files.DataFile;
-import kaba4cow.toolbox.RawModelContainer;
+import kaba4cow.intersector.toolbox.RawModelContainer;
 
 public class WeaponFile extends GameFile {
 

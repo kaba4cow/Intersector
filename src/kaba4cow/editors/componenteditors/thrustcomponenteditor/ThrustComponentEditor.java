@@ -25,9 +25,9 @@ import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.files.ShipFile;
 import kaba4cow.files.TextureSetFile;
 import kaba4cow.files.ThrustTextureFile;
-import kaba4cow.gameobjects.objectcomponents.ObjectComponent;
-import kaba4cow.gameobjects.objectcomponents.ThrustComponent;
-import kaba4cow.toolbox.RawModelContainer;
+import kaba4cow.intersector.gameobjects.objectcomponents.ObjectComponent;
+import kaba4cow.intersector.gameobjects.objectcomponents.ThrustComponent;
+import kaba4cow.intersector.toolbox.RawModelContainer;
 
 public class ThrustComponentEditor extends AbstractEditor implements
 		ComponentEditor {

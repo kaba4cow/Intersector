@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import kaba4cow.gameobjects.machines.classes.StationClass;
+import kaba4cow.intersector.gameobjects.machines.classes.StationClass;
 
 public class StationFile extends MachineFile {
 

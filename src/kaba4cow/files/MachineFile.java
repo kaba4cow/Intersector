@@ -10,14 +10,14 @@ import kaba4cow.engine.renderEngine.models.TexturedModel;
 import kaba4cow.engine.renderEngine.textures.ModelTexture;
 import kaba4cow.engine.toolbox.files.DataFile;
 import kaba4cow.engine.toolbox.maths.Maths;
-import kaba4cow.gameobjects.machines.classes.MachineClass;
-import kaba4cow.gameobjects.objectcomponents.ColliderComponent;
-import kaba4cow.gameobjects.objectcomponents.ContainerComponent;
-import kaba4cow.gameobjects.objectcomponents.PortComponent;
-import kaba4cow.gameobjects.objectcomponents.ThrustComponent;
-import kaba4cow.gameobjects.objectcomponents.WeaponComponent;
-import kaba4cow.renderEngine.models.ThrustModel;
-import kaba4cow.toolbox.RawModelContainer;
+import kaba4cow.intersector.gameobjects.machines.classes.MachineClass;
+import kaba4cow.intersector.gameobjects.objectcomponents.ColliderComponent;
+import kaba4cow.intersector.gameobjects.objectcomponents.ContainerComponent;
+import kaba4cow.intersector.gameobjects.objectcomponents.PortComponent;
+import kaba4cow.intersector.gameobjects.objectcomponents.ThrustComponent;
+import kaba4cow.intersector.gameobjects.objectcomponents.WeaponComponent;
+import kaba4cow.intersector.renderEngine.models.ThrustModel;
+import kaba4cow.intersector.toolbox.RawModelContainer;
 
 public abstract class MachineFile extends GameFile {
 

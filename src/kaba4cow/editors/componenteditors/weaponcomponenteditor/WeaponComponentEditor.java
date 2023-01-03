@@ -25,8 +25,8 @@ import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.files.MachineFile;
 import kaba4cow.files.TextureSetFile;
 import kaba4cow.files.WeaponFile;
-import kaba4cow.gameobjects.objectcomponents.ObjectComponent;
-import kaba4cow.gameobjects.objectcomponents.WeaponComponent;
+import kaba4cow.intersector.gameobjects.objectcomponents.ObjectComponent;
+import kaba4cow.intersector.gameobjects.objectcomponents.WeaponComponent;
 
 public class WeaponComponentEditor extends AbstractEditor implements
 		ComponentEditor {

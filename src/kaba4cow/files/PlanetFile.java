@@ -12,8 +12,8 @@ import kaba4cow.engine.toolbox.Pair;
 import kaba4cow.engine.toolbox.files.DataFile;
 import kaba4cow.engine.toolbox.files.TableFile;
 import kaba4cow.engine.toolbox.maths.Maths;
-import kaba4cow.toolbox.ColorRamp;
-import kaba4cow.toolbox.ColorRamp.Element;
+import kaba4cow.intersector.toolbox.ColorRamp;
+import kaba4cow.intersector.toolbox.ColorRamp.Element;
 
 public class PlanetFile extends GameFile {
 

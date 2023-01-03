@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import org.lwjgl.input.Keyboard;
 
-import kaba4cow.GameSettings;
 import kaba4cow.engine.Input;
 import kaba4cow.engine.MainProgram;
 import kaba4cow.engine.renderEngine.Renderer;
@@ -16,11 +15,12 @@ import kaba4cow.engine.toolbox.rng.RNG;
 import kaba4cow.files.FractionFile;
 import kaba4cow.files.PlanetFile;
 import kaba4cow.files.SystemFile;
-import kaba4cow.galaxyengine.objects.SystemObject;
-import kaba4cow.gameobjects.Fraction;
-import kaba4cow.renderEngine.RendererContainer;
-import kaba4cow.utils.FileUtils;
-import kaba4cow.utils.GalaxyUtils;
+import kaba4cow.intersector.GameSettings;
+import kaba4cow.intersector.galaxyengine.objects.SystemObject;
+import kaba4cow.intersector.gameobjects.Fraction;
+import kaba4cow.intersector.renderEngine.RendererContainer;
+import kaba4cow.intersector.utils.FileUtils;
+import kaba4cow.intersector.utils.GalaxyUtils;
 
 public class SystemFileTesting extends MainProgram {
 

@@ -26,11 +26,11 @@ import kaba4cow.files.GameFile;
 import kaba4cow.files.ModelTextureFile;
 import kaba4cow.files.ProjectileFile;
 import kaba4cow.files.ThrustTextureFile;
-import kaba4cow.gameobjects.objectcomponents.ThrustComponent;
-import kaba4cow.gameobjects.projectiles.ProjectileType;
-import kaba4cow.toolbox.Constants;
-import kaba4cow.toolbox.RawModelContainer;
-import kaba4cow.toolbox.SoundContainer;
+import kaba4cow.intersector.gameobjects.objectcomponents.ThrustComponent;
+import kaba4cow.intersector.gameobjects.projectiles.ProjectileType;
+import kaba4cow.intersector.toolbox.Constants;
+import kaba4cow.intersector.toolbox.RawModelContainer;
+import kaba4cow.intersector.toolbox.SoundContainer;
 
 public class ProjectileEditor extends AbstractEditor {
 

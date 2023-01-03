@@ -29,18 +29,18 @@ import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.toolbox.particles.ParticleSystemManager;
 import kaba4cow.engine.toolbox.rng.RNG;
 import kaba4cow.files.PlanetFile;
-import kaba4cow.galaxyengine.TerrainGenerator;
-import kaba4cow.galaxyengine.objects.PlanetObject;
-import kaba4cow.gameobjects.Empty;
-import kaba4cow.gameobjects.Planet;
-import kaba4cow.renderEngine.RendererContainer;
-import kaba4cow.renderEngine.fborendering.RingRendering;
-import kaba4cow.renderEngine.fborendering.TerrainRendering;
-import kaba4cow.renderEngine.renderers.HologramRenderer;
-import kaba4cow.renderEngine.renderers.ThrustRenderer;
-import kaba4cow.toolbox.FontContainer;
-import kaba4cow.utils.FileUtils;
-import kaba4cow.utils.GameUtils;
+import kaba4cow.intersector.galaxyengine.TerrainGenerator;
+import kaba4cow.intersector.galaxyengine.objects.PlanetObject;
+import kaba4cow.intersector.gameobjects.Empty;
+import kaba4cow.intersector.gameobjects.Planet;
+import kaba4cow.intersector.renderEngine.RendererContainer;
+import kaba4cow.intersector.renderEngine.fborendering.RingRendering;
+import kaba4cow.intersector.renderEngine.fborendering.TerrainRendering;
+import kaba4cow.intersector.renderEngine.renderers.HologramRenderer;
+import kaba4cow.intersector.renderEngine.renderers.ThrustRenderer;
+import kaba4cow.intersector.toolbox.FontContainer;
+import kaba4cow.intersector.utils.FileUtils;
+import kaba4cow.intersector.utils.GameUtils;
 
 public class TerrainTesting extends MainProgram {
 
