@@ -19,8 +19,8 @@ import kaba4cow.engine.toolbox.ScreenshotManager;
 import kaba4cow.engine.toolbox.files.ConfigFile;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.toolbox.particles.ParticleSystemManager;
-import kaba4cow.files.GameFile;
-import kaba4cow.files.InfosFile;
+import kaba4cow.intersector.files.GameFile;
+import kaba4cow.intersector.files.InfosFile;
 import kaba4cow.intersector.gameobjects.Fraction;
 import kaba4cow.intersector.menu.MenuPanelManager;
 import kaba4cow.intersector.renderEngine.RendererContainer;
@@ -83,10 +83,6 @@ public class Intersector extends MainProgram {
 
 	@Override
 	public void update(float dt) {
-		SkyRendering.process();
-		TerrainRendering.process();
-		RingRendering.process();
-
 		if (renderer != null)
 			AudioManager.setListenerData(renderer.getCamera().getPos(), Vectors.INIT3);
 
@@ -97,10 +93,10 @@ public class Intersector extends MainProgram {
 		Source.setSourcesRolloffFactor(Constants.MUSIC, 0f);
 		Source.setSourcesRolloffFactor(Constants.MENU, 0f);
 
-		float audioVolume = 5f * GameSettings.getAudioVolume();
-		Source.setSourcesVolume(Constants.GAMEPLAY, audioVolume * GameSettings.getGameplayVolume());
-		Source.setSourcesVolume(Constants.MUSIC, audioVolume * GameSettings.getMusicVolume());
-		Source.setSourcesVolume(Constants.MENU, audioVolume * GameSettings.getMenuVolume());
+		float audioVolume = 5f * Settings.getAudioVolume();
+		Source.setSourcesVolume(Constants.GAMEPLAY, audioVolume * Settings.getGameplayVolume());
+		Source.setSourcesVolume(Constants.MUSIC, audioVolume * Settings.getMusicVolume());
+		Source.setSourcesVolume(Constants.MENU, audioVolume * Settings.getMenuVolume());
 
 		if (Input.isKey(Keyboard.KEY_LSHIFT) && Input.isKey(Keyboard.KEY_ESCAPE))
 			System.exit(0);
@@ -108,7 +104,11 @@ public class Intersector extends MainProgram {
 
 	@Override
 	public void render() {
-		GameUtils.getPlayerPov().setFov(GameSettings.getFov());
+		SkyRendering.process();
+		TerrainRendering.process();
+		RingRendering.process();
+
+		GameUtils.getPlayerPov().setFov(Settings.getFov());
 
 		currentState.render(renderers);
 		if (currentState == States.init)
@@ -121,10 +121,11 @@ public class Intersector extends MainProgram {
 
 		if (Input.isKeyDown(Keyboard.KEY_F12))
 			ScreenshotManager.takeScreenshot();
+
 	}
 
 	public void doPostProcessing() {
-		stopPostProcessing(GameSettings.getPostProcessingEnable() ? postProcessing : postProcessingDisabled);
+		stopPostProcessing(Settings.getPostProcessingEnable() ? postProcessing : postProcessingDisabled);
 	}
 
 	public void switchPostProcessing(boolean gameplay) {
@@ -146,9 +147,9 @@ public class Intersector extends MainProgram {
 
 	@Override
 	public void onClose() {
-		GameSettings.saveSettings();
+		Settings.saveSettings();
 		MemoryAnalyzer.printFinalInfo();
-		if (GameSettings.getLogs())
+		if (Settings.getLogs())
 			FileUtils.saveLog();
 	}
 
@@ -201,10 +202,10 @@ public class Intersector extends MainProgram {
 		GAME_VERSION = info.getString("id");
 
 		Printer.println("LAUNCHING " + GAME_TITLE + " " + GAME_VERSION + " [" + info.getString("date") + "]");
-		GameSettings.loadSettings();
+		Settings.loadSettings();
 		FileUtils.loadGameFiles();
 		DisplayManager.setIcons("icons/icon");
-		if (GameSettings.getFullscreen())
+		if (Settings.getFullscreen())
 			new Intersector();
 		else
 			new Intersector(920, 680);

@@ -4,13 +4,13 @@ import org.lwjgl.input.Keyboard;
 
 import kaba4cow.engine.Input;
 import kaba4cow.engine.MainProgram;
+import kaba4cow.engine.assets.Fonts;
 import kaba4cow.engine.renderEngine.postProcessing.PostProcessingPipeline;
-import kaba4cow.engine.toolbox.Fonts;
 import kaba4cow.engine.toolbox.MemoryAnalyzer;
 import kaba4cow.engine.toolbox.ScreenshotManager;
 import kaba4cow.engine.toolbox.rng.RNG;
 import kaba4cow.intersector.Intersector;
-import kaba4cow.intersector.GameSettings;
+import kaba4cow.intersector.Settings;
 import kaba4cow.intersector.menu.ButtonElement;
 import kaba4cow.intersector.menu.CheckboxElement;
 import kaba4cow.intersector.menu.IteratorElement;
@@ -19,7 +19,7 @@ import kaba4cow.intersector.menu.MenuPanelManager;
 import kaba4cow.intersector.menu.PercentSliderElement;
 import kaba4cow.intersector.menu.SliderElement;
 import kaba4cow.intersector.renderEngine.RendererContainer;
-import kaba4cow.intersector.toolbox.SoundContainer;
+import kaba4cow.intersector.toolbox.containers.SoundContainer;
 import kaba4cow.intersector.utils.GameUtils;
 
 public class MenuTesting extends MainProgram {
@@ -41,7 +41,7 @@ public class MenuTesting extends MainProgram {
 
 	@Override
 	public void init() {
-		GameSettings.loadSettings();
+		Settings.loadSettings();
 		Fonts.load("bank");
 		SoundContainer.loadAll();
 

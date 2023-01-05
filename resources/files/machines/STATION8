@@ -13,7 +13,7 @@ info
 	maxcargo = 4211,4211,4211,4211,4211,4211
 }
 name = Unknown,Unknown,Unknown,Unknown,Unknown,Unknown
-manufacturer = DHT,DHT,DHT,DHT,DHT,DHT
+manufacturer = MCM
 
 components
 {

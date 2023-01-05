@@ -8,7 +8,7 @@ import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.rng.RNG;
 import kaba4cow.engine.utils.WindowUtils;
-import kaba4cow.files.ProjectileFile;
+import kaba4cow.intersector.files.ProjectileFile;
 import kaba4cow.intersector.gameobjects.GameObject;
 import kaba4cow.intersector.gameobjects.machines.Machine;
 import kaba4cow.intersector.utils.GameUtils;

@@ -4,35 +4,32 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
+import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector2f;
+
 import kaba4cow.engine.renderEngine.Renderer;
 import kaba4cow.engine.renderEngine.models.RawModel;
+import kaba4cow.engine.renderEngine.models.TexturedModel;
 import kaba4cow.engine.renderEngine.renderers.AbstractRenderer;
 import kaba4cow.engine.renderEngine.textures.TextureAtlas;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.utils.GLUtils;
-import kaba4cow.intersector.renderEngine.models.LaserModel;
 import kaba4cow.intersector.renderEngine.shaders.LaserShader;
-
-import org.lwjgl.util.vector.Matrix4f;
-import org.lwjgl.util.vector.Vector2f;
 
 public class LaserRenderer extends AbstractRenderer {
 
-	private Map<LaserModel, LinkedList<Renderable>> map = new HashMap<LaserModel, LinkedList<Renderable>>();
+	private Map<TexturedModel, LinkedList<Renderable>> map = new HashMap<TexturedModel, LinkedList<Renderable>>();
 
 	public LaserRenderer(Renderer renderer) {
 		super(renderer, LaserShader.get());
 	}
 
-	public void render(LaserModel model, Matrix4f matrix, Vector2f texOffset,
-			float brightness) {
-		if (model == null || model.getRawModel() == null
-				|| model.getTexture() == null || matrix == null)
+	public void render(TexturedModel model, Matrix4f matrix, Vector2f texOffset, float brightness) {
+		if (model == null || model.getRawModel() == null || model.getTexture() == null || matrix == null)
 			return;
 		if (texOffset == null)
 			texOffset = Vectors.INIT2;
-		Renderable renderable = new Renderable(model, matrix, texOffset,
-				brightness);
+		Renderable renderable = new Renderable(model, matrix, texOffset, brightness);
 		add(renderable);
 	}
 
@@ -51,7 +48,7 @@ public class LaserRenderer extends AbstractRenderer {
 			return;
 		startRendering();
 		LaserShader shader = getShader();
-		for (LaserModel model : map.keySet()) {
+		for (TexturedModel model : map.keySet()) {
 			prepareTexturedModel(model, shader);
 			LinkedList<Renderable> list = map.get(model);
 			int vertexCount = model.getRawModel().getVertexCount();
@@ -97,7 +94,7 @@ public class LaserRenderer extends AbstractRenderer {
 		return (LaserShader) shader;
 	}
 
-	private void prepareTexturedModel(LaserModel model, LaserShader shader) {
+	private void prepareTexturedModel(TexturedModel model, LaserShader shader) {
 		RawModel rawModel = model.getRawModel();
 		TextureAtlas modelTexture = model.getTexture();
 		GLUtils.bindVertexArray(rawModel.getVao());
@@ -115,13 +112,12 @@ public class LaserRenderer extends AbstractRenderer {
 
 	private static class Renderable {
 
-		public final LaserModel model;
+		public final TexturedModel model;
 		public final Matrix4f matrix;
 		public final Vector2f texOffset;
 		public final float brightness;
 
-		public Renderable(LaserModel model, Matrix4f matrix,
-				Vector2f texOffset, float brightness) {
+		public Renderable(TexturedModel model, Matrix4f matrix, Vector2f texOffset, float brightness) {
 			this.model = model;
 			this.matrix = matrix;
 			this.texOffset = texOffset;

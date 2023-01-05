@@ -1,9 +1,9 @@
 package kaba4cow.engine.renderEngine.renderers;
 
+import kaba4cow.engine.assets.Models;
 import kaba4cow.engine.renderEngine.Cubemap;
 import kaba4cow.engine.renderEngine.Renderer;
 import kaba4cow.engine.renderEngine.shaders.CubemapShader;
-import kaba4cow.engine.toolbox.Models;
 import kaba4cow.engine.utils.GLUtils;
 
 import org.lwjgl.util.vector.Matrix4f;

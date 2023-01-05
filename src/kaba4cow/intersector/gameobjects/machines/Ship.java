@@ -7,12 +7,12 @@ import kaba4cow.engine.renderEngine.Renderer;
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.toolbox.rng.RNG;
-import kaba4cow.files.ShipFile;
+import kaba4cow.intersector.files.ShipFile;
 import kaba4cow.intersector.galaxyengine.objects.SystemObject;
 import kaba4cow.intersector.gameobjects.Fraction;
 import kaba4cow.intersector.gameobjects.GameObject;
 import kaba4cow.intersector.gameobjects.World;
-import kaba4cow.intersector.gameobjects.machinecontrollers.shipcontrollers.ShipController;
+import kaba4cow.intersector.gameobjects.machines.controllers.shipcontrollers.ShipController;
 import kaba4cow.intersector.gameobjects.objectcomponents.PortComponent;
 import kaba4cow.intersector.gameobjects.parametercontrols.AfterburnerControl;
 import kaba4cow.intersector.gameobjects.parametercontrols.HyperControl;
@@ -304,19 +304,19 @@ public class Ship extends Machine {
 	}
 
 	@Override
-	public Machine shootManual() {
+	public Machine shootManualWeapon() {
 		if (isHyperEngaged())
 			return this;
 		else
-			return super.shootManual();
+			return super.shootManualWeapon();
 	}
 
 	@Override
-	public Machine shootAutoAim() {
+	public Machine shootAutomaticWeapon() {
 		if (isHyperEngaged())
 			return this;
 		else
-			return super.shootAutoAim();
+			return super.shootAutomaticWeapon();
 	}
 
 	public void switchHudEnabled() {

@@ -9,6 +9,8 @@ import org.lwjgl.util.vector.Vector3f;
 
 import kaba4cow.engine.Input;
 import kaba4cow.engine.MainProgram;
+import kaba4cow.engine.assets.Cubemaps;
+import kaba4cow.engine.assets.Fonts;
 import kaba4cow.engine.renderEngine.Camera;
 import kaba4cow.engine.renderEngine.Cubemap;
 import kaba4cow.engine.renderEngine.Renderer;
@@ -16,13 +18,11 @@ import kaba4cow.engine.renderEngine.Renderer.Projection;
 import kaba4cow.engine.renderEngine.models.GUIText;
 import kaba4cow.engine.renderEngine.postProcessing.PostProcessingPipeline;
 import kaba4cow.engine.toolbox.CameraManager;
-import kaba4cow.engine.toolbox.Cubemaps;
-import kaba4cow.engine.toolbox.Fonts;
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.toolbox.particles.ParticleSystemManager;
-import kaba4cow.files.GameFile;
-import kaba4cow.intersector.GameSettings;
+import kaba4cow.intersector.Settings;
+import kaba4cow.intersector.files.GameFile;
 import kaba4cow.intersector.galaxyengine.objects.SystemObject;
 import kaba4cow.intersector.gameobjects.Fraction;
 import kaba4cow.intersector.gameobjects.Planet;
@@ -33,8 +33,8 @@ import kaba4cow.intersector.renderEngine.fborendering.SkyRendering;
 import kaba4cow.intersector.renderEngine.fborendering.TerrainRendering;
 import kaba4cow.intersector.renderEngine.renderers.HologramRenderer;
 import kaba4cow.intersector.renderEngine.renderers.ThrustRenderer;
-import kaba4cow.intersector.toolbox.FontContainer;
 import kaba4cow.intersector.toolbox.Measures;
+import kaba4cow.intersector.toolbox.containers.FontContainer;
 import kaba4cow.intersector.utils.FileUtils;
 import kaba4cow.intersector.utils.GalaxyUtils;
 import kaba4cow.intersector.utils.GameUtils;
@@ -60,19 +60,19 @@ public class SystemTesting extends MainProgram {
 	private float timeStep;
 
 	public SystemTesting() {
-		super("Testing", 30, 1000, 800, 0);
+		super("Testing", 30, 800, 600, 0);
 		SCALE = 1f / 1000000000f;
 	}
 
 	@Override
 	public void init() {
-		GameSettings.loadSettings();
+		Settings.loadSettings();
 		Fonts.loadAll();
 		Cubemaps.load("skybox");
 		postProcessing = new PostProcessingPipeline();
 
 		skybox = new Cubemap(
-				GameSettings.CUBEMAP_SIZES[GameSettings.getCubemaps()]);
+				Settings.CUBEMAP_SIZES[Settings.getCubemaps()]);
 
 		FileUtils.loadGameFiles();
 		GameFile.prepareAllInit();
@@ -81,7 +81,7 @@ public class SystemTesting extends MainProgram {
 
 		texts = new ArrayList<GUIText>();
 
-		renderer = new Renderer(Projection.DEFAULT, GameSettings.getFov(),
+		renderer = new Renderer(Projection.DEFAULT, Settings.getFov(),
 				0.001f, 100000f, 0f).setAmbientLighting(0.05f);
 		renderers = new RendererContainer(renderer);
 		camera = renderer.getCamera();

@@ -8,8 +8,8 @@ import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.toolbox.particles.Particle;
 import kaba4cow.engine.toolbox.particles.ParticleSystem;
 import kaba4cow.engine.toolbox.rng.RNG;
-import kaba4cow.files.ParticleSystemFile;
-import kaba4cow.intersector.GameSettings;
+import kaba4cow.intersector.Settings;
+import kaba4cow.intersector.files.ParticleSystemFile;
 import kaba4cow.intersector.gameobjects.Shield;
 import kaba4cow.intersector.gameobjects.World;
 import kaba4cow.intersector.gameobjects.objectcomponents.ColliderComponent;
@@ -38,7 +38,7 @@ public interface ColliderHolder {
 	}
 
 	public default void hitParticles(Vector3f pos, float size) {
-		int num = RNG.randomInt(-1, 2 + GameSettings.getParticles());
+		int num = RNG.randomInt(-1, 2 + Settings.getParticles());
 		if (num <= 0)
 			return;
 

@@ -1,12 +1,12 @@
 package kaba4cow.engine.renderEngine.shaders;
 
+import kaba4cow.engine.assets.Shaders;
 import kaba4cow.engine.renderEngine.shaders.uniforms.UniformFloat;
 import kaba4cow.engine.renderEngine.shaders.uniforms.UniformMat4;
 import kaba4cow.engine.renderEngine.shaders.uniforms.UniformSampler;
 import kaba4cow.engine.renderEngine.shaders.uniforms.UniformVec2;
 import kaba4cow.engine.renderEngine.shaders.uniforms.UniformVec3;
 import kaba4cow.engine.renderEngine.shaders.uniforms.UniformVec4;
-import kaba4cow.engine.toolbox.Shaders;
 
 public class ModelShader extends AbstractShader {
 

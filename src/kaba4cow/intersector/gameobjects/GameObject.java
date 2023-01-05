@@ -126,6 +126,10 @@ public abstract class GameObject implements Searchable3D {
 		return getTargetType() != null;
 	}
 
+	public boolean isFarTargetable() {
+		return false;
+	}
+
 	public String getTargetDescription() {
 		return "";
 	}

@@ -12,7 +12,7 @@ import kaba4cow.editors.EditorUtils;
 import kaba4cow.engine.renderEngine.Cubemap;
 import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.engine.toolbox.maths.Maths;
-import kaba4cow.files.WeaponFile;
+import kaba4cow.intersector.files.WeaponFile;
 
 public class WeaponScaleEditorViewport extends AbstractEditorViewport {
 

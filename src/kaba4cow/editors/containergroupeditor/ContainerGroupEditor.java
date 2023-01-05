@@ -20,8 +20,8 @@ import javax.swing.SpinnerNumberModel;
 
 import kaba4cow.editors.AbstractEditor;
 import kaba4cow.engine.MainProgram;
-import kaba4cow.files.ContainerFile;
-import kaba4cow.files.ContainerGroupFile;
+import kaba4cow.intersector.files.ContainerFile;
+import kaba4cow.intersector.files.ContainerGroupFile;
 
 public class ContainerGroupEditor extends AbstractEditor {
 

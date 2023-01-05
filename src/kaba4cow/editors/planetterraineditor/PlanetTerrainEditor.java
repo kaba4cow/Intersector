@@ -19,7 +19,7 @@ import javax.swing.SpinnerNumberModel;
 
 import kaba4cow.editors.AbstractEditor;
 import kaba4cow.engine.MainProgram;
-import kaba4cow.files.PlanetFile;
+import kaba4cow.intersector.files.PlanetFile;
 
 public class PlanetTerrainEditor extends AbstractEditor {
 

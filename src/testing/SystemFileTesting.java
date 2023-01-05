@@ -7,15 +7,15 @@ import org.lwjgl.input.Keyboard;
 
 import kaba4cow.engine.Input;
 import kaba4cow.engine.MainProgram;
+import kaba4cow.engine.assets.Fonts;
 import kaba4cow.engine.renderEngine.Renderer;
 import kaba4cow.engine.renderEngine.Renderer.Projection;
 import kaba4cow.engine.renderEngine.postProcessing.PostProcessingPipeline;
-import kaba4cow.engine.toolbox.Fonts;
 import kaba4cow.engine.toolbox.rng.RNG;
-import kaba4cow.files.FractionFile;
-import kaba4cow.files.PlanetFile;
-import kaba4cow.files.SystemFile;
-import kaba4cow.intersector.GameSettings;
+import kaba4cow.intersector.Settings;
+import kaba4cow.intersector.files.FractionFile;
+import kaba4cow.intersector.files.PlanetFile;
+import kaba4cow.intersector.files.SystemFile;
 import kaba4cow.intersector.galaxyengine.objects.SystemObject;
 import kaba4cow.intersector.gameobjects.Fraction;
 import kaba4cow.intersector.renderEngine.RendererContainer;
@@ -48,7 +48,7 @@ public class SystemFileTesting extends MainProgram {
 				"resources/files/fractions/"), null, new ArrayList<String>()));
 		Fraction.init();
 
-		renderer = new Renderer(Projection.DEFAULT, GameSettings.getFov(),
+		renderer = new Renderer(Projection.DEFAULT, Settings.getFov(),
 				0.001f, 100000f, 0f).setAmbientLighting(0.05f);
 		renderers = new RendererContainer(renderer);
 

@@ -13,7 +13,7 @@ info
 	maxcargo = 478,478,478,478,478,478
 }
 name = Unknown,Unknown,Unknown,Unknown,Unknown,Unknown
-manufacturer = GM,GM,GM,GM,GM,GM
+manufacturer = CFI
 
 components
 {

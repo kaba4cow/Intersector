@@ -3,12 +3,12 @@ package kaba4cow.intersector.gameobjects;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
+import kaba4cow.engine.assets.Loaders;
 import kaba4cow.engine.renderEngine.Camera;
 import kaba4cow.engine.renderEngine.Cubemap;
 import kaba4cow.engine.renderEngine.Light;
 import kaba4cow.engine.renderEngine.models.RawModel;
 import kaba4cow.engine.renderEngine.textures.ModelTexture;
-import kaba4cow.engine.toolbox.Loaders;
 import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Matrices;
@@ -23,7 +23,7 @@ import kaba4cow.intersector.renderEngine.RendererContainer;
 import kaba4cow.intersector.renderEngine.fborendering.EnvironmentRendering;
 import kaba4cow.intersector.renderEngine.fborendering.RingRendering;
 import kaba4cow.intersector.renderEngine.fborendering.TerrainRendering;
-import kaba4cow.intersector.toolbox.RawModelContainer;
+import kaba4cow.intersector.toolbox.containers.RawModelContainer;
 import testing.SystemTesting;
 
 public class Planet extends GameObject implements EnvironmentObject {
@@ -65,6 +65,9 @@ public class Planet extends GameObject implements EnvironmentObject {
 				flares[i] = new Flare(this);
 		} else
 			this.flares = null;
+
+		if (planetObject.hasStation())
+			planetObject.station.getStation(world);
 	}
 
 	@Override
@@ -170,6 +173,11 @@ public class Planet extends GameObject implements EnvironmentObject {
 
 	public TerrainGenerator getTerrainGenerator() {
 		return terrainGenerator;
+	}
+
+	@Override
+	public boolean isFarTargetable() {
+		return true;
 	}
 
 	@Override

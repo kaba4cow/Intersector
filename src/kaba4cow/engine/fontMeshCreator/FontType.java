@@ -1,7 +1,7 @@
 package kaba4cow.engine.fontMeshCreator;
 
+import kaba4cow.engine.assets.Loaders;
 import kaba4cow.engine.renderEngine.models.GUIText;
-import kaba4cow.engine.toolbox.Loaders;
 
 public class FontType {
 

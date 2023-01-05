@@ -10,7 +10,7 @@ import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.rng.RNG;
 import kaba4cow.engine.toolbox.rng.RandomLehmer;
 import kaba4cow.engine.utils.StringUtils;
-import kaba4cow.files.InfosFile;
+import kaba4cow.intersector.files.InfosFile;
 import kaba4cow.intersector.toolbox.Constants;
 import kaba4cow.intersector.utils.GalaxyUtils;
 

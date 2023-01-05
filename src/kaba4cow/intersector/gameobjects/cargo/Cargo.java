@@ -7,12 +7,12 @@ import kaba4cow.engine.renderEngine.Renderer;
 import kaba4cow.engine.renderEngine.models.TexturedModel;
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Vectors;
-import kaba4cow.files.ModelTextureFile;
+import kaba4cow.intersector.files.ModelTextureFile;
 import kaba4cow.intersector.gameobjects.World;
 import kaba4cow.intersector.gameobjects.machines.Machine;
 import kaba4cow.intersector.gameobjects.objectcomponents.ColliderComponent;
 import kaba4cow.intersector.renderEngine.RendererContainer;
-import kaba4cow.intersector.toolbox.RawModelContainer;
+import kaba4cow.intersector.toolbox.containers.RawModelContainer;
 
 public class Cargo extends CargoObject {
 

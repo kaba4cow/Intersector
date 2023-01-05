@@ -4,16 +4,17 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 
 import kaba4cow.engine.Input;
+import kaba4cow.engine.assets.Loaders;
 import kaba4cow.engine.audio.AudioManager;
 import kaba4cow.engine.renderEngine.models.GUIText;
 import kaba4cow.engine.renderEngine.postProcessing.FrameBufferObject;
 import kaba4cow.engine.renderEngine.renderers.TextRenderer;
-import kaba4cow.engine.toolbox.Loaders;
 import kaba4cow.engine.toolbox.MemoryAnalyzer;
 import kaba4cow.intersector.Intersector;
 import kaba4cow.intersector.renderEngine.fborendering.RingRendering;
 import kaba4cow.intersector.renderEngine.fborendering.SkyRendering;
 import kaba4cow.intersector.renderEngine.fborendering.TerrainRendering;
+import kaba4cow.intersector.toolbox.containers.FontContainer;
 
 public class InfoPanel {
 	

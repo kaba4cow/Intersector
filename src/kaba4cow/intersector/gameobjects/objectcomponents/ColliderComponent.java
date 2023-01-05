@@ -13,8 +13,8 @@ import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.toolbox.particles.Particle;
 import kaba4cow.engine.toolbox.particles.ParticleSystem;
 import kaba4cow.engine.toolbox.rng.RNG;
-import kaba4cow.files.ParticleSystemFile;
-import kaba4cow.intersector.GameSettings;
+import kaba4cow.intersector.Settings;
+import kaba4cow.intersector.files.ParticleSystemFile;
 import kaba4cow.intersector.gameobjects.projectiles.Projectile;
 import kaba4cow.intersector.toolbox.collision.ColliderHolder;
 
@@ -101,8 +101,8 @@ public class ColliderComponent extends ObjectComponent {
 		Vector3f vel = new Vector3f();
 		Vector3f pos = new Vector3f();
 		getPosition(parentMatrix, pos);
-		int num = GameSettings.getParticles() == 0 ? 1
-				: (RNG.randomInt(1, 3) + GameSettings.getParticles());
+		int num = Settings.getParticles() == 0 ? 1
+				: (RNG.randomInt(1, 3) + Settings.getParticles());
 		for (int i = 0; i < num; i++) {
 			vel.set(0f, 0f, 0f);
 			Vectors.rotate(RNG.randomFloat(-0.2f, 0.2f), right, up, vel);

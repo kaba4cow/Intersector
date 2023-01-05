@@ -14,13 +14,13 @@ import kaba4cow.engine.renderEngine.models.TexturedModel;
 import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Vectors;
-import kaba4cow.files.MachineFile;
-import kaba4cow.files.ModelTextureFile;
-import kaba4cow.files.ShipFile;
+import kaba4cow.intersector.files.MachineFile;
+import kaba4cow.intersector.files.ModelTextureFile;
+import kaba4cow.intersector.files.ShipFile;
 import kaba4cow.intersector.gameobjects.machines.Ship;
-import kaba4cow.intersector.renderEngine.models.ThrustModel;
+import kaba4cow.intersector.renderEngine.ThrustModel;
 import kaba4cow.intersector.renderEngine.renderers.ThrustRenderer;
-import kaba4cow.intersector.toolbox.RawModelContainer;
+import kaba4cow.intersector.toolbox.containers.RawModelContainer;
 import kaba4cow.intersector.utils.FileUtils;
 import kaba4cow.intersector.utils.RenderUtils;
 

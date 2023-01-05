@@ -8,8 +8,8 @@ import kaba4cow.editors.EditorUtils;
 import kaba4cow.engine.renderEngine.Cubemap;
 import kaba4cow.engine.renderEngine.models.TexturedModel;
 import kaba4cow.engine.toolbox.maths.Direction;
-import kaba4cow.files.ContainerFile;
-import kaba4cow.files.ContainerGroupFile;
+import kaba4cow.intersector.files.ContainerFile;
+import kaba4cow.intersector.files.ContainerGroupFile;
 import kaba4cow.intersector.utils.GameUtils;
 
 public class ContainerGroupEditorViewport extends AbstractEditorViewport {

@@ -1,11 +1,11 @@
 package kaba4cow.intersector.renderEngine.shaders.planets;
 
+import kaba4cow.engine.assets.Shaders;
 import kaba4cow.engine.renderEngine.shaders.AbstractShader;
 import kaba4cow.engine.renderEngine.shaders.uniforms.UniformMat4;
 import kaba4cow.engine.renderEngine.shaders.uniforms.UniformSampler;
 import kaba4cow.engine.renderEngine.shaders.uniforms.UniformVec2;
 import kaba4cow.engine.renderEngine.shaders.uniforms.UniformVec3;
-import kaba4cow.engine.toolbox.Shaders;
 
 public class RingShader extends AbstractShader {
 

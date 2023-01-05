@@ -6,7 +6,7 @@ import org.lwjgl.util.vector.Vector3f;
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Matrices;
 import kaba4cow.engine.toolbox.maths.Vectors;
-import kaba4cow.intersector.GameSettings;
+import kaba4cow.intersector.Settings;
 import kaba4cow.intersector.gameobjects.GameObject;
 import kaba4cow.intersector.gameobjects.objectcomponents.ColliderComponent;
 
@@ -38,6 +38,9 @@ public class CollisionManager {
 	private static float tempCollidersScale1;
 	private static float tempCollidersScale2;
 
+	private static int i;
+	private static int j;
+
 	public static void collide(ColliderHolder obj1, ColliderHolder obj2, float dt) {
 		tempPos.set(obj1.getPos());
 		tempVel.set(obj1.getVel());
@@ -52,14 +55,14 @@ public class CollisionManager {
 		tempSizeRatio = tempSize2 / tempSize1;
 		tempCollidersScale1 = obj1.getCollidersScale();
 		tempCollidersScale2 = obj2.getCollidersScale();
-		for (int i = 0; i < tempColliders1.length; i++) {
+		for (i = 0; i < tempColliders1.length; i++) {
 			Vectors.set(tempColliderScale1, tempColliders1[i].size * tempCollidersScale1);
 			tempMat1.setIdentity();
 			tempMat1.translate(tempColliders1[i].pos.negate(null));
 			tempMat1.scale(tempColliderScale1);
 			Matrix4f.mul(tempObjMatrix1, tempMat1, tempMat1);
 			Matrices.getTranslation(tempMat1, tempColliderPos1);
-			for (int j = 0; j < tempColliders2.length; j++) {
+			for (j = 0; j < tempColliders2.length; j++) {
 				Vectors.set(tempColliderScale2, tempColliders2[j].size * tempCollidersScale2);
 				tempMat2.setIdentity();
 				tempMat2.translate(tempColliders2[j].pos.negate(null));
@@ -76,10 +79,10 @@ public class CollisionManager {
 				}
 			}
 		}
-		tempStep = -GameObject.getMassDivider(obj2.getMass()) * tempSizeRatio / (float) GameSettings.getCollisions();
+		tempStep = -GameObject.getMassDivider(obj2.getMass()) * tempSizeRatio / (float) Settings.getCollisions();
 		Vectors.addScaled(obj2.getPos(), tempResponseVel, tempStep, obj2.getPos());
 		Vectors.addScaled(obj2.getVel(), tempResponseVel, tempStep, obj2.getVel());
-		tempStep = GameObject.getMassDivider(obj1.getMass()) * tempSizeRatio / (float) GameSettings.getCollisions();
+		tempStep = GameObject.getMassDivider(obj1.getMass()) * tempSizeRatio / (float) Settings.getCollisions();
 		Vectors.addScaled(obj1.getPos(), tempResponseVel, tempStep, obj1.getPos());
 		Vectors.addScaled(obj1.getVel(), tempResponseVel, tempStep, obj1.getVel());
 	}

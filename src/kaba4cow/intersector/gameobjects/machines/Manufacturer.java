@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import kaba4cow.files.ManufacturerFile;
-import kaba4cow.files.ShipFile;
-import kaba4cow.files.StationFile;
+import kaba4cow.intersector.files.ManufacturerFile;
+import kaba4cow.intersector.files.ShipFile;
+import kaba4cow.intersector.files.StationFile;
 
 public class Manufacturer {
 

@@ -5,17 +5,17 @@ import org.lwjgl.util.vector.Vector3f;
 
 import kaba4cow.engine.Input;
 import kaba4cow.engine.MainProgram;
+import kaba4cow.engine.assets.Fonts;
 import kaba4cow.engine.renderEngine.postProcessing.PostProcessingPipeline;
-import kaba4cow.engine.toolbox.Fonts;
 import kaba4cow.engine.toolbox.MemoryAnalyzer;
 import kaba4cow.engine.toolbox.ScreenshotManager;
 import kaba4cow.engine.toolbox.rng.RNG;
-import kaba4cow.files.GameFile;
-import kaba4cow.files.ShipFile;
-import kaba4cow.intersector.GameSettings;
+import kaba4cow.intersector.Settings;
+import kaba4cow.intersector.files.GameFile;
+import kaba4cow.intersector.files.ShipFile;
 import kaba4cow.intersector.gameobjects.Fraction;
-import kaba4cow.intersector.gameobjects.machinecontrollers.shipcontrollers.ShipStaticController;
 import kaba4cow.intersector.gameobjects.machines.Ship;
+import kaba4cow.intersector.gameobjects.machines.controllers.shipcontrollers.ShipStaticController;
 import kaba4cow.intersector.gui.ButtonElement;
 import kaba4cow.intersector.gui.GUIPanel;
 import kaba4cow.intersector.gui.GUIPanelManager;
@@ -23,7 +23,7 @@ import kaba4cow.intersector.gui.HologramElement;
 import kaba4cow.intersector.gui.InfoElement;
 import kaba4cow.intersector.renderEngine.RendererContainer;
 import kaba4cow.intersector.renderEngine.renderers.HologramRenderer;
-import kaba4cow.intersector.toolbox.SoundContainer;
+import kaba4cow.intersector.toolbox.containers.SoundContainer;
 import kaba4cow.intersector.utils.FileUtils;
 import kaba4cow.intersector.utils.GameUtils;
 
@@ -39,12 +39,12 @@ public class GUITesting extends MainProgram {
 	private Ship ship;
 
 	public GUITesting() {
-		super("GUI Testing", 30, 980, 720, 0);
+		super("GUI Testing", 30, 920, 680);
 	}
 
 	@Override
 	public void init() {
-		GameSettings.loadSettings();
+		Settings.loadSettings();
 		Fonts.loadAll();
 		SoundContainer.loadAll();
 

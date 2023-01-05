@@ -9,8 +9,8 @@ import kaba4cow.engine.renderEngine.models.RawModel;
 import kaba4cow.engine.renderEngine.models.TexturedModel;
 import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.engine.toolbox.maths.Vectors;
-import kaba4cow.files.ModelTextureFile;
-import kaba4cow.intersector.toolbox.RawModelContainer;
+import kaba4cow.intersector.files.ModelTextureFile;
+import kaba4cow.intersector.toolbox.containers.RawModelContainer;
 
 public class ModelTextureEditorViewport extends AbstractEditorViewport {
 

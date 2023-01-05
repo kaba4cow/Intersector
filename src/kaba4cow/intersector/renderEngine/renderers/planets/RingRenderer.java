@@ -3,15 +3,15 @@ package kaba4cow.intersector.renderEngine.renderers.planets;
 import java.util.ArrayList;
 import java.util.List;
 
+import kaba4cow.engine.assets.Shaders;
 import kaba4cow.engine.renderEngine.Light;
 import kaba4cow.engine.renderEngine.Renderer;
 import kaba4cow.engine.renderEngine.models.RawModel;
 import kaba4cow.engine.renderEngine.renderers.AbstractRenderer;
 import kaba4cow.engine.renderEngine.textures.ModelTexture;
-import kaba4cow.engine.toolbox.Shaders;
 import kaba4cow.engine.utils.GLUtils;
 import kaba4cow.intersector.renderEngine.shaders.planets.RingShader;
-import kaba4cow.intersector.toolbox.RawModelContainer;
+import kaba4cow.intersector.toolbox.containers.RawModelContainer;
 
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;

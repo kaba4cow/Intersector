@@ -10,7 +10,7 @@ import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.engine.toolbox.maths.Matrices;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.toolbox.rng.RNG;
-import kaba4cow.files.ProjectileFile;
+import kaba4cow.intersector.files.ProjectileFile;
 import kaba4cow.intersector.gameobjects.machines.Machine;
 import kaba4cow.intersector.gameobjects.objectcomponents.WeaponComponent;
 

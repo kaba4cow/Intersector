@@ -10,10 +10,11 @@ import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.octtree.OctTree;
 import kaba4cow.engine.toolbox.particles.ParticleSystemManager;
 import kaba4cow.engine.toolbox.rng.RNG;
+import kaba4cow.intersector.Settings;
 import kaba4cow.intersector.Intersector;
-import kaba4cow.intersector.GameSettings;
 import kaba4cow.intersector.galaxyengine.objects.SystemObject;
 import kaba4cow.intersector.gameobjects.machines.Ship;
+import kaba4cow.intersector.gameobjects.machines.controllers.shipcontrollers.ShipPlayerController;
 import kaba4cow.intersector.renderEngine.RendererContainer;
 import kaba4cow.intersector.renderEngine.fborendering.EnvironmentRendering;
 import kaba4cow.intersector.renderEngine.fborendering.SkyRendering;
@@ -34,7 +35,7 @@ public class World {
 
 	public World() {
 		this.system = null;
-		this.skybox = new Cubemap(GameSettings.CUBEMAP_SIZES[GameSettings.getCubemaps()]);
+		this.skybox = new Cubemap(Settings.CUBEMAP_SIZES[Settings.getCubemaps()]);
 		this.list = new ArrayList<GameObject>();
 		this.queue = new ArrayList<GameObject>();
 		this.octTree = new OctTree<GameObject>(-OCT_TREE_RANGE, -OCT_TREE_RANGE, -OCT_TREE_RANGE, 2f * OCT_TREE_RANGE,
@@ -56,7 +57,7 @@ public class World {
 			current.update(dt);
 		}
 
-		int steps = GameSettings.COLLISION_STEPS[GameSettings.getCollisions()];
+		int steps = Settings.COLLISION_STEPS[Settings.getCollisions()];
 		float stepSize = 1f / (float) steps;
 		float cdt = stepSize * dt;
 		for (int step = 0; step < steps; step++)
@@ -104,15 +105,19 @@ public class World {
 		return planets;
 	}
 
-	public void jump(Ship player, SystemObject newSystem) {
+	public void jump(Ship ship, SystemObject newSystem) {
+		if (ship.getController() instanceof ShipPlayerController == false) {
+			list.remove(ship);
+			return;
+		}
 		Vector3f direction = Maths.direction(newSystem.getPos(), system.getPos());
 
 		List<Planet> planets = create(newSystem);
-		addObject(player);
+		addObject(ship);
 
 		float distance = RNG.randomFloat(2f, 4f) * planets.get(0).getSize();
 		direction.scale(distance);
-		player.getPos().set(direction);
+		ship.getPos().set(direction);
 	}
 
 	private void move(Vector3f offset) {

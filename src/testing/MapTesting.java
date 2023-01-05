@@ -10,11 +10,11 @@ import org.lwjgl.util.vector.Vector3f;
 
 import kaba4cow.engine.Input;
 import kaba4cow.engine.MainProgram;
+import kaba4cow.engine.assets.Cubemaps;
+import kaba4cow.engine.assets.Fonts;
 import kaba4cow.engine.renderEngine.Camera;
 import kaba4cow.engine.renderEngine.postProcessing.PostProcessingPipeline;
 import kaba4cow.engine.toolbox.CameraManager;
-import kaba4cow.engine.toolbox.Cubemaps;
-import kaba4cow.engine.toolbox.Fonts;
 import kaba4cow.engine.toolbox.ScreenshotManager;
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Vectors;
@@ -22,19 +22,19 @@ import kaba4cow.engine.toolbox.particles.Particle;
 import kaba4cow.engine.toolbox.particles.ParticleSystemManager;
 import kaba4cow.engine.toolbox.rng.RNG;
 import kaba4cow.engine.utils.WindowUtils;
-import kaba4cow.files.FractionFile;
-import kaba4cow.files.PlanetFile;
-import kaba4cow.files.ShipFile;
-import kaba4cow.files.SystemFile;
-import kaba4cow.intersector.GameSettings;
+import kaba4cow.intersector.Settings;
+import kaba4cow.intersector.files.FractionFile;
+import kaba4cow.intersector.files.PlanetFile;
+import kaba4cow.intersector.files.ShipFile;
+import kaba4cow.intersector.files.SystemFile;
 import kaba4cow.intersector.galaxyengine.objects.NebulaObject;
 import kaba4cow.intersector.galaxyengine.objects.PlanetObject;
 import kaba4cow.intersector.galaxyengine.objects.SystemObject;
 import kaba4cow.intersector.gameobjects.Fraction;
 import kaba4cow.intersector.gameobjects.Planet;
 import kaba4cow.intersector.gameobjects.World;
-import kaba4cow.intersector.gameobjects.machinecontrollers.shipcontrollers.ShipStaticController;
 import kaba4cow.intersector.gameobjects.machines.Ship;
+import kaba4cow.intersector.gameobjects.machines.controllers.shipcontrollers.ShipStaticController;
 import kaba4cow.intersector.gameobjects.targets.Target;
 import kaba4cow.intersector.hud.MapHud;
 import kaba4cow.intersector.renderEngine.RendererContainer;
@@ -84,7 +84,7 @@ public class MapTesting extends MainProgram {
 
 	@Override
 	public void init() {
-		GameSettings.loadSettings();
+		Settings.loadSettings();
 		Cubemaps.load("skybox");
 		Fonts.load("bank");
 

@@ -11,7 +11,7 @@ import kaba4cow.engine.renderEngine.renderers.AbstractRenderer;
 import kaba4cow.engine.renderEngine.textures.TextureAtlas;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.utils.GLUtils;
-import kaba4cow.files.ModelTextureFile;
+import kaba4cow.intersector.files.ModelTextureFile;
 import kaba4cow.intersector.renderEngine.shaders.HologramShader;
 
 import org.lwjgl.util.vector.Matrix4f;

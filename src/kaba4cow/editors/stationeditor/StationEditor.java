@@ -20,10 +20,10 @@ import javax.swing.SpinnerNumberModel;
 
 import kaba4cow.editors.AbstractEditor;
 import kaba4cow.engine.MainProgram;
-import kaba4cow.files.StationFile;
-import kaba4cow.files.TextureSetFile;
+import kaba4cow.intersector.files.StationFile;
+import kaba4cow.intersector.files.TextureSetFile;
 import kaba4cow.intersector.gameobjects.machines.classes.StationClass;
-import kaba4cow.intersector.toolbox.RawModelContainer;
+import kaba4cow.intersector.toolbox.containers.RawModelContainer;
 
 public class StationEditor extends AbstractEditor {
 

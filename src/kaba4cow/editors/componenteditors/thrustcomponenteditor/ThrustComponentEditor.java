@@ -22,12 +22,12 @@ import kaba4cow.editors.AbstractEditor;
 import kaba4cow.editors.componenteditors.ComponentEditor;
 import kaba4cow.engine.MainProgram;
 import kaba4cow.engine.toolbox.maths.Direction;
-import kaba4cow.files.ShipFile;
-import kaba4cow.files.TextureSetFile;
-import kaba4cow.files.ThrustTextureFile;
+import kaba4cow.intersector.files.ShipFile;
+import kaba4cow.intersector.files.TextureSetFile;
+import kaba4cow.intersector.files.ThrustTextureFile;
 import kaba4cow.intersector.gameobjects.objectcomponents.ObjectComponent;
 import kaba4cow.intersector.gameobjects.objectcomponents.ThrustComponent;
-import kaba4cow.intersector.toolbox.RawModelContainer;
+import kaba4cow.intersector.toolbox.containers.RawModelContainer;
 
 public class ThrustComponentEditor extends AbstractEditor implements
 		ComponentEditor {

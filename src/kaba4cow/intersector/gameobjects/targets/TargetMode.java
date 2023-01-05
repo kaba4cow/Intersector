@@ -3,7 +3,7 @@ package kaba4cow.intersector.gameobjects.targets;
 import org.lwjgl.util.vector.Vector3f;
 
 import kaba4cow.engine.toolbox.files.DataFile;
-import kaba4cow.files.InfosFile;
+import kaba4cow.intersector.files.InfosFile;
 
 public enum TargetMode {
 

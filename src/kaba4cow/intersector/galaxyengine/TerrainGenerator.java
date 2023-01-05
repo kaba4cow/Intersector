@@ -3,13 +3,13 @@ package kaba4cow.intersector.galaxyengine;
 import org.lwjgl.util.vector.Vector3f;
 
 import kaba4cow.engine.renderEngine.Light;
+import kaba4cow.engine.toolbox.ColorRamp;
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.toolbox.rng.RNG;
 import kaba4cow.engine.toolbox.rng.RandomLehmer;
-import kaba4cow.files.PlanetFile;
+import kaba4cow.intersector.files.PlanetFile;
 import kaba4cow.intersector.galaxyengine.objects.PlanetObject;
-import kaba4cow.intersector.toolbox.ColorRamp;
 
 public class TerrainGenerator {
 

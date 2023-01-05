@@ -6,7 +6,7 @@ import kaba4cow.engine.renderEngine.shaders.uniforms.UniformFloat;
 import kaba4cow.engine.renderEngine.shaders.uniforms.UniformMat4;
 import kaba4cow.engine.renderEngine.shaders.uniforms.UniformVec2;
 import kaba4cow.engine.renderEngine.shaders.uniforms.UniformVec3;
-import kaba4cow.intersector.toolbox.ColorRamp;
+import kaba4cow.engine.toolbox.ColorRamp;
 
 public class TerrainTextureShader extends AbstractShader {
 

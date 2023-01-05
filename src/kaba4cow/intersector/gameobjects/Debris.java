@@ -9,7 +9,7 @@ import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.toolbox.particles.Particle;
 import kaba4cow.engine.toolbox.rng.RNG;
-import kaba4cow.files.ParticleSystemFile;
+import kaba4cow.intersector.files.ParticleSystemFile;
 import kaba4cow.intersector.gameobjects.projectiles.Projectile;
 import kaba4cow.intersector.gameobjects.targets.TargetType;
 import kaba4cow.intersector.renderEngine.RendererContainer;

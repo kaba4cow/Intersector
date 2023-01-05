@@ -6,10 +6,10 @@ import org.lwjgl.util.vector.Vector3f;
 import kaba4cow.engine.audio.AudioManager;
 import kaba4cow.engine.audio.Source;
 import kaba4cow.engine.renderEngine.models.GUIText;
-import kaba4cow.files.InfosFile;
+import kaba4cow.intersector.files.InfosFile;
 import kaba4cow.intersector.renderEngine.RendererContainer;
 import kaba4cow.intersector.toolbox.Constants;
-import kaba4cow.intersector.toolbox.FontContainer;
+import kaba4cow.intersector.toolbox.containers.FontContainer;
 
 public abstract class MenuElement {
 

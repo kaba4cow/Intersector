@@ -10,9 +10,8 @@ import kaba4cow.engine.renderEngine.models.TexturedModel;
 import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Vectors;
-import kaba4cow.files.ProjectileFile;
-import kaba4cow.files.WeaponFile;
-import kaba4cow.intersector.renderEngine.models.LaserModel;
+import kaba4cow.intersector.files.ProjectileFile;
+import kaba4cow.intersector.files.WeaponFile;
 import kaba4cow.intersector.utils.RenderUtils;
 
 public class WeaponEditorViewport extends AbstractEditorViewport {
@@ -63,8 +62,7 @@ public class WeaponEditorViewport extends AbstractEditorViewport {
 		float fileSize = file == null ? 1f : file.getSize();
 		Vector3f orbitPoint = Vectors.INIT3;
 		float orbitDist = fileSize;
-		if (file != null && getSettings().isFollowFirePoint()
-				&& file.getFirePoints() > 0) {
+		if (file != null && getSettings().isFollowFirePoint() && file.getFirePoints() > 0) {
 			orbitPoint = new Vector3f(file.getFirePoint(index));
 			orbitPoint.scale(fileSize);
 			orbitDist *= 0.25f;
@@ -87,38 +85,26 @@ public class WeaponEditorViewport extends AbstractEditorViewport {
 
 			file.setName(editor.getNameTextField().getText());
 			file.setSize(EditorUtils.getFloatValue(editor.getSizeSpinner()));
-			file.setReload(EditorUtils.getFloatValue(editor
-					.getReloadTimeSpinner()));
-			file.setCooldown(EditorUtils.getFloatValue(editor
-					.getCooldownTimeSpinner()));
-			file.setScale(EditorUtils.getFloatValue(editor
-					.getFireScaleSpinner()));
-			file.setOriginPoint(EditorUtils.getVector3fValue(
-					editor.getOriginPointXSpinner(),
-					editor.getOriginPointYSpinner(),
-					editor.getOriginPointZSpinner()));
+			file.setReload(EditorUtils.getFloatValue(editor.getReloadTimeSpinner()));
+			file.setCooldown(EditorUtils.getFloatValue(editor.getCooldownTimeSpinner()));
+			file.setScale(EditorUtils.getFloatValue(editor.getFireScaleSpinner()));
+			file.setOriginPoint(EditorUtils.getVector3fValue(editor.getOriginPointXSpinner(),
+					editor.getOriginPointYSpinner(), editor.getOriginPointZSpinner()));
 			file.setStaticModel(editor.getStaticModelButton().getText());
 			file.setYawModel(editor.getYawModelButton().getText());
 			file.setPitchModel(editor.getPitchModelButton().getText());
 			file.setProjectile(editor.getProjectileButton().getText());
 			file.setDamage(EditorUtils.getFloatValue(editor.getDamageSpinner()));
-			file.setDamageDeviation(EditorUtils.getFloatValue(editor
-					.getDamageDeviationSpinner()));
+			file.setDamageDeviation(EditorUtils.getFloatValue(editor.getDamageDeviationSpinner()));
 			file.setAutomatic(editor.getAutomaticCheckbox().isSelected());
-			file.setRepeat(EditorUtils.getIntValue(editor
-					.getRepetitionsSpinner()));
-			file.setRotationSpeed(EditorUtils.getFloatValue(editor
-					.getRotationSpeedSpinner()));
+			file.setRepeat(EditorUtils.getIntValue(editor.getRepetitionsSpinner()));
+			file.setRotationSpeed(EditorUtils.getFloatValue(editor.getRotationSpeedSpinner()));
 			file.setLimitPitch(editor.getLimitPitchCheckbox().isSelected());
-			file.setMinPitch(EditorUtils.getFloatValue(editor
-					.getMinPitchSpinner()) * Maths.PI);
-			file.setMaxPitch(EditorUtils.getFloatValue(editor
-					.getMaxPitchSpinner()) * Maths.PI);
+			file.setMinPitch(EditorUtils.getFloatValue(editor.getMinPitchSpinner()) * Maths.PI);
+			file.setMaxPitch(EditorUtils.getFloatValue(editor.getMaxPitchSpinner()) * Maths.PI);
 			file.setLimitYaw(editor.getLimitYawCheckbox().isSelected());
-			file.setMinYaw(EditorUtils.getFloatValue(editor.getMinYawSpinner())
-					* Maths.PI);
-			file.setMaxYaw(EditorUtils.getFloatValue(editor.getMaxYawSpinner())
-					* Maths.PI);
+			file.setMinYaw(EditorUtils.getFloatValue(editor.getMinYawSpinner()) * Maths.PI);
+			file.setMaxYaw(EditorUtils.getFloatValue(editor.getMaxYawSpinner()) * Maths.PI);
 
 			if (index < 0)
 				index = file.getFirePoints() - 1;
@@ -127,19 +113,12 @@ public class WeaponEditorViewport extends AbstractEditorViewport {
 			if (file.getFirePoints() > 0) {
 				Vector3f firePoint = file.getFirePoint(index);
 				float invMul = 1f / WeaponEditor.MUL;
-				firePoint.x = invMul
-						* EditorUtils.getFloatValue(editor
-								.getFirePointXSpinner());
-				firePoint.y = invMul
-						* EditorUtils.getFloatValue(editor
-								.getFirePointYSpinner());
-				firePoint.z = invMul
-						* EditorUtils.getFloatValue(editor
-								.getFirePointZSpinner());
+				firePoint.x = invMul * EditorUtils.getFloatValue(editor.getFirePointXSpinner());
+				firePoint.y = invMul * EditorUtils.getFloatValue(editor.getFirePointYSpinner());
+				firePoint.z = invMul * EditorUtils.getFloatValue(editor.getFirePointZSpinner());
 			}
 
-			Matrix4f mat = direction.getMatrix(Vectors.INIT3, true,
-					file.getSize());
+			Matrix4f mat = direction.getMatrix(Vectors.INIT3, true, file.getSize());
 			String texture = editor.getTextureButton().getText();
 
 			float yaw = 0f;
@@ -147,27 +126,21 @@ public class WeaponEditorViewport extends AbstractEditorViewport {
 
 			if (getSettings().isShowRotation()) {
 				if (file.isLimitYaw())
-					yaw = Maths.map(getSettings().getYaw(), 0f, 1f,
-							file.getMinYaw(), file.getMaxYaw());
+					yaw = Maths.map(getSettings().getYaw(), 0f, 1f, file.getMinYaw(), file.getMaxYaw());
 				else
-					yaw = Maths.map(getSettings().getYaw(), 0f, 1f, 0f,
-							Maths.TWO_PI);
+					yaw = Maths.map(getSettings().getYaw(), 0f, 1f, 0f, Maths.TWO_PI);
 				if (file.isLimitPitch())
-					pitch = Maths.map(getSettings().getPitch(), 0f, 1f,
-							file.getMinPitch(), file.getMaxPitch());
+					pitch = Maths.map(getSettings().getPitch(), 0f, 1f, file.getMinPitch(), file.getMaxPitch());
 				else
-					pitch = Maths.map(getSettings().getPitch(), 0f, 1f, 0f,
-							Maths.TWO_PI);
+					pitch = Maths.map(getSettings().getPitch(), 0f, 1f, 0f, Maths.TWO_PI);
 			}
 
 			TexturedModel staticModel = file.getTexturedStaticModel(texture);
 			if (staticModel != null) {
 				Matrix4f staticMatrix = new Matrix4f();
-				staticMatrix.scale(new Vector3f(file.getSize(), file.getSize(),
-						file.getSize()));
+				staticMatrix.scale(new Vector3f(file.getSize(), file.getSize(), file.getSize()));
 
-				renderers.getModelRenderer().render(staticModel, null,
-						staticMatrix);
+				renderers.getModelRenderer().render(staticModel, null, staticMatrix);
 			}
 
 			Vector3f originPoint = new Vector3f(file.getOriginPoint());
@@ -175,31 +148,25 @@ public class WeaponEditorViewport extends AbstractEditorViewport {
 			TexturedModel yawModel = file.getTexturedYawModel(texture);
 			if (yawModel != null) {
 				Matrix4f dynamicMatrix = new Matrix4f();
-				dynamicMatrix.scale(new Vector3f(file.getSize(),
-						file.getSize(), file.getSize()));
+				dynamicMatrix.scale(new Vector3f(file.getSize(), file.getSize(), file.getSize()));
 				Matrix4f.rotate(yaw, Vectors.UP, dynamicMatrix, dynamicMatrix);
 
-				renderers.getModelRenderer().render(yawModel, null,
-						dynamicMatrix);
+				renderers.getModelRenderer().render(yawModel, null, dynamicMatrix);
 			}
 
 			TexturedModel pitchModel = file.getTexturedPitchModel(texture);
 			if (pitchModel != null) {
 				Matrix4f dynamicMatrix = new Matrix4f();
-				dynamicMatrix.scale(new Vector3f(file.getSize(),
-						file.getSize(), file.getSize()));
+				dynamicMatrix.scale(new Vector3f(file.getSize(), file.getSize(), file.getSize()));
 				Matrix4f.rotate(yaw, Vectors.UP, dynamicMatrix, dynamicMatrix);
 				dynamicMatrix.translate(originPoint.negate(null));
-				Matrix4f.rotate(pitch, Vectors.RIGHT, dynamicMatrix,
-						dynamicMatrix);
+				Matrix4f.rotate(pitch, Vectors.RIGHT, dynamicMatrix, dynamicMatrix);
 				dynamicMatrix.translate(originPoint);
 
-				renderers.getModelRenderer().render(pitchModel, null,
-						dynamicMatrix);
+				renderers.getModelRenderer().render(pitchModel, null, dynamicMatrix);
 			}
 
-			RenderUtils.renderDebugPoints(0.25f * file.getScale(), mat,
-					renderers, file.getFirePointArray());
+			RenderUtils.renderDebugPoints(0.25f * file.getScale(), mat, renderers, file.getFirePointArray());
 			ProjectileFile projectile = file.getProjectileFile();
 			Vector3f pointsPos = new Vector3f();
 			Vector3f pointScale = new Vector3f();
@@ -212,22 +179,19 @@ public class WeaponEditorViewport extends AbstractEditorViewport {
 				Matrix4f.mul(mat, pointMatrix, pointMatrix);
 				render(projectile, i, pointMatrix);
 			}
-			RenderUtils.renderDebugPoints(0.05f, new Vector3f(0f, 0.5f, 0.1f),
-					mat, renderers, originPoint);
+			RenderUtils.renderDebugPoints(0.05f, new Vector3f(0f, 0.5f, 0.1f), mat, renderers, originPoint);
 		}
 		renderers.processModelRenderers(cubemap);
 
 		stopPostProcessing(null);
 	}
 
-	private void render(ProjectileFile projectile, int firePoint,
-			Matrix4f matrix) {
+	private void render(ProjectileFile projectile, int firePoint, Matrix4f matrix) {
 		if (projectile == null)
 			return;
 		if (projectile.usesLaserModel()) {
-			LaserModel projectileModel = projectile.createLaserModel();
-			renderers.getLaserRenderer().render(projectileModel, matrix, null,
-					1f);
+			TexturedModel projectileModel = projectile.createLaserModel();
+			renderers.getLaserRenderer().render(projectileModel, matrix, null, 1f);
 		} else {
 			TexturedModel projectileModel = projectile.createTexturedModel();
 			renderers.getModelRenderer().render(projectileModel, null, matrix);

@@ -2,19 +2,19 @@ package kaba4cow.engine;
 
 import java.awt.Canvas;
 
-import kaba4cow.engine.audio.AudioManager;
-import kaba4cow.engine.renderEngine.Renderer;
-import kaba4cow.engine.renderEngine.postProcessing.FrameBufferObject;
-import kaba4cow.engine.renderEngine.postProcessing.PostProcessingPipeline;
-import kaba4cow.engine.toolbox.Loaders;
-import kaba4cow.engine.toolbox.MemoryAnalyzer;
-import kaba4cow.engine.toolbox.Printer;
-
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 
-public abstract class MainProgram implements Runnable {
+import kaba4cow.engine.assets.Loaders;
+import kaba4cow.engine.audio.AudioManager;
+import kaba4cow.engine.renderEngine.Renderer;
+import kaba4cow.engine.renderEngine.postProcessing.FrameBufferObject;
+import kaba4cow.engine.renderEngine.postProcessing.PostProcessingPipeline;
+import kaba4cow.engine.toolbox.MemoryAnalyzer;
+import kaba4cow.engine.toolbox.Printer;
+
+public abstract class MainProgram {
 
 	private Canvas CANVAS;
 	private String TITLE;
@@ -84,10 +84,13 @@ public abstract class MainProgram implements Runnable {
 	}
 
 	private void create() {
-		fbo = new FrameBufferObject(WIDTH, HEIGHT,
-				FrameBufferObject.DEPTH_RENDER_BUFFER,
-				FrameBufferObject.NEAREST_SAMPLING);
+		mainProgram = this;
+		DisplayManager.create(FULLSCREEN, RESIZABLE, CANVAS);
+		AudioManager.init();
+		fbo = new FrameBufferObject(WIDTH, HEIGHT, FrameBufferObject.DEPTH_RENDER_BUFFER,
+				FrameBufferObject.LINEAR_SAMPLING);
 		postProcessing = new PostProcessingPipeline();
+		closeRequested = false;
 	}
 
 	public abstract void init();
@@ -111,35 +114,28 @@ public abstract class MainProgram implements Runnable {
 
 	public static void start(MainProgram program) {
 		Printer.println("STARTING PROGRAM...");
-		mainProgram = program;
-		new Thread(program, "Main Thread").start();
+		program.start();
 	}
 
-	@Override
-	public void run() {
-		DisplayManager.create(mainProgram.FULLSCREEN,
-				mainProgram.RESIZABLE, mainProgram.CANVAS);
-		AudioManager.init();
-		mainProgram.create();
-		mainProgram.init();
-		mainProgram.closeRequested = false;
-		lastFrameTime = getCurrentTime();
-		elapsedTime = 0f;
+	private void start() {
+		create();
+		init();
 
 		Printer.println("PROGRAM STARTED");
-		Printer.println("FULLSCREEN: " + mainProgram.FULLSCREEN
-				+ ", WIDTH: " + mainProgram.WIDTH + ", HEIGHT: "
-				+ mainProgram.HEIGHT);
+		Printer.println("FULLSCREEN: " + FULLSCREEN + ", WIDTH: " + WIDTH + ", HEIGHT: " + HEIGHT);
 
+		lastFrameTime = getCurrentTime();
+		elapsedTime = 0f;
+		
 		while (isRunning()) {
-			Loaders.update();
 			MemoryAnalyzer.update();
+			Loaders.update();
 			AudioManager.update();
 			Input.update();
-			mainProgram.update(deltaTime);
+			update(deltaTime);
 
-			mainProgram.startPostProcessing();
-			mainProgram.render();
+			startPostProcessing();
+			render();
 			DisplayManager.update();
 
 			long currentFrameTime = getCurrentTime();
@@ -149,8 +145,8 @@ public abstract class MainProgram implements Runnable {
 		}
 
 		Printer.println("FINISHING PROGRAM...");
-		mainProgram.closeRequested = true;
-		mainProgram.onClose();
+		closeRequested = true;
+		onClose();
 		FrameBufferObject.cleanUp();
 		Loaders.cleanUp();
 		AudioManager.cleanUp();
@@ -160,8 +156,7 @@ public abstract class MainProgram implements Runnable {
 	}
 
 	public static boolean isRunning() {
-		return !Display.isCloseRequested()
-				&& !(EXIT_ON_KEY && Keyboard.isKeyDown(EXIT_KEY))
+		return !Display.isCloseRequested() && !(EXIT_ON_KEY && Keyboard.isKeyDown(EXIT_KEY))
 				&& !mainProgram.closeRequested;
 	}
 

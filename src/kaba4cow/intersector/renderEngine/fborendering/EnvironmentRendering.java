@@ -18,7 +18,7 @@ import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.utils.GLUtils;
-import kaba4cow.intersector.GameSettings;
+import kaba4cow.intersector.Settings;
 import kaba4cow.intersector.gameobjects.EnvironmentObject;
 import kaba4cow.intersector.renderEngine.RendererContainer;
 import kaba4cow.intersector.utils.GameUtils;
@@ -44,7 +44,7 @@ public final class EnvironmentRendering {
 	}
 
 	static {
-		SIZE = GameSettings.CUBEMAP_SIZES[GameSettings.getCubemaps()];
+		SIZE = Settings.CUBEMAP_SIZES[Settings.getCubemaps()];
 		renderer = new Renderer(Projection.SQUARE, 90f, 1f, 1000000000f, GameUtils.getPlayerPov().getAmbientLighting());
 		renderers = new RendererContainer(renderer);
 		list = new ArrayList<EnvironmentObject>();

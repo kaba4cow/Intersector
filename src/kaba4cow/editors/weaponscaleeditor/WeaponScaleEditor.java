@@ -18,8 +18,8 @@ import javax.swing.SpinnerNumberModel;
 
 import kaba4cow.editors.AbstractEditor;
 import kaba4cow.engine.MainProgram;
-import kaba4cow.files.ModelTextureFile;
-import kaba4cow.files.WeaponFile;
+import kaba4cow.intersector.files.ModelTextureFile;
+import kaba4cow.intersector.files.WeaponFile;
 
 public class WeaponScaleEditor extends AbstractEditor {
 

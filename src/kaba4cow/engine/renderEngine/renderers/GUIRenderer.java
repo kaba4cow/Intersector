@@ -3,11 +3,11 @@ package kaba4cow.engine.renderEngine.renderers;
 import java.util.LinkedList;
 
 import kaba4cow.engine.MainProgram;
+import kaba4cow.engine.assets.Models;
 import kaba4cow.engine.renderEngine.Renderer;
 import kaba4cow.engine.renderEngine.models.RawModel;
 import kaba4cow.engine.renderEngine.shaders.GUIShader;
 import kaba4cow.engine.renderEngine.textures.GUITexture;
-import kaba4cow.engine.toolbox.Models;
 import kaba4cow.engine.toolbox.maths.Matrices;
 import kaba4cow.engine.utils.GLUtils;
 

@@ -2,17 +2,17 @@ package kaba4cow.intersector.states;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import kaba4cow.engine.assets.Cubemaps;
+import kaba4cow.engine.assets.Fonts;
 import kaba4cow.engine.renderEngine.Renderer;
 import kaba4cow.engine.renderEngine.Renderer.Projection;
 import kaba4cow.engine.renderEngine.models.GUIText;
 import kaba4cow.engine.renderEngine.renderers.TextRenderer;
-import kaba4cow.engine.toolbox.Cubemaps;
-import kaba4cow.engine.toolbox.Fonts;
-import kaba4cow.files.GameFile;
 import kaba4cow.intersector.Intersector;
+import kaba4cow.intersector.files.GameFile;
 import kaba4cow.intersector.renderEngine.RendererContainer;
-import kaba4cow.intersector.toolbox.FontContainer;
-import kaba4cow.intersector.toolbox.SoundContainer;
+import kaba4cow.intersector.toolbox.containers.FontContainer;
+import kaba4cow.intersector.toolbox.containers.SoundContainer;
 
 public class InitState extends State {
 
@@ -48,7 +48,7 @@ public class InitState extends State {
 				new Vector2f(-1f, -0.9f), 2f, 1f, false);
 		finished = false;
 
-		thread = new Thread("Init") {
+		thread = new Thread("init") {
 			@Override
 			public void run() {
 				GameFile.prepareAllInit();

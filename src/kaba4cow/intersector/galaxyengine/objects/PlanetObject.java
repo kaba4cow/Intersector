@@ -13,9 +13,8 @@ import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.toolbox.rng.RNG;
 import kaba4cow.engine.toolbox.rng.RandomLehmer;
-import kaba4cow.files.PlanetFile;
+import kaba4cow.intersector.files.PlanetFile;
 import kaba4cow.intersector.galaxyengine.NameGenerator;
-import kaba4cow.intersector.galaxyengine.NonExistingObjectException;
 import kaba4cow.intersector.gameobjects.GameObject;
 import kaba4cow.intersector.gameobjects.Planet;
 import kaba4cow.intersector.gameobjects.World;
@@ -42,7 +41,8 @@ public class PlanetObject extends GameObject {
 
 	public final SystemObject system;
 	public final PlanetObject parent;
-	public List<PlanetObject> children;
+	public final List<PlanetObject> children;
+	public final StationObject station;
 
 	public String name;
 	public Vector3f color;
@@ -65,10 +65,8 @@ public class PlanetObject extends GameObject {
 	public int mapX;
 	public int mapY;
 
-	public boolean station;
-
 	public PlanetObject(SystemObject system, PlanetObject parent, float distance, int position, int parentSkipped,
-			int level, long seedSystem) throws NonExistingObjectException {
+			int level, long seedSystem) throws IllegalStateException {
 		super(null);
 		this.system = system;
 		this.seed = GalaxyUtils.seedPlanet(seedSystem, position, parentSkipped, level, parent);
@@ -76,7 +74,7 @@ public class PlanetObject extends GameObject {
 
 		rng.iterate(Maths.abs(position + parentSkipped + level + (int) seed) % 10);
 		if (rng.nextFloat(0f, 1f) >= GalaxyUtils.SYSTEM_DENSITY && system.systemFile == null && parent != null)
-			throw new NonExistingObjectException();
+			throw new IllegalStateException();
 
 		if (system.systemFile == null || parent != null) {
 			PlanetFile[] fileArray = new PlanetFile[rng.nextInt(1, 9)];
@@ -84,11 +82,9 @@ public class PlanetObject extends GameObject {
 				fileArray[i] = createPlanet(rng, parent, position, level, distance);
 			this.file = fileArray[rng.nextInt(0, fileArray.length)];
 			if (file == null)
-				throw new NonExistingObjectException();
+				throw new IllegalStateException();
 		} else
 			this.file = PlanetFile.get(system.systemFile.getStar());
-
-		this.station = system.fraction != null && rng.nextFloat(0f, 100f) < file.getStation();
 
 		this.parent = parent;
 		this.color = file.getColor(rng.nextFloat(0f, 1f), null);
@@ -148,12 +144,17 @@ public class PlanetObject extends GameObject {
 				PlanetObject child = new PlanetObject(system, this, totalDistance, i, skipped, level + 1, seed + i);
 				totalDistance += 2f * (child.totalDistance + child.radius);
 				children.add(child);
-			} catch (NonExistingObjectException e) {
+			} catch (IllegalStateException e) {
 				rng.getNext();
 				skipped++;
 				continue;
 			}
 		}
+
+		if (system.fraction != null && rng.nextFloat(0f, 100f) < file.getStation())
+			station = new StationObject(seedSystem, this);
+		else
+			station = null;
 	}
 
 	public void print() {
@@ -166,7 +167,7 @@ public class PlanetObject extends GameObject {
 		info += InfoUtils.time(Maths.TWO_PI / orbitalSpeed) + " / ";
 		info += InfoUtils.time(Maths.TWO_PI / rotationSpeed) + "]  [";
 		info += "HZ" + habitability(distance) + "]";
-		if (station)
+		if (hasStation())
 			info += " [station]";
 		Printer.println(info);
 
@@ -207,10 +208,14 @@ public class PlanetObject extends GameObject {
 	}
 
 	public int stationsSize() {
-		int sum = station ? 1 : 0;
+		int sum = hasStation() ? 1 : 0;
 		for (int i = 0; i < children.size(); i++)
 			sum += children.get(i).stationsSize();
 		return sum;
+	}
+
+	public boolean hasStation() {
+		return station != null;
 	}
 
 	public void orbit(float dt) {
@@ -263,6 +268,8 @@ public class PlanetObject extends GameObject {
 			rotationSpeed *= rng.nextFloat(-0.05f, 0.15f);
 		else if (rng.nextFloat(0f, 100f) < 3f * level - 2f * position)
 			rotationSpeed = orbitalSpeed;
+		if (station != null)
+			station.calculateRotationSpeeds();
 		for (int i = 0; i < children.size(); i++)
 			children.get(i).calculateRotationSpeeds();
 	}
@@ -276,6 +283,8 @@ public class PlanetObject extends GameObject {
 			Vectors.rotate(orbitalInclination, direction.getRight(), worldPosition, worldPosition);
 			Vectors.addScaled(parentPosition, worldPosition, distance, worldPosition);
 		}
+		if (station != null)
+			station.calculateWorldPosition();
 		for (int i = 0; i < children.size(); i++)
 			children.get(i).calculateWorldPosition();
 	}

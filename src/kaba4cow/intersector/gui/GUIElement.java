@@ -7,7 +7,7 @@ import kaba4cow.engine.audio.Source;
 import kaba4cow.engine.renderEngine.models.GUIText;
 import kaba4cow.intersector.renderEngine.RendererContainer;
 import kaba4cow.intersector.toolbox.Constants;
-import kaba4cow.intersector.toolbox.FontContainer;
+import kaba4cow.intersector.toolbox.containers.FontContainer;
 
 public abstract class GUIElement {
 

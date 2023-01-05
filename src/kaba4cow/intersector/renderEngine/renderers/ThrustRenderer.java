@@ -8,9 +8,9 @@ import kaba4cow.engine.renderEngine.Renderer;
 import kaba4cow.engine.renderEngine.models.RawModel;
 import kaba4cow.engine.renderEngine.renderers.AbstractRenderer;
 import kaba4cow.engine.utils.GLUtils;
-import kaba4cow.intersector.renderEngine.models.ThrustModel;
+import kaba4cow.intersector.renderEngine.ThrustModel;
+import kaba4cow.intersector.renderEngine.ThrustTexture;
 import kaba4cow.intersector.renderEngine.shaders.ThrustShader;
-import kaba4cow.intersector.renderEngine.textures.ThrustTexture;
 
 import org.lwjgl.util.vector.Matrix4f;
 

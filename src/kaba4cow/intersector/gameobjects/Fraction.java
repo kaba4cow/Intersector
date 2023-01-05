@@ -10,9 +10,9 @@ import org.lwjgl.util.vector.Vector3f;
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.noise.Noise;
 import kaba4cow.engine.toolbox.rng.RNG;
-import kaba4cow.files.FractionFile;
-import kaba4cow.files.ShipFile;
-import kaba4cow.files.StationFile;
+import kaba4cow.intersector.files.FractionFile;
+import kaba4cow.intersector.files.ShipFile;
+import kaba4cow.intersector.files.StationFile;
 import kaba4cow.intersector.gameobjects.machines.Manufacturer;
 import kaba4cow.intersector.gameobjects.machines.classes.ShipClass;
 import kaba4cow.intersector.utils.GalaxyUtils;
@@ -105,8 +105,7 @@ public class Fraction {
 
 	public static Fraction getFraction(String capitalFile) {
 		for (int i = 0; i < list.size(); i++)
-			if (capitalFile.equalsIgnoreCase(list.get(i).getFractionFile()
-					.getCapital()))
+			if (capitalFile.equalsIgnoreCase(list.get(i).getFractionFile().getCapital()))
 				return list.get(i);
 		return null;
 	}
@@ -118,8 +117,7 @@ public class Fraction {
 		if (posX == centerX && posY == centerY && posZ == centerZ)
 			return 1f;
 		float rangeSq = Maths.sqr(GalaxyUtils.SECTOR_SIZE * file.getRange());
-		float distSq = Maths
-				.distSq(posX, posY, posZ, centerX, centerY, centerZ);
+		float distSq = Maths.distSq(posX, posY, posZ, centerX, centerY, centerZ);
 		if (distSq >= rangeSq)
 			return 0f;
 		float d = 0.822f * (2f - density);
@@ -186,8 +184,10 @@ public class Fraction {
 		return false;
 	}
 
-	public StationFile getRandomStation() {
-		return stations.get(RNG.randomInt(stations.size()));
+	public StationFile getRandomStation(RNG rng) {
+		if (rng == null)
+			return stations.get(RNG.randomInt(stations.size()));
+		return stations.get(rng.nextInt(0, stations.size()));
 	}
 
 	public Vector3f getRandomColor(RNG rng) {

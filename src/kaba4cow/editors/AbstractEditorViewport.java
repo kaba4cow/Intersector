@@ -5,6 +5,8 @@ import java.io.File;
 import org.lwjgl.util.vector.Vector3f;
 
 import kaba4cow.engine.MainProgram;
+import kaba4cow.engine.assets.Cubemaps;
+import kaba4cow.engine.assets.Fonts;
 import kaba4cow.engine.renderEngine.Camera;
 import kaba4cow.engine.renderEngine.Cubemap;
 import kaba4cow.engine.renderEngine.Light;
@@ -12,15 +14,13 @@ import kaba4cow.engine.renderEngine.Renderer;
 import kaba4cow.engine.renderEngine.Renderer.Projection;
 import kaba4cow.engine.renderEngine.postProcessing.PostProcessingPipeline;
 import kaba4cow.engine.toolbox.CameraManager;
-import kaba4cow.engine.toolbox.Cubemaps;
-import kaba4cow.engine.toolbox.Fonts;
 import kaba4cow.engine.toolbox.maths.Maths;
-import kaba4cow.files.GameFile;
-import kaba4cow.intersector.GameSettings;
+import kaba4cow.intersector.Settings;
+import kaba4cow.intersector.files.GameFile;
 import kaba4cow.intersector.gameobjects.Fraction;
 import kaba4cow.intersector.renderEngine.RendererContainer;
-import kaba4cow.intersector.toolbox.RawModelContainer;
-import kaba4cow.intersector.toolbox.SoundContainer;
+import kaba4cow.intersector.toolbox.containers.RawModelContainer;
+import kaba4cow.intersector.toolbox.containers.SoundContainer;
 import kaba4cow.intersector.utils.FileUtils;
 
 public abstract class AbstractEditorViewport extends MainProgram {
@@ -52,7 +52,7 @@ public abstract class AbstractEditorViewport extends MainProgram {
 
 	@Override
 	public void init() {
-		GameSettings.loadSettings();
+		Settings.loadSettings();
 		Fonts.loadAll();
 		Cubemaps.load("cells", 1);
 		Cubemaps.load("skybox");

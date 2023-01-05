@@ -22,8 +22,8 @@ import javax.swing.SpinnerNumberModel;
 import kaba4cow.editors.AbstractEditor;
 import kaba4cow.engine.MainProgram;
 import kaba4cow.engine.toolbox.maths.Easing;
-import kaba4cow.files.ParticleSystemFile;
-import kaba4cow.files.ParticleTextureFile;
+import kaba4cow.intersector.files.ParticleSystemFile;
+import kaba4cow.intersector.files.ParticleTextureFile;
 
 public class ParticleSystemEditor extends AbstractEditor {
 

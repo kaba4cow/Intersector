@@ -7,7 +7,7 @@ import kaba4cow.engine.renderEngine.models.RawModel;
 import kaba4cow.engine.renderEngine.renderers.AbstractRenderer;
 import kaba4cow.engine.utils.GLUtils;
 import kaba4cow.intersector.renderEngine.shaders.DebugShader;
-import kaba4cow.intersector.toolbox.RawModelContainer;
+import kaba4cow.intersector.toolbox.containers.RawModelContainer;
 
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;

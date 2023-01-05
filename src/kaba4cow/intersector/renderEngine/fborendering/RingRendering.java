@@ -8,11 +8,11 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL30;
 
+import kaba4cow.engine.assets.Loaders;
 import kaba4cow.engine.renderEngine.Renderer;
 import kaba4cow.engine.renderEngine.Renderer.Projection;
 import kaba4cow.engine.renderEngine.postProcessing.FrameBufferObject;
 import kaba4cow.engine.renderEngine.textures.ModelTexture;
-import kaba4cow.engine.toolbox.Loaders;
 import kaba4cow.engine.utils.GLUtils;
 import kaba4cow.intersector.galaxyengine.TerrainGenerator;
 import kaba4cow.intersector.gameobjects.GameObject;

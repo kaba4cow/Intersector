@@ -1,10 +1,10 @@
 package kaba4cow.engine.renderEngine.models;
 
+import kaba4cow.engine.assets.Fonts;
+import kaba4cow.engine.assets.Loaders;
 import kaba4cow.engine.fontMeshCreator.FontType;
 import kaba4cow.engine.fontMeshCreator.TextMeshData;
 import kaba4cow.engine.fontMeshCreator.TextMeshLoader;
-import kaba4cow.engine.toolbox.Fonts;
-import kaba4cow.engine.toolbox.Loaders;
 
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;

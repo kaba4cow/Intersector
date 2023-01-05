@@ -26,22 +26,21 @@ import kaba4cow.engine.renderEngine.postProcessing.effects.filters.SharpnessFilt
 import kaba4cow.engine.toolbox.Printer;
 import kaba4cow.engine.toolbox.files.DataFile;
 import kaba4cow.engine.utils.ProgramUtils;
-import kaba4cow.files.ContainerFile;
-import kaba4cow.files.ContainerGroupFile;
-import kaba4cow.files.FractionFile;
-import kaba4cow.files.InfosFile;
-import kaba4cow.files.MachineFile;
-import kaba4cow.files.ManufacturerFile;
-import kaba4cow.files.ModelTextureFile;
-import kaba4cow.files.ParticleSystemFile;
-import kaba4cow.files.ParticleTextureFile;
-import kaba4cow.files.PlanetFile;
-import kaba4cow.files.ProjectileFile;
-import kaba4cow.files.SystemFile;
-import kaba4cow.files.TextureSetFile;
-import kaba4cow.files.ThrustTextureFile;
-import kaba4cow.files.WeaponFile;
-import kaba4cow.intersector.Intersector;
+import kaba4cow.intersector.files.ContainerFile;
+import kaba4cow.intersector.files.ContainerGroupFile;
+import kaba4cow.intersector.files.FractionFile;
+import kaba4cow.intersector.files.InfosFile;
+import kaba4cow.intersector.files.MachineFile;
+import kaba4cow.intersector.files.ManufacturerFile;
+import kaba4cow.intersector.files.ModelTextureFile;
+import kaba4cow.intersector.files.ParticleSystemFile;
+import kaba4cow.intersector.files.ParticleTextureFile;
+import kaba4cow.intersector.files.PlanetFile;
+import kaba4cow.intersector.files.ProjectileFile;
+import kaba4cow.intersector.files.SystemFile;
+import kaba4cow.intersector.files.TextureSetFile;
+import kaba4cow.intersector.files.ThrustTextureFile;
+import kaba4cow.intersector.files.WeaponFile;
 
 public final class FileUtils {
 
@@ -125,7 +124,7 @@ public final class FileUtils {
 		if (!directory.exists())
 			directory.mkdirs();
 
-		File file = new File("logs/log" + Intersector.GAME_VERSION + "_" + ProgramUtils.getDate() + ".txt");
+		File file = new File("logs/log_" + ProgramUtils.getDate() + ".txt");
 		if (!file.exists())
 			try {
 				file.createNewFile();

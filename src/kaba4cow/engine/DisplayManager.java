@@ -2,12 +2,9 @@ package kaba4cow.engine;
 
 import java.awt.Canvas;
 import java.io.File;
-import java.io.IOException;
 import java.nio.ByteBuffer;
 
 import javax.imageio.ImageIO;
-
-import kaba4cow.engine.toolbox.Printer;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
@@ -17,35 +14,33 @@ import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.PixelFormat;
 import org.newdawn.slick.opengl.ImageIOImageData;
 
+import kaba4cow.engine.toolbox.Printer;
+
 public class DisplayManager {
 
 	public static void create(boolean fullscreen, boolean resizable, Canvas canvas) {
 		Printer.println("CREATING DISPLAY...");
 		try {
 			Display.setTitle(MainProgram.getTitle());
-			if (fullscreen && canvas == null) {
-				Display.setDisplayMode(Display.getDesktopDisplayMode());
-				Display.setFullscreen(true);
-			} else
-				Display.setDisplayMode(new DisplayMode(MainProgram.getWidth(), MainProgram.getHeight()));
+			DisplayMode mode;
+			if (fullscreen && canvas == null)
+				Display.setDisplayModeAndFullscreen(mode = Display.getDesktopDisplayMode());
+			else
+				Display.setDisplayMode(mode = new DisplayMode(MainProgram.getWidth(), MainProgram.getHeight()));
 			Display.setParent(canvas);
-			Display.create(createPixelFormat());
-			GL11.glViewport(0, 0, MainProgram.getWidth(), MainProgram.getHeight());
+			Display.create(new PixelFormat());
 			Display.setResizable(resizable && canvas == null);
-			Printer.println("DISPLAY CREATED: " + Display.getWidth() + "x" + Display.getHeight());
+			Display.setVSyncEnabled(true);
+			Printer.println("DISPLAY CREATED: " + mode.getWidth() + "x" + mode.getHeight());
 			Printer.println("SYSTEM: vendor " + GL11.glGetString(GL11.GL_VENDOR) + ", renderer "
 					+ GL11.glGetString(GL11.GL_RENDERER) + ", GL " + GL11.glGetString(GL11.GL_VERSION) + ", GLSL "
 					+ GL11.glGetString(GL20.GL_SHADING_LANGUAGE_VERSION));
+			GL11.glViewport(0, 0, MainProgram.getWidth(), MainProgram.getHeight());
 		} catch (LWJGLException e) {
 			Printer.println("UNABLE TO CREATE DISPLAY");
 			e.printStackTrace();
 			System.exit(-1);
 		}
-	}
-
-	private static PixelFormat createPixelFormat() {
-		PixelFormat format = new PixelFormat();
-		return format;
 	}
 
 	public static void resize() {
@@ -63,7 +58,7 @@ public class DisplayManager {
 			icons[1] = new ImageIOImageData().imageToByteBuffer(ImageIO.read(new File(path + "32.png")), false, false,
 					null);
 			Display.setIcon(icons);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			Printer.println("UNABLE TO SET ICONS");
 			e.printStackTrace();
 		}

@@ -1,6 +1,6 @@
 package kaba4cow.engine.renderEngine;
 
-import kaba4cow.engine.toolbox.Loaders;
+import kaba4cow.engine.assets.Loaders;
 
 public class Cubemap {
 

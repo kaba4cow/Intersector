@@ -19,7 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
 
 import kaba4cow.engine.MainProgram;
-import kaba4cow.files.GameFile;
+import kaba4cow.intersector.files.GameFile;
 
 public abstract class AbstractEditor extends JFrame implements ActionListener {
 

@@ -8,7 +8,7 @@ import kaba4cow.editors.EditorUtils;
 import kaba4cow.engine.renderEngine.Cubemap;
 import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.engine.toolbox.maths.Vectors;
-import kaba4cow.files.PlanetFile;
+import kaba4cow.intersector.files.PlanetFile;
 import kaba4cow.intersector.galaxyengine.TerrainGenerator;
 import kaba4cow.intersector.gameobjects.Planet;
 import kaba4cow.intersector.renderEngine.fborendering.TerrainRendering;

@@ -8,20 +8,20 @@ import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL30;
 import org.lwjgl.util.vector.Vector3f;
 
+import kaba4cow.engine.assets.Cubemaps;
 import kaba4cow.engine.renderEngine.Cubemap;
 import kaba4cow.engine.renderEngine.Renderer;
 import kaba4cow.engine.renderEngine.Renderer.Projection;
 import kaba4cow.engine.renderEngine.postProcessing.FrameBufferObject;
 import kaba4cow.engine.renderEngine.renderers.CubemapRenderer;
 import kaba4cow.engine.renderEngine.renderers.ParticleRenderer;
-import kaba4cow.engine.toolbox.Cubemaps;
 import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.toolbox.particles.Particle;
 import kaba4cow.engine.toolbox.particles.ParticleSystemManager;
 import kaba4cow.engine.utils.GLUtils;
-import kaba4cow.intersector.GameSettings;
+import kaba4cow.intersector.Settings;
 import kaba4cow.intersector.galaxyengine.objects.GalacticObject;
 import kaba4cow.intersector.galaxyengine.objects.SystemObject;
 import kaba4cow.intersector.utils.GalaxyUtils;
@@ -30,8 +30,7 @@ public class SkyRendering {
 
 	public static final int SIZE;
 
-	public static final int SYSTEM_RANGE = 50;
-	public static final int NEBULA_RANGE = 175;
+	public static final int RANGE = 15;
 
 	private static LinkedList<Renderable> map;
 
@@ -42,63 +41,67 @@ public class SkyRendering {
 
 	private static FrameBufferObject fbo;
 
+	private static boolean generating;
+
 	static {
-		SIZE = GameSettings.CUBEMAP_SIZES[GameSettings.getCubemaps()];
+		SIZE = Settings.CUBEMAP_SIZES[Settings.getCubemaps()];
 		renderer = new Renderer(Projection.SQUARE, 90f, 1f, 10000f, 0f);
 		cubemapRenderer = new CubemapRenderer(renderer);
 		particleRenderer = new ParticleRenderer(renderer);
 		direction = new Direction();
-		fbo = new FrameBufferObject(SIZE, SIZE,
-				FrameBufferObject.DEPTH_RENDER_BUFFER,
+		fbo = new FrameBufferObject(SIZE, SIZE, FrameBufferObject.DEPTH_RENDER_BUFFER,
 				FrameBufferObject.LINEAR_SAMPLING);
 		map = new LinkedList<Renderable>();
+		generating = false;
 	}
 
 	public static void render(SystemObject home, Cubemap cubemap) {
 		for (int i = 0; i < 6; i++)
 			map.add(new Renderable(i, home, cubemap));
 
+//		new Thread("sky") {
+//			@Override
+//			public void run() {
+		generating = true;
 		Vector3f center = home.getPos();
 		int offX = (int) center.x;
 		int offY = (int) center.y;
 		int offZ = (int) center.z;
-		int systemRange = SYSTEM_RANGE / 2;
-		float systemRangeSq = Maths.sqr(systemRange);
-		int nebulaRange = NEBULA_RANGE / 2;
-		float nebulaRangeSq = Maths.sqr(nebulaRange);
+		int range = RANGE / 2;
+		float rangeSq = Maths.sqr(range);
 		float distSq;
 		float minDistSq = Maths.sqr(renderer.getNear());
 		GalacticObject current;
 		Particle particle;
 		float scale;
-		for (int y = -nebulaRange; y < nebulaRange; y++)
-			for (int x = -nebulaRange; x < nebulaRange; x++)
-				for (int z = -nebulaRange; z < nebulaRange; z++) {
+		int x, y, z;
+		for (y = -range; y < range; y++)
+			for (x = -range; x < range; x++)
+				for (z = -range; z < range; z++) {
+					if (x == 0 && y == 0 && z == 0)
+						continue;
 					distSq = Maths.distSq(0f, 0f, 0f, x, y, z);
-					if (distSq >= minDistSq && distSq < systemRangeSq) {
-						current = GalaxyUtils.generateSystem(offX + x,
-								offY + y, offZ + z);
-						if (current != null && !current.equals(home)) {
-							particle = current.getParticle(null);
-							scale = Maths.map(distSq, minDistSq, systemRangeSq,
-									0.3f, 3f);
-							particle.setScale(particle.getScale() * scale);
-							particle.setTint(particle.getTint(), 30f);
-							particle.setBrightness(0.5f);
-						}
+					if (distSq < minDistSq || distSq > rangeSq)
+						continue;
+					current = GalaxyUtils.generateSystem(offX + x, offY + y, offZ + z);
+					if (current != null) {
+						particle = current.getParticle(null);
+						scale = Maths.map(distSq, minDistSq, rangeSq, 0.25f, 2f);
+						particle.setScale(particle.getScale() * scale);
+						particle.setTint(particle.getTint(), 30f);
+						particle.setBrightness(0.5f);
 					}
-					if (distSq >= minDistSq && distSq < nebulaRangeSq) {
-						current = GalaxyUtils.generateNebula(offX + x,
-								offY + y, offZ + z);
-						if (current != null)
-							particle = current.getParticle(null);
-					}
+					current = GalaxyUtils.generateNebula(offX + x, offY + y, offZ + z);
+					if (current != null)
+						particle = current.getParticle(null);
 				}
-		ParticleSystemManager.update("MAP", 0f);
+		generating = false;
+//			}
+//		}.start();
 	}
 
 	public static void process() {
-		if (map.isEmpty())
+		if (map.isEmpty() || generating)
 			return;
 		Renderable renderable = map.removeFirst();
 
@@ -107,9 +110,8 @@ public class SkyRendering {
 		int faceIndex = renderable.face;
 		fbo.bindFrameBuffer();
 
-		GL30.glFramebufferTexture2D(GL30.GL_FRAMEBUFFER,
-				GL30.GL_COLOR_ATTACHMENT0, GL13.GL_TEXTURE_CUBE_MAP_POSITIVE_X
-						+ faceIndex, renderable.cubemap.getTexture(), 0);
+		GL30.glFramebufferTexture2D(GL30.GL_FRAMEBUFFER, GL30.GL_COLOR_ATTACHMENT0,
+				GL13.GL_TEXTURE_CUBE_MAP_POSITIVE_X + faceIndex, renderable.cubemap.getTexture(), 0);
 
 		switchToFace(center, faceIndex);
 		renderer.prepare();
@@ -118,6 +120,7 @@ public class SkyRendering {
 		cubemapRenderer.process();
 		GLUtils.clearDepthBuffer();
 
+		ParticleSystemManager.update("MAP", 0f);
 		ParticleSystemManager.render("MAP", particleRenderer);
 		particleRenderer.process();
 
@@ -176,7 +179,7 @@ public class SkyRendering {
 
 		renderer.getCamera().orbit(center, 0f, 0f, 0f, 0f, 0f, direction);
 	}
-	
+
 	public static int size() {
 		return map.size();
 	}

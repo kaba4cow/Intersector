@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
+import kaba4cow.engine.assets.Models;
 import kaba4cow.engine.renderEngine.Renderer;
 import kaba4cow.engine.renderEngine.shaders.ParticleShader;
 import kaba4cow.engine.renderEngine.textures.ParticleTexture;
-import kaba4cow.engine.toolbox.Models;
 import kaba4cow.engine.toolbox.maths.Matrices;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.toolbox.particles.Particle;

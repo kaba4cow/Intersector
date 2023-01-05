@@ -1,7 +1,6 @@
 package kaba4cow.intersector.gameobjects.machines;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
@@ -11,9 +10,9 @@ import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Matrices;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.toolbox.rng.RNG;
-import kaba4cow.files.MachineFile;
-import kaba4cow.files.ShipFile;
-import kaba4cow.files.TextureSetFile;
+import kaba4cow.intersector.files.MachineFile;
+import kaba4cow.intersector.files.ShipFile;
+import kaba4cow.intersector.files.TextureSetFile;
 import kaba4cow.intersector.gameobjects.Fraction;
 import kaba4cow.intersector.gameobjects.GameObject;
 import kaba4cow.intersector.gameobjects.World;
@@ -21,8 +20,8 @@ import kaba4cow.intersector.gameobjects.cargo.Cargo;
 import kaba4cow.intersector.gameobjects.cargo.CargoObject;
 import kaba4cow.intersector.gameobjects.cargo.CargoType;
 import kaba4cow.intersector.gameobjects.cargo.Container;
-import kaba4cow.intersector.gameobjects.machinecontrollers.MachineController;
-import kaba4cow.intersector.gameobjects.machinecontrollers.shipcontrollers.ShipAIController;
+import kaba4cow.intersector.gameobjects.machines.controllers.MachineController;
+import kaba4cow.intersector.gameobjects.machines.controllers.shipcontrollers.ShipAIController;
 import kaba4cow.intersector.gameobjects.objectcomponents.ColliderComponent;
 import kaba4cow.intersector.gameobjects.objectcomponents.ContainerComponent;
 import kaba4cow.intersector.gameobjects.objectcomponents.PortComponent;
@@ -31,7 +30,7 @@ import kaba4cow.intersector.gameobjects.objectcomponents.WeaponComponent;
 import kaba4cow.intersector.gameobjects.projectiles.Projectile;
 import kaba4cow.intersector.gameobjects.targets.TargetType;
 import kaba4cow.intersector.renderEngine.RendererContainer;
-import kaba4cow.intersector.renderEngine.models.ThrustModel;
+import kaba4cow.intersector.renderEngine.ThrustModel;
 import kaba4cow.intersector.toolbox.collision.ColliderHolder;
 import kaba4cow.intersector.toolbox.flocking.Flock;
 import kaba4cow.intersector.toolbox.spawners.DebrisSpawner;
@@ -41,8 +40,6 @@ import kaba4cow.intersector.toolbox.spawners.ExplosionSpawner.Scale;
 import kaba4cow.intersector.utils.RenderUtils;
 
 public abstract class Machine extends GameObject implements ColliderHolder {
-
-	public static final float MAX_DAMAGE_TIME = 5f;
 
 	public static final float MAX_CARGO_PICK_TIME = 0.3f;
 	public static final float MAX_CARGO_EJECT_TIME = 0.2f;
@@ -69,8 +66,8 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 	protected float health;
 	protected float shield;
 	protected final Cargo[] cargoArray;
-	protected final List<Container> containerList;
-	protected final List<Ship> shipList;
+	protected final ArrayList<Container> containerList;
+	protected final ArrayList<Ship> shipList;
 
 	protected Fraction fraction;
 	protected Flock flock;
@@ -83,24 +80,20 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 	protected float shipPickTime;
 	protected float shipEjectTime;
 	private float destroyTime;
-	private float damageTime;
 
 	private float destroyTimeCargo;
 	private float destroyTimeExplosion;
 
-	public Machine(World world, Fraction fraction, MachineFile file,
-			Vector3f pos) {
+	public Machine(World world, Fraction fraction, MachineFile file, Vector3f pos) {
 		super(world);
 
 		this.fraction = fraction;
 		this.file = file;
 
-		this.textureSet = Manufacturer.get(file.getManufacturer())
-				.getRandomTextureSet();
+		this.textureSet = Manufacturer.get(file.getManufacturer()).getRandomTextureSet();
 		this.machineColor = fraction.getRandomColor(null);
 		this.metalModel = file.getMetalTexturedModel(textureSet);
-		this.glassModel = file.getGlassTexturedModel(textureSet,
-				file.isUseLight());
+		this.glassModel = file.getGlassTexturedModel(textureSet, file.isUseLight());
 		this.thrustModel = file.getThrustModel();
 
 		this.size = file.getSize();
@@ -119,7 +112,6 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 		this.shipPickTime = 0f;
 		this.shipEjectTime = 0f;
 		this.destroyTime = 0f;
-		this.damageTime = 0f;
 
 		this.thrusts = new ThrustComponent[file.getThrusts()];
 		for (int i = 0; i < thrusts.length; i++)
@@ -140,23 +132,19 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 		float containerDensity = RNG.randomFloat(1f);
 		for (int i = 0; i < containers.length; i++)
 			if (RNG.chance(containerDensity))
-				addContainer(new Container(world,
-						containers[i].containerGroupName,
-						CargoType.getRandom(), new Vector3f(pos)));
+				addContainer(new Container(world, containers[i].containerGroupName, CargoType.getRandom(),
+						new Vector3f(pos)));
 		float portDensity = RNG.randomFloat(1f);
 		for (int i = 0; i < ports.length; i++)
 			if (RNG.chance(portDensity)) {
-				ShipFile shipFile = fraction.getRandomShip(ports[i].min,
-						ports[i].max);
+				ShipFile shipFile = fraction.getRandomShip(ports[i].min, ports[i].max);
 				if (shipFile != null)
-					addShip(new Ship(world, fraction, shipFile, new Vector3f(),
-							new ShipAIController()), i);
+					addShip(new Ship(world, fraction, shipFile, new Vector3f(), new ShipAIController()), i);
 			}
 	}
 
 	@Override
 	public void update(float dt) {
-		damageTime -= dt;
 		cargoPickTime -= dt;
 		cargoEjectTime -= dt;
 		shipPickTime -= dt;
@@ -167,7 +155,7 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 			if (!isDestroyed())
 				onFinalDestroy();
 		}
-		if (damageTime <= 0f && shield < file.getShield())
+		if (shield < file.getShield())
 			shield = Maths.min(shield + dt, file.getShield());
 
 		rotate(rotationVel.x * dt, rotationVel.y * dt, rotationVel.z * dt);
@@ -202,10 +190,8 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 	@Override
 	public void render(RendererContainer renderers) {
 		Matrix4f matrix = direction.getMatrix(pos, true, size);
-		RenderUtils.renderMachine(machineColor, metalModel, glassModel, matrix,
-				renderers);
-		RenderUtils.renderWeapons(machineColor, textureSet, size, matrix,
-				renderers, weapons);
+		RenderUtils.renderMachine(machineColor, metalModel, glassModel, matrix, renderers);
+		RenderUtils.renderWeapons(machineColor, textureSet, size, matrix, renderers, weapons);
 	}
 
 	@Override
@@ -249,16 +235,15 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 			ports[i].calculateTranslated(size);
 	}
 
-	public boolean canReachManual() {
+	public boolean canReachManualWeapon() {
 		Machine target = getController().getTargetEnemy();
 		for (int i = 0; i < weapons.length; i++)
-			if (!weapons[i].weaponFile.getProjectileFile().isAutoaim()
-					&& weapons[i].canReach(this, target))
+			if (!weapons[i].weaponFile.getProjectileFile().isAutoaim() && weapons[i].canReach(this, target))
 				return true;
 		return false;
 	}
 
-	public float getMaxManualReload() {
+	public float getMaxManualWeaponReload() {
 		WeaponComponent best = null;
 		float maxReload = Float.NEGATIVE_INFINITY;
 		float currentMaxReload;
@@ -267,10 +252,8 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 				continue;
 			currentMaxReload = Float.NEGATIVE_INFINITY;
 			for (int j = 0; j < weapons[i].reload.length; j++)
-				currentMaxReload = Maths.max(
-						currentMaxReload,
-						weapons[i].reload[j]
-								/ weapons[i].weaponFile.getReload());
+				currentMaxReload = Maths.max(currentMaxReload,
+						weapons[i].reload[j] / weapons[i].weaponFile.getReload());
 			if (currentMaxReload > maxReload) {
 				maxReload = currentMaxReload;
 				best = weapons[i];
@@ -281,7 +264,7 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 		return Maths.limit(maxReload);
 	}
 
-	public float getMaxAutoAimReload() {
+	public float getMaxAutomaticWeaponReload() {
 		WeaponComponent best = null;
 		float maxReload = Float.NEGATIVE_INFINITY;
 		float currentMaxReload;
@@ -290,10 +273,8 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 				continue;
 			currentMaxReload = Float.NEGATIVE_INFINITY;
 			for (int j = 0; j < weapons[i].reload.length; j++)
-				currentMaxReload = Maths.max(
-						currentMaxReload,
-						weapons[i].reload[j]
-								/ weapons[i].weaponFile.getReload());
+				currentMaxReload = Maths.max(currentMaxReload,
+						weapons[i].reload[j] / weapons[i].weaponFile.getReload());
 			if (currentMaxReload > maxReload) {
 				maxReload = currentMaxReload;
 				best = weapons[i];
@@ -304,7 +285,7 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 		return Maths.limit(maxReload);
 	}
 
-	public boolean canReachAutoAim() {
+	public boolean canReachAutomaticWeapon() {
 		Machine target = getController().getTargetEnemy();
 		for (int i = 0; i < weapons.length; i++)
 			if (weapons[i].isAutoAim() && weapons[i].canReach(this, target))
@@ -312,7 +293,7 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 		return false;
 	}
 
-	public Machine shootManual() {
+	public Machine shootManualWeapon() {
 		Matrix4f matrix = direction.getMatrix(pos, true, size);
 		Machine target = getController().getTargetEnemy();
 		for (int i = 0; i < weapons.length; i++)
@@ -321,7 +302,7 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 		return this;
 	}
 
-	public Machine shootAutoAim() {
+	public Machine shootAutomaticWeapon() {
 		Matrix4f matrix = direction.getMatrix(pos, true, size);
 		Machine target = getController().getTargetEnemy();
 		for (int i = 0; i < weapons.length; i++)
@@ -368,12 +349,9 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 				Matrices.getTranslation(mat1, colliderPos);
 
 				float radius = (size * infos[i].size + 1f);
-				float distSq = Maths.distSq(colliderPos, laserPos) - radius
-						* radius;
+				float distSq = Maths.distSq(colliderPos, laserPos) - radius * radius;
 				if (distSq <= 0f) {
-					Vectors.addScaled(colliderPos,
-							Maths.direction(colliderPos, laserPos), radius,
-							colliderPos);
+					Vectors.addScaled(colliderPos, Maths.direction(colliderPos, laserPos), radius, colliderPos);
 					hit(world, proj.getDirection(), colliderPos, radius);
 					damage(i, proj);
 					obj.destroy(this);
@@ -393,7 +371,6 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 		if (!isAlive())
 			return;
 		damage = Maths.abs(damage);
-		damageTime = MAX_DAMAGE_TIME;
 		if (hasShield()) {
 			shield -= damage;
 			if (shield < 0f)
@@ -422,7 +399,6 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 	public void burn(ColliderComponent collider, float damage) {
 		if (!isAlive())
 			return;
-		damageTime = 4f;
 		health -= damage;
 		if (health <= 0f)
 			destroy(this);
@@ -432,9 +408,8 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 	public void destroy(GameObject src) {
 		if (isDestroyed())
 			return;
-		destroyTime = RNG.randomFloat(file.getMachineClass()
-				.getMinDestroyTime(), file.getMachineClass()
-				.getMaxDestroyTime());
+		destroyTime = RNG.randomFloat(file.getMachineClass().getMinDestroyTime(),
+				file.getMachineClass().getMaxDestroyTime());
 		destroyTimeCargo = 0f;
 		destroyTimeExplosion = 0f;
 		for (int i = 0; i < colliders.length; i++)
@@ -457,8 +432,7 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 
 	private void onFinalDestroy() {
 		super.destroy(this);
-		DebrisSpawner.spawn(world, pos, vel, size,
-				TextureSetFile.get(textureSet).getMetalTexture(), machineColor);
+		DebrisSpawner.spawn(world, pos, vel, size, TextureSetFile.get(textureSet).getMetalTexture(), machineColor);
 		ExplosionSpawner.spawn(this, pos, vel, size, null, Scale.LARGE);
 		for (int i = 0; i < containerList.size(); i++)
 			containerList.get(i).onParentDestroy();
@@ -478,8 +452,7 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 			Vector3f colliderPos = new Vector3f();
 			getColliderPosition(index, colliderPos);
 			ExplosionSpawner.spawn(this, colliderPos.negate(null), vel,
-					RNG.randomFloat(1f, 2f) * colliders[index].size * size,
-					Explosion.SPHERE, Scale.MEDIUM);
+					RNG.randomFloat(1f, 2f) * colliders[index].size * size, Explosion.SPHERE, Scale.MEDIUM);
 			destroyTimeExplosion = 0f;
 		}
 	}
@@ -503,8 +476,7 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 	}
 
 	public String getFullName() {
-		return Manufacturer.get(file.getManufacturer()).getShortName() + " "
-				+ file.getFullName();
+		return Manufacturer.get(file.getManufacturer()).getShortName() + " " + file.getFullName();
 	}
 
 	public abstract MachineFile getFile();
@@ -545,8 +517,7 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 			return false;
 		float shipSize = ship.getCollisionSize();
 		for (int i = 0; i < ports.length; i++)
-			if (!ports[i].occupied && shipSize >= ports[i].min
-					&& shipSize <= ports[i].max)
+			if (!ports[i].occupied && shipSize >= ports[i].min && shipSize <= ports[i].max)
 				return true;
 		return false;
 	}
@@ -579,8 +550,7 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 
 	public boolean allPortsOccupied(float size) {
 		for (int i = 0; i < ports.length; i++)
-			if (!ports[i].occupied && size >= ports[i].min
-					&& size <= ports[i].max)
+			if (!ports[i].occupied && size >= ports[i].min && size <= ports[i].max)
 				return false;
 		return true;
 	}
@@ -603,11 +573,17 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 	}
 
 	public boolean isPickable(Cargo cargo) {
-		if (cargo == null || cargo.getParent() != null)
+		if (cargo == null || cargo.getParent() != null || allCargosOccupied())
 			return false;
-		return cargo.getParent() == null
-				&& Maths.distSq(cargo.getPos(), pos) < Maths.sqr(MAX_CARGO_DIST
-						* size);
+		return cargo.getParent() == null && Maths.distSq(cargo.getPos(), pos) < Maths.sqr(MAX_CARGO_DIST * size);
+	}
+
+	public boolean allCargosOccupied() {
+		int total = 0;
+		for (int i = 0; i < cargoArray.length; i++)
+			if (cargoArray[i] != null)
+				total++;
+		return total >= cargoArray.length;
 	}
 
 	public boolean addContainer(Container container) {
@@ -646,17 +622,13 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 	}
 
 	public boolean isPickable(Container container, int index) {
-		if (cargoPickTime > 0f || container == null
-				|| container.getParent() != null)
+		if (cargoPickTime > 0f || container == null || container.getParent() != null)
 			return false;
 		String groupName = container.getGroupFile().getFileName();
-		if (containers[index].occupied
-				|| !containers[index].containerGroupName
-						.equalsIgnoreCase(groupName))
+		if (containers[index].occupied || !containers[index].containerGroupName.equalsIgnoreCase(groupName))
 			return false;
 		return container.getParent() == null
-				&& Maths.distSq(container.getPos(), pos) < Maths
-						.sqr(MAX_CARGO_DIST * size);
+				&& Maths.distSq(container.getPos(), pos) < Maths.sqr(MAX_CARGO_DIST * size);
 	}
 
 	public boolean allContainersOccupied() {
@@ -695,9 +667,7 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 		if (ports[index].occupied || ship.getCollisionSize() < ports[index].min
 				|| ship.getCollisionSize() > ports[index].max)
 			return false;
-		return ship.getParent() == null
-				&& Maths.distSq(ship.getPos(), pos) < Maths.sqr(MAX_SHIP_DIST
-						* size);
+		return ship.getParent() == null && Maths.distSq(ship.getPos(), pos) < Maths.sqr(MAX_SHIP_DIST * size);
 	}
 
 	public Machine addShip(Ship ship) {
@@ -729,8 +699,7 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 	}
 
 	public Machine removeShip(Ship ship) {
-		if (shipEjectTime > 0f || ship == null || ship.getParent() != null
-				&& ship.getParent() != this)
+		if (shipEjectTime > 0f || ship == null || ship.getParent() != null && ship.getParent() != this)
 			return this;
 		ship.onEject();
 		shipList.remove(ship);
@@ -811,10 +780,6 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 
 	public void switchLaunchersEnabled() {
 		launchersEnabled = !launchersEnabled;
-	}
-
-	public float getDamageTime() {
-		return damageTime;
 	}
 
 	public Fraction getFraction() {

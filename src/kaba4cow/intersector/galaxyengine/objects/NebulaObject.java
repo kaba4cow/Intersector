@@ -5,7 +5,7 @@ import org.lwjgl.util.vector.Vector3f;
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.particles.ParticleSystem;
 import kaba4cow.engine.toolbox.rng.RandomLehmer;
-import kaba4cow.files.ParticleSystemFile;
+import kaba4cow.intersector.files.ParticleSystemFile;
 import kaba4cow.intersector.gameobjects.targets.TargetType;
 import kaba4cow.intersector.utils.GalaxyUtils;
 

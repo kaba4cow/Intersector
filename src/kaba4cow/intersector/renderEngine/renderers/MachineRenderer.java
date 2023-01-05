@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import kaba4cow.engine.assets.Shaders;
 import kaba4cow.engine.renderEngine.Cubemap;
 import kaba4cow.engine.renderEngine.Light;
 import kaba4cow.engine.renderEngine.Renderer;
@@ -12,7 +13,6 @@ import kaba4cow.engine.renderEngine.models.RawModel;
 import kaba4cow.engine.renderEngine.models.TexturedModel;
 import kaba4cow.engine.renderEngine.renderers.AbstractRenderer;
 import kaba4cow.engine.renderEngine.textures.ModelTexture;
-import kaba4cow.engine.toolbox.Shaders;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.utils.GLUtils;
 import kaba4cow.intersector.renderEngine.shaders.MachineShader;

@@ -9,10 +9,9 @@ import kaba4cow.engine.renderEngine.Cubemap;
 import kaba4cow.engine.renderEngine.models.TexturedModel;
 import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.engine.toolbox.maths.Vectors;
-import kaba4cow.files.ProjectileFile;
+import kaba4cow.intersector.files.ProjectileFile;
 import kaba4cow.intersector.gameobjects.objectcomponents.ThrustComponent;
-import kaba4cow.intersector.renderEngine.models.LaserModel;
-import kaba4cow.intersector.renderEngine.models.ThrustModel;
+import kaba4cow.intersector.renderEngine.ThrustModel;
 import kaba4cow.intersector.renderEngine.renderers.ThrustRenderer;
 import kaba4cow.intersector.utils.RenderUtils;
 
@@ -87,34 +86,26 @@ public class ProjectileEditorViewport extends AbstractEditorViewport {
 			file.setAutoaim(editor.getAutoAimCheckbox().isSelected());
 			file.setAiming(EditorUtils.getFloatValue(editor.getAimingSpinner()));
 			file.setDelay(EditorUtils.getFloatValue(editor.getDelaySpinner()));
-			file.setLifeLength(EditorUtils.getFloatValue(editor
-					.getLifeLengthSpinner()));
-			file.setSpeedScale(EditorUtils.getFloatValue(editor
-					.getSpeedScaleSpinner()));
+			file.setLifeLength(EditorUtils.getFloatValue(editor.getLifeLengthSpinner()));
+			file.setSpeedScale(EditorUtils.getFloatValue(editor.getSpeedScaleSpinner()));
 			file.setThrust(editor.getThrustButton().getText());
 			file.setThrustTexture(editor.getThrustTextureButton().getText());
 
 			ThrustComponent thrustInfo = file.getThrustComponent();
 			if (thrustInfo != null) {
-				thrustInfo.pos.x = EditorUtils.getFloatValue(editor
-						.getThrustXSpinner());
-				thrustInfo.pos.y = EditorUtils.getFloatValue(editor
-						.getThrustYSpinner());
-				thrustInfo.pos.z = EditorUtils.getFloatValue(editor
-						.getThrustZSpinner());
-				thrustInfo.size = EditorUtils.getFloatValue(editor
-						.getThrustSizeSpinner());
+				thrustInfo.pos.x = EditorUtils.getFloatValue(editor.getThrustXSpinner());
+				thrustInfo.pos.y = EditorUtils.getFloatValue(editor.getThrustYSpinner());
+				thrustInfo.pos.z = EditorUtils.getFloatValue(editor.getThrustZSpinner());
+				thrustInfo.size = EditorUtils.getFloatValue(editor.getThrustSizeSpinner());
 			}
 
 			Matrix4f mat = direction.getMatrix(null, true, 1f);
 			ThrustModel thrustModel = file.createThrustModel();
-			RenderUtils.renderThrusts(thrustModel, 1f, 4f, 1f, mat, renderers,
-					file.getThrustComponent());
+			RenderUtils.renderThrusts(thrustModel, 1f, 4f, 1f, mat, renderers, file.getThrustComponent());
 
 			if (file.usesLaserModel()) {
-				LaserModel projectileModel = file.createLaserModel();
-				renderers.getLaserRenderer().render(projectileModel, mat, null,
-						1f);
+				TexturedModel projectileModel = file.createLaserModel();
+				renderers.getLaserRenderer().render(projectileModel, mat, null, 1f);
 			} else {
 				TexturedModel projectileModel = file.createTexturedModel();
 				renderers.getModelRenderer().render(projectileModel, null, mat);

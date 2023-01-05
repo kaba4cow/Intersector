@@ -1,8 +1,8 @@
 package kaba4cow.engine.renderEngine.shaders;
 
+import kaba4cow.engine.assets.Loaders;
 import kaba4cow.engine.renderEngine.shaders.consts.Const;
 import kaba4cow.engine.renderEngine.shaders.uniforms.Uniform;
-import kaba4cow.engine.toolbox.Loaders;
 import kaba4cow.engine.utils.GLUtils;
 import kaba4cow.engine.utils.ProgramUtils;
 

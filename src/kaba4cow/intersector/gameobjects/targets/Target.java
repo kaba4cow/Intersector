@@ -13,9 +13,9 @@ import kaba4cow.intersector.galaxyengine.objects.GalacticObject;
 import kaba4cow.intersector.galaxyengine.objects.SystemObject;
 import kaba4cow.intersector.gameobjects.GameObject;
 import kaba4cow.intersector.gameobjects.Planet;
-import kaba4cow.intersector.gameobjects.machinecontrollers.MachineController;
 import kaba4cow.intersector.gameobjects.machines.Machine;
 import kaba4cow.intersector.gameobjects.machines.Ship;
+import kaba4cow.intersector.gameobjects.machines.controllers.MachineController;
 import kaba4cow.intersector.gameobjects.projectiles.Projectile;
 import kaba4cow.intersector.utils.GameUtils;
 
@@ -67,9 +67,8 @@ public class Target {
 		GameObject current = null;
 		for (int i = 0; i < list.size(); i++) {
 			current = list.get(i);
-			if (current == machine || !current.isTargetable() || filter(current, filters))
-				continue;
-			if (!GameObject.isEnvironment(current) && Maths.distSq(pos, current.getPos()) > maxTargetDistSq)
+			if (current == machine || !current.isTargetable() || filter(current, filters) || !current.isFarTargetable()
+					&& !GameObject.isEnvironment(current) && Maths.distSq(pos, current.getPos()) > maxTargetDistSq)
 				continue;
 			WindowUtils.calculateScreenCoords(current.getPos(), renderer, targetCoords);
 			WindowUtils.calculateScreenCoords(Projectile.getNextTargetPos(machine, current), renderer,

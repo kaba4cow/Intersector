@@ -3,9 +3,9 @@ package kaba4cow.engine.renderEngine.postProcessing;
 import java.util.ArrayList;
 import java.util.List;
 
+import kaba4cow.engine.assets.Models;
 import kaba4cow.engine.renderEngine.postProcessing.effects.Bypass;
 import kaba4cow.engine.renderEngine.postProcessing.effects.PostProcessingEffect;
-import kaba4cow.engine.toolbox.Models;
 import kaba4cow.engine.utils.GLUtils;
 
 public class PostProcessingPipeline {

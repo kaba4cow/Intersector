@@ -8,7 +8,7 @@ import kaba4cow.editors.EditorUtils;
 import kaba4cow.engine.renderEngine.Cubemap;
 import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.engine.toolbox.maths.Vectors;
-import kaba4cow.files.StationFile;
+import kaba4cow.intersector.files.StationFile;
 import kaba4cow.intersector.gameobjects.machines.classes.StationClass;
 import kaba4cow.intersector.gameobjects.objectcomponents.WeaponComponent;
 import kaba4cow.intersector.renderEngine.renderers.ThrustRenderer;

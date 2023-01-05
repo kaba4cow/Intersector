@@ -10,8 +10,8 @@ import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.toolbox.particles.Particle;
 import kaba4cow.engine.toolbox.particles.ParticleSystem;
 import kaba4cow.engine.toolbox.rng.RNG;
-import kaba4cow.files.ParticleSystemFile;
-import kaba4cow.intersector.GameSettings;
+import kaba4cow.intersector.Settings;
+import kaba4cow.intersector.files.ParticleSystemFile;
 import kaba4cow.intersector.gameobjects.GameObject;
 import kaba4cow.intersector.gameobjects.machines.Machine;
 
@@ -407,11 +407,11 @@ public final class ExplosionSpawner {
 		}
 
 		public int getMinNum() {
-			return minNum[GameSettings.getParticles()];
+			return minNum[Settings.getParticles()];
 		}
 
 		public int getMaxNum() {
-			return maxNum[GameSettings.getParticles()];
+			return maxNum[Settings.getParticles()];
 		}
 
 		public float getLifeLength() {

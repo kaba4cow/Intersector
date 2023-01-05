@@ -4,6 +4,11 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL13;
+import org.lwjgl.opengl.GL30;
+
 import kaba4cow.engine.renderEngine.Cubemap;
 import kaba4cow.engine.renderEngine.Renderer;
 import kaba4cow.engine.renderEngine.Renderer.Projection;
@@ -13,11 +18,6 @@ import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.intersector.galaxyengine.TerrainGenerator;
 import kaba4cow.intersector.renderEngine.renderers.generation.TerrainTextureRenderer;
-
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL13;
-import org.lwjgl.opengl.GL30;
 
 public class TerrainRendering {
 
@@ -36,44 +36,42 @@ public class TerrainRendering {
 	}
 
 	static {
-		Renderer renderer = new Renderer(Projection.SQUARE, 90f, 0.01f, 100f,
-				0f);
+		Renderer renderer = new Renderer(Projection.SQUARE, 90f, 0.01f, 100f, 0f);
 		terrainTextureRenderer = new TerrainTextureRenderer(renderer);
 		direction = new Direction();
 
 		fbos = new HashMap<Integer, FrameBufferObject>();
 		for (int i = 0; i < CUBEMAPS.length; i++)
-			fbos.put(CUBEMAPS[i], new FrameBufferObject(CUBEMAPS[i],
-					CUBEMAPS[i], FrameBufferObject.DEPTH_RENDER_BUFFER,
+			fbos.put(CUBEMAPS[i], new FrameBufferObject(CUBEMAPS[i], CUBEMAPS[i], FrameBufferObject.DEPTH_RENDER_BUFFER,
 					FrameBufferObject.LINEAR_SAMPLING));
 	}
 
 	public static void render(Cubemap terrain, TerrainGenerator terrainGenerator) {
 		if (terrain == null || terrainGenerator == null)
 			return;
-		for (int i = 0; i < 6; i++)
-			map.add(new Renderable(i, terrain, terrainGenerator));
+		map.add(new Renderable(terrain, terrainGenerator));
 	}
 
 	public static void process() {
 		if (map.isEmpty())
 			return;
+
 		Renderable renderable = map.removeFirst();
 		if (renderable == null)
 			return;
 
 		fbos.get(renderable.terrain.getSize()).bindFrameBuffer();
 
-		GL30.glFramebufferTexture2D(GL30.GL_FRAMEBUFFER,
-				GL30.GL_COLOR_ATTACHMENT0, GL13.GL_TEXTURE_CUBE_MAP_POSITIVE_X
-						+ renderable.face, renderable.terrain.getTexture(), 0);
-		switchToFace(renderable.face);
-		terrainTextureRenderer.getRenderer().prepare();
+		for (int face = 0; face < 6; face++) {
+			GL30.glFramebufferTexture2D(GL30.GL_FRAMEBUFFER, GL30.GL_COLOR_ATTACHMENT0,
+					GL13.GL_TEXTURE_CUBE_MAP_POSITIVE_X + face, renderable.terrain.getTexture(), 0);
+			switchToFace(face);
+			terrainTextureRenderer.getRenderer().prepare();
 
-		terrainTextureRenderer.render(renderable.face,
-				renderable.terrainGenerator,
-				Direction.INIT.getMatrix(Vectors.INIT3, true));
-		terrainTextureRenderer.process();
+			terrainTextureRenderer.render(face, renderable.terrainGenerator,
+					Direction.INIT.getMatrix(Vectors.INIT3, true));
+			terrainTextureRenderer.process();
+		}
 
 		GL30.glBindFramebuffer(GL30.GL_FRAMEBUFFER, 1);
 		GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
@@ -141,19 +139,15 @@ public class TerrainRendering {
 		direction.rotate(Vectors.UP, yaw);
 		direction.rotate(Vectors.FORWARD, roll);
 
-		terrainTextureRenderer.getRenderer().getCamera()
-				.orbit(Vectors.INIT3, 0f, 0f, 0f, 0f, 0f, direction);
+		terrainTextureRenderer.getRenderer().getCamera().orbit(Vectors.INIT3, 0f, 0f, 0f, 0f, 0f, direction);
 	}
 
 	private static class Renderable {
 
-		public final int face;
 		public final Cubemap terrain;
 		public final TerrainGenerator terrainGenerator;
 
-		public Renderable(int face, Cubemap cubemap,
-				TerrainGenerator terrainGenerator) {
-			this.face = face;
+		public Renderable(Cubemap cubemap, TerrainGenerator terrainGenerator) {
 			this.terrain = cubemap;
 			this.terrainGenerator = terrainGenerator;
 		}

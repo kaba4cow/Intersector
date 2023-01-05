@@ -5,7 +5,7 @@ import org.lwjgl.util.vector.Vector3f;
 import kaba4cow.engine.toolbox.files.DataFile;
 import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.engine.toolbox.maths.Vectors;
-import kaba4cow.files.ContainerGroupFile;
+import kaba4cow.intersector.files.ContainerGroupFile;
 
 public class ContainerComponent extends ObjectComponent {
 

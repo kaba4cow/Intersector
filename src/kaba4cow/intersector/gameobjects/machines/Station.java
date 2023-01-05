@@ -1,28 +1,25 @@
 package kaba4cow.intersector.gameobjects.machines;
 
-import org.lwjgl.util.vector.Vector3f;
-
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Vectors;
-import kaba4cow.engine.toolbox.rng.RNG;
-import kaba4cow.files.ShipFile;
-import kaba4cow.files.StationFile;
-import kaba4cow.intersector.gameobjects.Fraction;
+import kaba4cow.intersector.files.StationFile;
+import kaba4cow.intersector.galaxyengine.objects.StationObject;
 import kaba4cow.intersector.gameobjects.World;
-import kaba4cow.intersector.gameobjects.machinecontrollers.stationcontrollers.StationController;
+import kaba4cow.intersector.gameobjects.machines.controllers.stationcontrollers.StationAIController;
+import kaba4cow.intersector.gameobjects.machines.controllers.stationcontrollers.StationController;
 
 public class Station extends Machine {
 
 	private final StationController controller;
 
-	public Station(World world, Fraction fraction, StationFile file, Vector3f pos, StationController controller) {
-		super(world, fraction, file, pos);
+	private final StationObject stationObject;
 
-		this.controller = controller.setMachine(this);
-	}
+	public Station(World world, StationObject stationObject) {
+		super(world, stationObject.getFraction(), stationObject.file, stationObject.worldPosition);
 
-	public Station(World world, StationFile file, Vector3f pos, StationController controller) {
-		this(world, Fraction.get("CIVILIAN"), file, pos, controller);
+		this.stationObject = stationObject;
+
+		this.controller = new StationAIController().setMachine(this);
 	}
 
 	@Override
@@ -32,7 +29,7 @@ public class Station extends Machine {
 			disableLaunchers();
 		} else
 			controller.update(dt);
-		rotate(direction.getUp(), 0.01f * dt);
+		rotate(direction.getUp(), stationObject.rotationSpeed * dt);
 
 		Maths.blend(Vectors.INIT3, vel, dt, vel);
 
@@ -41,16 +38,21 @@ public class Station extends Machine {
 
 	@Override
 	public void onSpawn() {
-		rotate(Vectors.randomize(-1f, 1f, (Vector3f) null).normalise(null), RNG.randomFloat(-Maths.PI, Maths.PI));
-	}
 
-	public float getMaxSpeed() {
-		return getFile().getHorSpeed();
 	}
 
 	@Override
-	public ShipFile getFile() {
-		return (ShipFile) file;
+	public boolean isFarTargetable() {
+		return true;
+	}
+
+	@Override
+	public StationFile getFile() {
+		return (StationFile) file;
+	}
+
+	public StationObject getStationObject() {
+		return stationObject;
 	}
 
 	@Override

@@ -6,7 +6,7 @@ import java.util.Map;
 import org.lwjgl.util.vector.Vector3f;
 
 import kaba4cow.engine.utils.GLUtils;
-import kaba4cow.files.InfosFile;
+import kaba4cow.intersector.files.InfosFile;
 import kaba4cow.intersector.renderEngine.RendererContainer;
 
 public final class GUIPanelManager {

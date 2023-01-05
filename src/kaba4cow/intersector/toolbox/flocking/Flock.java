@@ -7,9 +7,9 @@ import org.lwjgl.util.vector.Vector3f;
 
 import kaba4cow.engine.toolbox.rng.RNG;
 import kaba4cow.intersector.gameobjects.GameObject;
-import kaba4cow.intersector.gameobjects.machinecontrollers.shipcontrollers.ShipPlayerController;
 import kaba4cow.intersector.gameobjects.machines.Machine;
 import kaba4cow.intersector.gameobjects.machines.Station;
+import kaba4cow.intersector.gameobjects.machines.controllers.shipcontrollers.ShipPlayerController;
 
 public class Flock {
 

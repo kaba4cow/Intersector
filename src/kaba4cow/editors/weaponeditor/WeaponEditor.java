@@ -27,10 +27,10 @@ import org.lwjgl.util.vector.Vector3f;
 import kaba4cow.editors.AbstractEditor;
 import kaba4cow.engine.MainProgram;
 import kaba4cow.engine.toolbox.maths.Maths;
-import kaba4cow.files.ModelTextureFile;
-import kaba4cow.files.ProjectileFile;
-import kaba4cow.files.WeaponFile;
-import kaba4cow.intersector.toolbox.RawModelContainer;
+import kaba4cow.intersector.files.ModelTextureFile;
+import kaba4cow.intersector.files.ProjectileFile;
+import kaba4cow.intersector.files.WeaponFile;
+import kaba4cow.intersector.toolbox.containers.RawModelContainer;
 
 public class WeaponEditor extends AbstractEditor {
 

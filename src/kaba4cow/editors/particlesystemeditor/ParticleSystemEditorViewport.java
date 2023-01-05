@@ -9,7 +9,7 @@ import kaba4cow.engine.toolbox.maths.Easing;
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.toolbox.particles.ParticleSystem;
-import kaba4cow.files.ParticleSystemFile;
+import kaba4cow.intersector.files.ParticleSystemFile;
 
 public class ParticleSystemEditorViewport extends AbstractEditorViewport {
 

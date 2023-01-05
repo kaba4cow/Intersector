@@ -6,7 +6,7 @@ import kaba4cow.engine.MainProgram;
 import kaba4cow.engine.renderEngine.Light;
 import kaba4cow.engine.renderEngine.Renderer;
 import kaba4cow.engine.renderEngine.Renderer.Projection;
-import kaba4cow.intersector.GameSettings;
+import kaba4cow.intersector.Settings;
 
 public final class GameUtils {
 
@@ -14,7 +14,7 @@ public final class GameUtils {
 			1f, 1000000f, 0f);
 
 	private static final Renderer playerPov = new Renderer(Projection.DEFAULT,
-			GameSettings.getFov(), 0.1f, 100000f, 0f).setAmbientLighting(0.05f);
+			Settings.getFov(), 0.1f, 100000f, 0f).setAmbientLighting(0.05f);
 
 	private static final Renderer mapPov = new Renderer(Projection.DEFAULT,
 			70f, 0.01f, 1000f, 0f).setAmbientLighting(0.1f).addLight(

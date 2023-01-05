@@ -8,9 +8,9 @@ import kaba4cow.editors.EditorUtils;
 import kaba4cow.engine.renderEngine.Cubemap;
 import kaba4cow.engine.toolbox.maths.Direction;
 import kaba4cow.engine.toolbox.maths.Vectors;
-import kaba4cow.files.ShipFile;
+import kaba4cow.intersector.files.ShipFile;
 import kaba4cow.intersector.gameobjects.objectcomponents.ThrustComponent;
-import kaba4cow.intersector.renderEngine.models.ThrustModel;
+import kaba4cow.intersector.renderEngine.ThrustModel;
 import kaba4cow.intersector.renderEngine.renderers.ThrustRenderer;
 import kaba4cow.intersector.utils.RenderUtils;
 

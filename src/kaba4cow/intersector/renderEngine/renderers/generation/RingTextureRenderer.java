@@ -1,9 +1,9 @@
 package kaba4cow.intersector.renderEngine.renderers.generation;
 
+import kaba4cow.engine.assets.Models;
 import kaba4cow.engine.renderEngine.Renderer;
 import kaba4cow.engine.renderEngine.models.RawModel;
 import kaba4cow.engine.renderEngine.renderers.AbstractRenderer;
-import kaba4cow.engine.toolbox.Models;
 import kaba4cow.engine.utils.GLUtils;
 import kaba4cow.intersector.galaxyengine.TerrainGenerator;
 import kaba4cow.intersector.renderEngine.shaders.generation.RingTextureShader;

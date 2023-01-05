@@ -14,7 +14,7 @@ import kaba4cow.engine.Input;
 import kaba4cow.engine.MainProgram;
 import kaba4cow.engine.toolbox.Printer;
 import kaba4cow.engine.toolbox.maths.Maths;
-import kaba4cow.files.PlanetFile;
+import kaba4cow.intersector.files.PlanetFile;
 import kaba4cow.intersector.galaxyengine.objects.PlanetObject;
 import kaba4cow.intersector.galaxyengine.objects.SystemObject;
 import kaba4cow.intersector.utils.FileUtils;

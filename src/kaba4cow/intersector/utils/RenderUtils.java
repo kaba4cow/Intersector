@@ -15,13 +15,13 @@ import kaba4cow.engine.toolbox.maths.Easing;
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.maths.Matrices;
 import kaba4cow.engine.toolbox.maths.Vectors;
-import kaba4cow.files.ContainerFile;
-import kaba4cow.files.ContainerGroupFile;
-import kaba4cow.files.GameFile;
-import kaba4cow.files.InfosFile;
-import kaba4cow.files.ShipFile;
-import kaba4cow.files.TextureSetFile;
-import kaba4cow.files.WeaponFile;
+import kaba4cow.intersector.files.ContainerFile;
+import kaba4cow.intersector.files.ContainerGroupFile;
+import kaba4cow.intersector.files.GameFile;
+import kaba4cow.intersector.files.InfosFile;
+import kaba4cow.intersector.files.ShipFile;
+import kaba4cow.intersector.files.TextureSetFile;
+import kaba4cow.intersector.files.WeaponFile;
 import kaba4cow.intersector.gameobjects.GameObject;
 import kaba4cow.intersector.gameobjects.Planet;
 import kaba4cow.intersector.gameobjects.cargo.Cargo;
@@ -33,7 +33,7 @@ import kaba4cow.intersector.gameobjects.objectcomponents.PortComponent;
 import kaba4cow.intersector.gameobjects.objectcomponents.ThrustComponent;
 import kaba4cow.intersector.gameobjects.objectcomponents.WeaponComponent;
 import kaba4cow.intersector.renderEngine.RendererContainer;
-import kaba4cow.intersector.renderEngine.models.ThrustModel;
+import kaba4cow.intersector.renderEngine.ThrustModel;
 
 public final class RenderUtils {
 

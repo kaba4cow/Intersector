@@ -10,19 +10,18 @@ import kaba4cow.engine.renderEngine.Camera;
 import kaba4cow.engine.toolbox.CameraManager;
 import kaba4cow.engine.toolbox.maths.Maths;
 import kaba4cow.engine.toolbox.rng.RNG;
-import kaba4cow.files.StationFile;
 import kaba4cow.intersector.Intersector;
 import kaba4cow.intersector.galaxyengine.objects.SystemObject;
 import kaba4cow.intersector.gameobjects.Fraction;
 import kaba4cow.intersector.gameobjects.Planet;
 import kaba4cow.intersector.gameobjects.World;
-import kaba4cow.intersector.gameobjects.machinecontrollers.shipcontrollers.ShipAIController;
-import kaba4cow.intersector.gameobjects.machinecontrollers.shipcontrollers.ShipPlayerController;
-import kaba4cow.intersector.gameobjects.machinecontrollers.shipcontrollers.ShipStaticController;
-import kaba4cow.intersector.gameobjects.machinecontrollers.stationcontrollers.StationAIController;
+import kaba4cow.intersector.gameobjects.cargo.Cargo;
+import kaba4cow.intersector.gameobjects.cargo.CargoType;
 import kaba4cow.intersector.gameobjects.machines.Ship;
-import kaba4cow.intersector.gameobjects.machines.Station;
 import kaba4cow.intersector.gameobjects.machines.classes.ShipClass;
+import kaba4cow.intersector.gameobjects.machines.controllers.shipcontrollers.ShipAIController;
+import kaba4cow.intersector.gameobjects.machines.controllers.shipcontrollers.ShipPlayerController;
+import kaba4cow.intersector.gameobjects.machines.controllers.shipcontrollers.ShipStaticController;
 import kaba4cow.intersector.hud.ShipHud;
 import kaba4cow.intersector.menu.MenuElement;
 import kaba4cow.intersector.renderEngine.RendererContainer;
@@ -113,7 +112,7 @@ public class GameState extends State {
 		FlockManager.clear();
 		world.clear();
 
-		SystemObject system = GalaxyUtils.getRandomSystem();
+		SystemObject system = GalaxyUtils.generateSystem("BALAFARI");
 		List<Planet> planets = world.create(system);
 		Planet planet = planets.get(RNG.randomInt(planets.size()));
 
@@ -123,24 +122,19 @@ public class GameState extends State {
 		// .getFileName(), false, false);
 
 		Fraction fraction0 = Fraction.getRandom();
-		Flock flock0 = new Flock(false);
 		ship = new Ship(world, fraction0, fraction0.getRandomShip(ShipClass.CORVETTE), randVec(planet),
 				new ShipPlayerController());
-		ship.setFlock(flock0);
 		Fraction fraction1 = Fraction.getRandom();
-		Flock flock1 = new Flock(false);
-		for (int i = 0; i < 2; i++) {
-			Ship ship = new Ship(world, fraction1, fraction1.getRandomShip(ShipClass.SHUTTLE), randVec(planet),
+		for (int i = 0; i < 2; i++)
+			new Ship(world, fraction1, fraction1.getRandomShip(ShipClass.SHUTTLE), randVec(planet),
 					new ShipStaticController());
-			ship.setFlock(flock1);
-		}
 
 		// new Station(world, Fraction.get("FRACTION3"),
 		// StationFile.get("STATION3"), randVec(planet),
 		// new StationAIController());
 
-		// for (int i = 0; i < 16; i++)
-		// new Cargo(world, CargoType.ALUMINIUM, randVec(planet));
+		for (int i = 0; i < 16; i++)
+			new Cargo(world, CargoType.ALUMINIUM, randVec(planet));
 
 		world.update(0f, null);
 	}
@@ -170,18 +164,14 @@ public class GameState extends State {
 		if (addPlayer)
 			ship = (Ship) new Ship(world, fraction, fraction.getRandomShip(ShipClass.CORVETTE), randVec(planet),
 					new ShipPlayerController()).setFlock(flock);
-
-		if (addStation)
-			new Station(world, fraction, StationFile.get("STATION2"), randVec(planet), new StationAIController())
-					.setFlock(flock);
 	}
 
 	public static Vector3f randVec(Planet planet) {
 		Vector3f pos = planet == null ? new Vector3f() : planet.getPos();
 		float off = planet == null ? 0f : 2f * planet.getSize();
-		float x = off + pos.x + 1000f * RNG.randomFloat(-1f, 1f);
+		float x = off + pos.x + 500f * RNG.randomFloat(-1f, 1f);
 		float y = pos.y + 100f * RNG.randomFloat(-1f, 1f);
-		float z = off + pos.z + 1000f * RNG.randomFloat(-1f, 1f);
+		float z = off + pos.z + 500f * RNG.randomFloat(-1f, 1f);
 		return new Vector3f(x, y, z);
 	}
 

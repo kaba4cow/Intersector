@@ -12,10 +12,9 @@ import kaba4cow.engine.toolbox.particles.Particle;
 import kaba4cow.engine.toolbox.particles.ParticleSystem;
 import kaba4cow.engine.toolbox.rng.RNG;
 import kaba4cow.engine.toolbox.rng.RandomLehmer;
-import kaba4cow.files.ParticleSystemFile;
-import kaba4cow.files.SystemFile;
+import kaba4cow.intersector.files.ParticleSystemFile;
+import kaba4cow.intersector.files.SystemFile;
 import kaba4cow.intersector.galaxyengine.NameGenerator;
-import kaba4cow.intersector.galaxyengine.NonExistingObjectException;
 import kaba4cow.intersector.galaxyengine.objects.PlanetObject.PlanetComparator;
 import kaba4cow.intersector.gameobjects.Fraction;
 import kaba4cow.intersector.gameobjects.targets.TargetType;
@@ -23,8 +22,7 @@ import kaba4cow.intersector.utils.GalaxyUtils;
 
 public class SystemObject extends GalacticObject {
 
-	public static final ParticleSystem particleSystem = ParticleSystemFile.get(
-			"STAR").get();
+	public static final ParticleSystem particleSystem = ParticleSystemFile.get("STAR").get();
 
 	public final SystemFile systemFile;
 	public final long seed;
@@ -42,8 +40,7 @@ public class SystemObject extends GalacticObject {
 
 	private Particle particle;
 
-	public SystemObject(int posX, int posY, int posZ, SystemFile file,
-			RNG baseRng) throws NonExistingObjectException {
+	public SystemObject(int posX, int posY, int posZ, SystemFile file, RNG baseRng) throws IllegalStateException {
 		super(posX, posY, posZ);
 		long seedSector = GalaxyUtils.seedSector(posX, posY, posZ);
 		this.systemFile = file;
@@ -53,21 +50,18 @@ public class SystemObject extends GalacticObject {
 			this.seed = systemFile.getSeed() ^ baseRng.getNext();
 		this.rng = new RandomLehmer(seed);
 
-		if (rng.nextFloat(0f, 1f) > GalaxyUtils.getSectorDensity(posX, posY,
-				posZ)
-				&& systemFile == null
-				&& !GalaxyUtils.isCenter(posX, posY, posZ))
-			throw new NonExistingObjectException();
+		if (rng.nextFloat(0f, 1f) > GalaxyUtils.getSectorDensity(posX, posY, posZ) && systemFile == null)
+			throw new IllegalStateException();
 
 		if (systemFile != null)
 			fraction = Fraction.getFraction(systemFile.getFileName());
 		if (fraction == null)
 			fraction = GalaxyUtils.getFraction(posX, posY, posZ);
 
-		int numChildren = systemFile == null ? Maths.getBiasedInt(
-				rng.nextFloat(0f, 1f), PlanetObject.SYSTEM.getMinChildren(),
-				PlanetObject.SYSTEM.getMaxChildren(),
-				PlanetObject.SYSTEM.getChildBias()) : 1;
+		int numChildren = systemFile == null
+				? Maths.getBiasedInt(rng.nextFloat(0f, 1f), PlanetObject.SYSTEM.getMinChildren(),
+						PlanetObject.SYSTEM.getMaxChildren(), PlanetObject.SYSTEM.getChildBias())
+				: 1;
 		this.mainObjects = new PlanetObject[numChildren];
 
 		this.offX = posX + GalaxyUtils.MAX_SYSTEM_OFF * rng.nextFloat(-1f, 1f);
@@ -78,25 +72,21 @@ public class SystemObject extends GalacticObject {
 		if (systemFile == null)
 			if (rng.nextFloat(0f, 1f) < 0.03f || fraction != null) {
 				if (rng.nextFloat(0f, 1f) < 0.1f)
-					this.name = NameGenerator.createSystemName(rng, true,
-							rng.nextFloat(0f, 1f) < 0.2f,
+					this.name = NameGenerator.createSystemName(rng, true, rng.nextFloat(0f, 1f) < 0.2f,
 							rng.nextFloat(0f, 1f) < 0.1f);
 				else
-					this.name = NameGenerator.createSystemNameNew(rng, 5, 10,
-							rng.nextFloat(0f, 1f) < 0.2f,
+					this.name = NameGenerator.createSystemNameNew(rng, 5, 10, rng.nextFloat(0f, 1f) < 0.2f,
 							rng.nextFloat(0f, 1f) < 0.1f);
 			} else
-				this.name = NameGenerator.createSectorSystemName(rng,
-						seedSector, posX, posY, posZ);
+				this.name = NameGenerator.createSectorSystemName(rng, seedSector, posX, posY, posZ);
 		else
 			this.name = systemFile.getName();
 
 		createMainObjects();
 
 		if (systemFile != null)
-			if (mainObjects[0].children.size() != systemFile.getPlanets()
-					|| stationsSize() != systemFile.getStations())
-				throw new NonExistingObjectException();
+			if (mainObjects[0].children.size() != systemFile.getPlanets() || stationsSize() != systemFile.getStations())
+				throw new IllegalStateException();
 
 		this.size = 0f;
 		for (int i = 0; i < mainObjects.length; i++)
@@ -110,7 +100,7 @@ public class SystemObject extends GalacticObject {
 			try {
 				mainObjects[i] = new PlanetObject(this, null, 0f, i, 0, 0, seed);
 				distance = Maths.max(distance, mainObjects[i].totalDistance);
-			} catch (NonExistingObjectException e) {
+			} catch (IllegalStateException e) {
 
 			}
 
@@ -121,16 +111,13 @@ public class SystemObject extends GalacticObject {
 			mainObjects[i].position = i;
 			mainObjects[i].createName();
 			mainObjects[i].calculateMapPosition();
-			mainObjects[i].move(i
-					* distance
-					* rng.nextFloat(PlanetObject.SYSTEM.getMinDistance(),
-							PlanetObject.SYSTEM.getMaxDistance()));
+			mainObjects[i].move(i * distance
+					* rng.nextFloat(PlanetObject.SYSTEM.getMinDistance(), PlanetObject.SYSTEM.getMaxDistance()));
 			mainObjects[i].move(i * radius);
 			mainObjects[i].calculateRotationSpeeds();
 			mainObjects[i].calculateWorldPosition();
 			radius += mainObjects[i].radius
-					* rng.nextFloat(mainObjects[i].file.getMinDistance(),
-							mainObjects[i].file.getMaxDistance());
+					* rng.nextFloat(mainObjects[i].file.getMinDistance(), mainObjects[i].file.getMaxDistance());
 			if (!hasStations && mainObjects[i].stationsSize() > 0)
 				hasStations = true;
 		}
@@ -143,8 +130,7 @@ public class SystemObject extends GalacticObject {
 			Printer.println("\n--- SYSTEM FILE ---");
 		else
 			Printer.println();
-		Printer.println(name + " [" + posX + " " + posY + " " + posZ + "]"
-				+ " [" + allegiance() + "]");
+		Printer.println(name + " [" + posX + " " + posY + " " + posZ + "]" + " [" + allegiance() + "]");
 		for (int i = 0; i < mainObjects.length; i++)
 			mainObjects[i].print();
 		Printer.println(systemSize(), starsSize(), stationsSize());
@@ -185,8 +171,7 @@ public class SystemObject extends GalacticObject {
 	public Particle getParticle(List<Particle> freeParticles) {
 		if (freeParticles == null || freeParticles.isEmpty()) {
 			if (particle == null) {
-				particle = new Particle(particleSystem, new Vector3f(-offX,
-						-offY, -offZ), Vectors.INIT3, 0f, 0f, size);
+				particle = new Particle(particleSystem, new Vector3f(-offX, -offY, -offZ), Vectors.INIT3, 0f, 0f, size);
 				particle.setTint(getParticleTintColor(), getParticleTintPower());
 			}
 		} else if (particle == null) {
@@ -203,8 +188,7 @@ public class SystemObject extends GalacticObject {
 	protected Vector3f getParticleTintColor() {
 		Vector3f sum = new Vector3f();
 		for (int i = 0; i < mainObjects.length; i++)
-			Vector3f.add(sum, Maths.blend(mainObjects[i].color, Vectors.UNIT3,
-					0.75f, null), sum);
+			Vector3f.add(sum, Maths.blend(mainObjects[i].color, Vectors.UNIT3, 0.75f, null), sum);
 		sum.scale(1f / (float) mainObjects.length);
 		return sum;
 	}

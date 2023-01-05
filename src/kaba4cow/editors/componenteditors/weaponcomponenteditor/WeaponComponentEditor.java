@@ -22,9 +22,9 @@ import kaba4cow.editors.AbstractEditor;
 import kaba4cow.editors.componenteditors.ComponentEditor;
 import kaba4cow.engine.MainProgram;
 import kaba4cow.engine.toolbox.maths.Direction;
-import kaba4cow.files.MachineFile;
-import kaba4cow.files.TextureSetFile;
-import kaba4cow.files.WeaponFile;
+import kaba4cow.intersector.files.MachineFile;
+import kaba4cow.intersector.files.TextureSetFile;
+import kaba4cow.intersector.files.WeaponFile;
 import kaba4cow.intersector.gameobjects.objectcomponents.ObjectComponent;
 import kaba4cow.intersector.gameobjects.objectcomponents.WeaponComponent;
 

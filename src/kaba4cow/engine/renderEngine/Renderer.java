@@ -3,13 +3,13 @@ package kaba4cow.engine.renderEngine;
 import java.util.ArrayList;
 import java.util.List;
 
-import kaba4cow.engine.MainProgram;
-import kaba4cow.engine.renderEngine.renderers.AbstractRenderer;
-import kaba4cow.engine.toolbox.maths.Matrices;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
+
+import kaba4cow.engine.MainProgram;
+import kaba4cow.engine.renderEngine.renderers.AbstractRenderer;
+import kaba4cow.engine.toolbox.maths.Matrices;
 
 public class Renderer {
 
@@ -37,8 +37,7 @@ public class Renderer {
 
 	private Projection projection;
 
-	public Renderer(Projection projection, float fov, float near, float far,
-			Vector3f blankColor) {
+	public Renderer(Projection projection, float fov, float near, float far, Vector3f blankColor) {
 		this.projection = projection;
 		this.camera = new Camera();
 		this.renderers = new ArrayList<AbstractRenderer>();
@@ -50,18 +49,15 @@ public class Renderer {
 		list.add(this);
 	}
 
-	public Renderer(Projection projection, float fov, float near, float far,
-			float blankColor) {
-		this(projection, fov, near, far, new Vector3f(blankColor, blankColor,
-				blankColor));
+	public Renderer(Projection projection, float fov, float near, float far, float blankColor) {
+		this(projection, fov, near, far, new Vector3f(blankColor, blankColor, blankColor));
 	}
 
 	public void createProjectionMatrix(float near, float far, float fov) {
 		this.near = near;
 		this.far = far;
 		this.fov = fov;
-		this.projectionMatrix = projection.createProjectionMatrix(near, far,
-				fov);
+		this.projectionMatrix = projection.createProjectionMatrix(near, far, fov);
 	}
 
 	public void updateProjectionMatrix() {
@@ -127,8 +123,7 @@ public class Renderer {
 	}
 
 	public Renderer setAmbientLighting(float ambientLighting) {
-		this.ambientLighting = new Vector3f(ambientLighting, ambientLighting,
-				ambientLighting);
+		this.ambientLighting = new Vector3f(ambientLighting, ambientLighting, ambientLighting);
 		return this;
 	}
 
@@ -214,31 +209,24 @@ public class Renderer {
 
 		DEFAULT {
 			@Override
-			public Matrix4f createProjectionMatrix(float near, float far,
-					float fov) {
-				return Matrices.createPerspectiveProjectionMatrix(near, far,
-						fov, MainProgram.getAspectRatio());
+			public Matrix4f createProjectionMatrix(float near, float far, float fov) {
+				return Matrices.createPerspectiveProjectionMatrix(near, far, fov, MainProgram.getAspectRatio());
 			}
 		}, //
 		SQUARE {
 			@Override
-			public Matrix4f createProjectionMatrix(float near, float far,
-					float fov) {
-				return Matrices.createPerspectiveProjectionMatrix(near, far,
-						fov, 1f);
+			public Matrix4f createProjectionMatrix(float near, float far, float fov) {
+				return Matrices.createPerspectiveProjectionMatrix(near, far, fov, 1f);
 			}
 		}, //
 		ORTHO {
 			@Override
-			public Matrix4f createProjectionMatrix(float near, float far,
-					float fov) {
-				return Matrices.createOrthographicProjectionMatrix(far, fov,
-						MainProgram.getAspectRatio());
+			public Matrix4f createProjectionMatrix(float near, float far, float fov) {
+				return Matrices.createOrthographicProjectionMatrix(far, fov, MainProgram.getAspectRatio());
 			}
 		};
 
-		public abstract Matrix4f createProjectionMatrix(float near, float far,
-				float fov);
+		public abstract Matrix4f createProjectionMatrix(float near, float far, float fov);
 
 	}
 

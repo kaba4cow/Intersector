@@ -20,8 +20,8 @@ import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.toolbox.rng.RNG;
 import kaba4cow.engine.toolbox.rng.RandomLehmer;
 import kaba4cow.engine.utils.GLUtils;
-import kaba4cow.files.InfosFile;
-import kaba4cow.files.ModelTextureFile;
+import kaba4cow.intersector.files.InfosFile;
+import kaba4cow.intersector.files.ModelTextureFile;
 import kaba4cow.intersector.gameobjects.GameObject;
 import kaba4cow.intersector.gameobjects.cargo.Container;
 import kaba4cow.intersector.gameobjects.machines.Machine;
@@ -31,8 +31,8 @@ import kaba4cow.intersector.gameobjects.targets.Target;
 import kaba4cow.intersector.gameobjects.targets.TargetMode;
 import kaba4cow.intersector.renderEngine.RendererContainer;
 import kaba4cow.intersector.renderEngine.fborendering.TextRendering;
-import kaba4cow.intersector.toolbox.FontContainer;
-import kaba4cow.intersector.toolbox.RawModelContainer;
+import kaba4cow.intersector.toolbox.containers.FontContainer;
+import kaba4cow.intersector.toolbox.containers.RawModelContainer;
 import kaba4cow.intersector.utils.GameUtils;
 import kaba4cow.intersector.utils.InfoUtils;
 import kaba4cow.intersector.utils.RenderUtils;
@@ -399,8 +399,8 @@ public final class ShipHud {
 
 		float param1 = ship.getHealth() / ship.getMaxHealth();
 		float param2 = ship.getShield() / ship.getMaxShield();
-		float param3 = ship.getMaxAutoAimReload();
-		float param4 = ship.getMaxManualReload();
+		float param3 = ship.getMaxAutomaticWeaponReload();
+		float param4 = ship.getMaxManualWeaponReload();
 		float param5 = ship.isHyperEngaged() ? ship.getHyperControl().getShift()
 				: ship.getHorizontalControl().getThrust();
 		float param6 = ship.isHyperEngaged() ? ship.getHyperControl().getShiftThrust()
