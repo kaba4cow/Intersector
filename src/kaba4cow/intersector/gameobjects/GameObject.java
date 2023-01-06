@@ -66,6 +66,8 @@ public abstract class GameObject implements Searchable3D {
 
 	public Source loopSound(String file) {
 		Source source = getSound(file);
+		if (!canPlaySound())
+			return source;
 		source.setPosition(pos);
 		if (source.isPlaying())
 			return source;
@@ -74,9 +76,15 @@ public abstract class GameObject implements Searchable3D {
 
 	public Source playSound(String file) {
 		Source source = getSound(file);
+		if (!canPlaySound())
+			return source;
 		source.setPitch(RNG.randomFloat(0.95f, 1.05f));
 		source.setPosition(pos);
 		return source.play(AudioManager.get(file));
+	}
+
+	private boolean canPlaySound() {
+		return Maths.dist(Vectors.INIT3, pos) < 1000f;
 	}
 
 	public void collide(float dt) {

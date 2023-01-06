@@ -128,11 +128,11 @@ public class ShipAIController extends ShipController {
 		List<GameObject> list = machine.getWorld().getOctTree().query(machine,
 				MachineController.MAX_TARGET_DIST * machine.getSize());
 		float minDistSq = Maths.sqr(MachineController.MAX_TARGET_DIST * machine.getSize());
-		Machine current = null;
+		Station current = null;
 		boolean ignoreFlock = flock == null;
 		for (int i = 0; i < list.size(); i++)
-			if (list.get(i) instanceof Machine && list.get(i) != machine) {
-				current = (Machine) list.get(i);
+			if (list.get(i) instanceof Station && list.get(i) != machine) {
+				current = (Station) list.get(i);
 				if (!current.isAlive() || current.isDestroyed() || !current.canPickShip(machine))
 					continue;
 				if (ignoreFlock ? fraction.isFriendly(current.getFraction()) : flock == current.getFlock()) {
@@ -255,7 +255,6 @@ public class ShipAIController extends ShipController {
 			Vectors.addScaled(direction, Maths.direction(targetEnemy.getPos(), machine.getPos()), 3f, tempDirection);
 			Vectors.addScaled(targetEnemy.getPos(), tempDirection, machine.getSize(), tempTargetPos);
 			Maths.blend(nextTargetPos, tempTargetPos, blendFactor, tempTargetPos);
-			machine.ejectShips();
 		}
 
 		WindowUtils.calculateScreenCoords(tempTargetPos, renderer, tempTargetCoords);
@@ -356,7 +355,8 @@ public class ShipAIController extends ShipController {
 		if (horizontalControl.getThrust() < 0.1f)
 			horizontalControl.forward(dt);
 
-		targetFriend.requestPickShip(machine);
+		if (targetFriend instanceof Station)
+			((Station) targetFriend).requestPickShip(machine);
 	}
 
 	private void processTargetCargo(Renderer renderer, float dt) {

@@ -125,7 +125,7 @@ public abstract class MachineFile extends GameFile {
 
 	@Override
 	public void save() {
-		DataFile node = data.clear();
+		DataFile node = data;
 
 		node.node("name").setString(name);
 		node.node("manufacturer").setString(manufacturer);

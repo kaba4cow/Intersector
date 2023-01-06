@@ -15,8 +15,6 @@ import kaba4cow.intersector.galaxyengine.objects.SystemObject;
 import kaba4cow.intersector.gameobjects.Fraction;
 import kaba4cow.intersector.gameobjects.Planet;
 import kaba4cow.intersector.gameobjects.World;
-import kaba4cow.intersector.gameobjects.cargo.Cargo;
-import kaba4cow.intersector.gameobjects.cargo.CargoType;
 import kaba4cow.intersector.gameobjects.machines.Ship;
 import kaba4cow.intersector.gameobjects.machines.classes.ShipClass;
 import kaba4cow.intersector.gameobjects.machines.controllers.shipcontrollers.ShipAIController;
@@ -112,14 +110,13 @@ public class GameState extends State {
 		FlockManager.clear();
 		world.clear();
 
-		SystemObject system = GalaxyUtils.generateSystem("BALAFARI");
+		SystemObject system = GalaxyUtils.getRandomSystem();
+//		SystemObject system = GalaxyUtils.generateSystem("BALAFARI");
 		List<Planet> planets = world.create(system);
 		Planet planet = planets.get(RNG.randomInt(planets.size()));
 
-		// createFlock(planet, Fraction.getRandom().getFractionFile()
-		// .getFileName(), false, false);
-		// createFlock(planet, Fraction.getRandom().getFractionFile()
-		// .getFileName(), false, false);
+//		createFlock(planet, Fraction.getRandom().getFractionFile().getFileName(), false, false);
+//		createFlock(planet, Fraction.getRandom().getFractionFile().getFileName(), false, false);
 
 		Fraction fraction0 = Fraction.getRandom();
 		ship = new Ship(world, fraction0, fraction0.getRandomShip(ShipClass.CORVETTE), randVec(planet),
@@ -133,8 +130,8 @@ public class GameState extends State {
 		// StationFile.get("STATION3"), randVec(planet),
 		// new StationAIController());
 
-		for (int i = 0; i < 16; i++)
-			new Cargo(world, CargoType.ALUMINIUM, randVec(planet));
+//		for (int i = 0; i < 16; i++)
+//			new Cargo(world, CargoType.ALUMINIUM, randVec(planet));
 
 		world.update(0f, null);
 	}
@@ -151,9 +148,6 @@ public class GameState extends State {
 					new ShipAIController()).setFlock(flock);
 		for (int i = 0; i < 1; i++)
 			new Ship(world, fraction, fraction.getRandomShip(ShipClass.FRIGATE), randVec(planet),
-					new ShipAIController()).setFlock(flock);
-		for (int i = 0; i < 2; i++)
-			new Ship(world, fraction, fraction.getRandomShip(ShipClass.CORVETTE), randVec(planet),
 					new ShipAIController()).setFlock(flock);
 		for (int i = 0; i < 4; i++)
 			new Ship(world, fraction, fraction.getRandomShip(ShipClass.FIGHTER), randVec(planet),

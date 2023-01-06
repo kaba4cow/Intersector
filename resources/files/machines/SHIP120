@@ -2,7 +2,7 @@ controls
 {
 	horizontal
 	{
-		speed = 569.8
+		speed = 1139.6
 		thrust = 0.43
 		brake = 1.85
 	}

@@ -27,6 +27,12 @@ public class StationFile extends MachineFile {
 	}
 
 	@Override
+	public void save() {
+		data.clear();
+		super.save();
+	}
+
+	@Override
 	public void setMachineClassInfo(String machineClass, String machineClassName) {
 		StationClass shipClass = StationClass.valueOf(machineClass);
 		setClassRank(shipClass.getRank());

@@ -53,7 +53,7 @@ public class StationAIController extends StationController {
 			machine.disableTurrets();
 			machine.disableLaunchers();
 		} else {
-			machine.ejectShips();
+			getMachine().ejectShips();
 			machine.enableTurrets();
 			machine.enableLaunchers();
 		}

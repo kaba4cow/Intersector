@@ -122,9 +122,8 @@ public class ShipFile extends MachineFile {
 				weapons += 2.2f * weapon.getRotationSpeed();
 			}
 
-			float total = 1.93f * infos + 0.92f * cargo + 0.61f * horizontal
-					+ 0.44f * vertical + 0.52f * hyper + 1.07f * rotations
-					+ 0.65f * afterburner + 0.32f * weapons;
+			float total = 1.93f * infos + 0.92f * cargo + 0.61f * horizontal + 0.44f * vertical + 0.52f * hyper
+					+ 1.07f * rotations + 0.65f * afterburner + 0.32f * weapons;
 
 			total *= ManufacturerFile.get(manufacturer).getOverprice();
 			total *= getMachineClass().getPrice();
@@ -156,8 +155,7 @@ public class ShipFile extends MachineFile {
 
 	@Override
 	public void save() {
-		super.save();
-		DataFile node = data;
+		DataFile node = data.clear();
 
 		node = data.node("controls").node("horizontal");
 		node.node("speed").setFloat(horSpeed);
@@ -183,6 +181,8 @@ public class ShipFile extends MachineFile {
 		node.node("time").setFloat(aftTime);
 		node.node("cooldown").setFloat(aftCooldown);
 		node.node("smoothness").setFloat(aftSmoothness);
+
+		super.save();
 	}
 
 	@Override

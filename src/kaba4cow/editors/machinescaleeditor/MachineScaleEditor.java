@@ -1,6 +1,5 @@
 package kaba4cow.editors.machinescaleeditor;
 
-import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -83,8 +82,7 @@ public class MachineScaleEditor extends AbstractEditor {
 	@Override
 	public void onNewFileLoaded() {
 		MachineFile file = getViewport().getMachineFile();
-		indexLabel.setText("index: " + (viewport.getIndex() + 1) + " / "
-				+ viewport.getMaxIndex());
+		indexLabel.setText("index: " + (viewport.getIndex() + 1) + " / " + viewport.getMaxIndex());
 		nameTextField.setText(file.getMachineName());
 		manufacturerButton.setText(file.getManufacturer());
 		classRankButton.setText(file.getMachineClass().toString());
@@ -182,8 +180,7 @@ public class MachineScaleEditor extends AbstractEditor {
 		textureSetButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				selectAssetFileName(TextureSetFile.getList(), textureSetButton,
-						"Select texture set file");
+				selectAssetFileName(TextureSetFile.getList(), textureSetButton, "Select texture set file");
 			}
 		});
 		textureSetButton.setText("YELLOW0");
@@ -248,11 +245,9 @@ public class MachineScaleEditor extends AbstractEditor {
 			public void actionPerformed(ActionEvent e) {
 				MachineFile file = getViewport().getMachineFile();
 				if (file instanceof ShipFile)
-					selectEnum(ShipClass.getStringList(), classRankButton,
-							"Select ship class");
+					selectEnum(ShipClass.getStringList(), classRankButton, "Select ship class");
 				else if (file instanceof StationFile)
-					selectEnum(StationClass.getStringList(), classRankButton,
-							"Select station class");
+					selectEnum(StationClass.getStringList(), classRankButton, "Select station class");
 			}
 		});
 		classRankPanel.add(classRankLabel);
@@ -268,8 +263,7 @@ public class MachineScaleEditor extends AbstractEditor {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MachineFile file = getViewport().getMachineFile();
-				selectItem(file.getMachineClass().getNames(), classNameButton,
-						"Select class name");
+				selectItem(file.getMachineClass().getNames(), classNameButton, "Select class name");
 			}
 		});
 		classNamePanel.add(classNameLabel);
@@ -284,8 +278,7 @@ public class MachineScaleEditor extends AbstractEditor {
 		manufacturerButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				selectAssetFileName(ManufacturerFile.getList(),
-						manufacturerButton, "Select manufacturer");
+				selectAssetFileName(ManufacturerFile.getList(), manufacturerButton, "Select manufacturer");
 			}
 		});
 		manufacturerPanel.add(manufacturerLabel);
@@ -295,16 +288,13 @@ public class MachineScaleEditor extends AbstractEditor {
 		infoPanel.setLayout(new GridLayout(1, 4));
 		JLabel infoLabel = new JLabel("Ship info:");
 		infoPanel.add(infoLabel);
-		sizeSpinner = new JSpinner(
-				new SpinnerNumberModel(1f, 0f, 100000f, 0.1f));
+		sizeSpinner = new JSpinner(new SpinnerNumberModel(1f, 0f, 100000f, 0.1f));
 		sizeSpinner.setToolTipText("size");
 		infoPanel.add(sizeSpinner);
-		healthSpinner = new JSpinner(new SpinnerNumberModel(1f, 0f, 1000000f,
-				0.5f));
+		healthSpinner = new JSpinner(new SpinnerNumberModel(1f, 0f, 1000000f, 0.5f));
 		healthSpinner.setToolTipText("health");
 		infoPanel.add(healthSpinner);
-		shieldSpinner = new JSpinner(new SpinnerNumberModel(1f, 0f, 1000000f,
-				0.5f));
+		shieldSpinner = new JSpinner(new SpinnerNumberModel(1f, 0f, 1000000f, 0.5f));
 		shieldSpinner.setToolTipText("shield");
 		infoPanel.add(shieldSpinner);
 
@@ -312,12 +302,10 @@ public class MachineScaleEditor extends AbstractEditor {
 		massPanel.setLayout(new GridLayout(1, 4));
 		JLabel massLabel = new JLabel("Mass:");
 		massPanel.add(massLabel);
-		massSpinner = new JSpinner(new SpinnerNumberModel(1f, 0f, 1000000f,
-				0.1f));
+		massSpinner = new JSpinner(new SpinnerNumberModel(1f, 0f, 1000000f, 0.1f));
 		massSpinner.setToolTipText("mass");
 		massPanel.add(massSpinner);
-		maxCargoSpinner = new JSpinner(new SpinnerNumberModel(1f, 0f, 10000f,
-				1f));
+		maxCargoSpinner = new JSpinner(new SpinnerNumberModel(1f, 0f, 10000f, 1f));
 		maxCargoSpinner.setToolTipText("max cargo");
 		massPanel.add(maxCargoSpinner);
 		calculateMassButton = new JButton("ADJUST");
@@ -337,16 +325,13 @@ public class MachineScaleEditor extends AbstractEditor {
 		speedsPanel.setLayout(new GridLayout(1, 4));
 		JLabel speedsLabel = new JLabel("Speeds:");
 		speedsPanel.add(speedsLabel);
-		horSpeedSpinner = new JSpinner(new SpinnerNumberModel(1f, 0f, 10000f,
-				0.1f));
+		horSpeedSpinner = new JSpinner(new SpinnerNumberModel(1f, 0f, 10000f, 0.1f));
 		horSpeedSpinner.setToolTipText("horizontal speed");
 		speedsPanel.add(horSpeedSpinner);
-		verSpeedSpinner = new JSpinner(new SpinnerNumberModel(1f, 0f, 10000f,
-				0.1f));
+		verSpeedSpinner = new JSpinner(new SpinnerNumberModel(1f, 0f, 10000f, 0.1f));
 		verSpeedSpinner.setToolTipText("vertical speed");
 		speedsPanel.add(verSpeedSpinner);
-		hyperSpeedSpinner = new JSpinner(new SpinnerNumberModel(1f, 0f, 2f,
-				0.01f));
+		hyperSpeedSpinner = new JSpinner(new SpinnerNumberModel(1f, 0f, 2f, 0.01f));
 		hyperSpeedSpinner.setToolTipText("hyper speed");
 		speedsPanel.add(hyperSpeedSpinner);
 
@@ -367,8 +352,7 @@ public class MachineScaleEditor extends AbstractEditor {
 		thrustButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				selectItem(RawModelContainer.getArray(), thrustButton,
-						"Select thrust model file");
+				selectItem(RawModelContainer.getArray(), thrustButton, "Select thrust model file");
 			}
 		});
 		thrustPanel.add(thrustLabel);
@@ -383,8 +367,7 @@ public class MachineScaleEditor extends AbstractEditor {
 		thrustTextureButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				selectAssetFileName(ThrustTextureFile.getList(),
-						thrustTextureButton, "Select thrust texture file");
+				selectAssetFileName(ThrustTextureFile.getList(), thrustTextureButton, "Select thrust texture file");
 			}
 		});
 		thrustTexturePanel.add(thrustTextureLabel);
@@ -408,12 +391,10 @@ public class MachineScaleEditor extends AbstractEditor {
 	protected void onItemSelected(JButton source) {
 		if (source == classRankButton)
 			if (viewport.getMachineFile() instanceof ShipFile) {
-				ShipClass shipClass = ShipClass.valueOf(classRankButton
-						.getText());
+				ShipClass shipClass = ShipClass.valueOf(classRankButton.getText());
 				classNameButton.setText(shipClass.getName(0));
 			} else if (viewport.getMachineFile() instanceof StationFile) {
-				StationClass stationClass = StationClass
-						.valueOf(classRankButton.getText());
+				StationClass stationClass = StationClass.valueOf(classRankButton.getText());
 				classNameButton.setText(stationClass.getName(0));
 			}
 	}
@@ -517,14 +498,6 @@ public class MachineScaleEditor extends AbstractEditor {
 	}
 
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					new MachineScaleEditor();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		new MachineScaleEditor();
 	}
 }

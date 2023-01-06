@@ -26,8 +26,9 @@ import kaba4cow.intersector.utils.RenderUtils;
 
 public class Ship extends Machine {
 
-	public static final float HYPER_SPEED = 23.17f * Measures.LIGHT_SECOND;
-	public static final float JUMP_RANGE = 45f;
+	public static final float HYPER_SPEED = 24f * Measures.LIGHT_SECOND;
+	public static final float ATTACH_DIST = 30f * Measures.LIGHT_SECOND;
+	public static final float JUMP_RANGE = 50f;
 
 	private final ThrustControl horizontalControl;
 	private final ThrustControl verticalControl;
@@ -205,13 +206,6 @@ public class Ship extends Machine {
 		return this;
 	}
 
-	@Override
-	public void onSpawn() {
-		// if (parent == null)
-		// rotate(Vectors.randomize(-1f, 1f, (Vector3f) null).normalise(null),
-		// RNG.randomFloat(-Maths.PI, Maths.PI));
-	}
-
 	public void onParentDestroy() {
 		if (parent == null || parent != null && parent.isAlive())
 			return;
@@ -301,6 +295,19 @@ public class Ship extends Machine {
 
 	public float getHyperSpeed() {
 		return HYPER_SPEED * getFile().getHyperSpeed();
+	}
+
+	public void onHyperDisengaged() {
+		Machine target = controller.getTargetFriend();
+		if (target == null || target instanceof Station == false)
+			return;
+		float dist = Maths.dist(pos, target.getPos());
+		Vector3f direction = Maths.direction(pos, target.getPos());
+		float alignment = Vector3f.dot(getDirection().getForward(), direction);
+		if (dist > ATTACH_DIST || alignment < 0.95f)
+			return;
+		dist = RNG.randomFloat(10f, 14f) * target.getSize();
+		Vectors.subScaled(target.getPos(), direction, dist, pos);
 	}
 
 	@Override

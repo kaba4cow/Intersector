@@ -51,7 +51,7 @@ public class HyperControl extends ParameterControl {
 		dThrust = 0f;
 		engaged = false;
 	}
-	
+
 	public void jump() {
 		shift = 0;
 		thrust = 0f;
@@ -87,13 +87,14 @@ public class HyperControl extends ParameterControl {
 	}
 
 	public void disengage() {
-		if (shift == 0 && thrust <= 0f)
+		if (engaged && shift == 0 && thrust <= 0f) {
 			engaged = false;
+			ship.onHyperDisengaged();
+		}
 	}
 
 	public boolean isEngageable() {
-		return !ship.getAfterburnerControl().isEngaged()
-				&& cooldown >= maxCooldown
+		return !ship.getAfterburnerControl().isEngaged() && cooldown >= maxCooldown
 				&& (int) Maths.abs(ship.getHorizontalControl().getThrust()) == 0;
 	}
 

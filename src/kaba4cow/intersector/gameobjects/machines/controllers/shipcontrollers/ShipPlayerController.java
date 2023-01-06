@@ -65,8 +65,6 @@ public class ShipPlayerController extends ShipController {
 			if (Input.isKey(Keyboard.KEY_TAB))
 				afterburnerControl.engage();
 
-			if (Input.isKey(Keyboard.KEY_L))
-				getMachine().ejectShips();
 			if (Input.isKey(Keyboard.KEY_K))
 				getMachine().ejectContainers();
 			if (Input.isKey(Keyboard.KEY_B))

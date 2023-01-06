@@ -11,7 +11,6 @@ import kaba4cow.engine.toolbox.maths.Matrices;
 import kaba4cow.engine.toolbox.maths.Vectors;
 import kaba4cow.engine.toolbox.rng.RNG;
 import kaba4cow.intersector.files.MachineFile;
-import kaba4cow.intersector.files.ShipFile;
 import kaba4cow.intersector.files.TextureSetFile;
 import kaba4cow.intersector.gameobjects.Fraction;
 import kaba4cow.intersector.gameobjects.GameObject;
@@ -21,7 +20,6 @@ import kaba4cow.intersector.gameobjects.cargo.CargoObject;
 import kaba4cow.intersector.gameobjects.cargo.CargoType;
 import kaba4cow.intersector.gameobjects.cargo.Container;
 import kaba4cow.intersector.gameobjects.machines.controllers.MachineController;
-import kaba4cow.intersector.gameobjects.machines.controllers.shipcontrollers.ShipAIController;
 import kaba4cow.intersector.gameobjects.objectcomponents.ColliderComponent;
 import kaba4cow.intersector.gameobjects.objectcomponents.ContainerComponent;
 import kaba4cow.intersector.gameobjects.objectcomponents.PortComponent;
@@ -67,7 +65,6 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 	protected float shield;
 	protected final Cargo[] cargoArray;
 	protected final ArrayList<Container> containerList;
-	protected final ArrayList<Ship> shipList;
 
 	protected Fraction fraction;
 	protected Flock flock;
@@ -102,7 +99,6 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 		this.shield = file.getShield();
 		this.cargoArray = new Cargo[file.getMaxCargo()];
 		this.containerList = new ArrayList<Container>();
-		this.shipList = new ArrayList<Ship>();
 		this.flock = null;
 		this.pos = pos;
 		this.turretsEnabled = true;
@@ -134,13 +130,6 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 			if (RNG.chance(containerDensity))
 				addContainer(new Container(world, containers[i].containerGroupName, CargoType.getRandom(),
 						new Vector3f(pos)));
-		float portDensity = RNG.randomFloat(1f);
-		for (int i = 0; i < ports.length; i++)
-			if (RNG.chance(portDensity)) {
-				ShipFile shipFile = fraction.getRandomShip(ports[i].min, ports[i].max);
-				if (shipFile != null)
-					addShip(new Ship(world, fraction, shipFile, new Vector3f(), new ShipAIController()), i);
-			}
 	}
 
 	@Override
@@ -182,9 +171,6 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 		for (int i = containerList.size() - 1; i >= 0; i--)
 			if (!GameObject.isAlive(containerList.get(i)))
 				containerList.remove(i);
-		for (int i = shipList.size() - 1; i >= 0; i--)
-			if (!GameObject.isAlive(shipList.get(i)))
-				shipList.remove(i);
 	}
 
 	@Override
@@ -426,18 +412,14 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 	protected void onDestroy() {
 		for (int i = 0; i < containerList.size(); i++)
 			containerList.get(i).destroy();
-		for (int i = 0; i < shipList.size(); i++)
-			shipList.get(i).destroy();
 	}
 
-	private void onFinalDestroy() {
+	protected void onFinalDestroy() {
 		super.destroy(this);
 		DebrisSpawner.spawn(world, pos, vel, size, TextureSetFile.get(textureSet).getMetalTexture(), machineColor);
 		ExplosionSpawner.spawn(this, pos, vel, size, null, Scale.LARGE);
 		for (int i = 0; i < containerList.size(); i++)
 			containerList.get(i).onParentDestroy();
-		for (int i = 0; i < shipList.size(); i++)
-			shipList.get(i).onParentDestroy();
 	}
 
 	protected void destroy(float dt) {
@@ -470,9 +452,6 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 			containers[i].rotateShip(axis, angle);
 		for (int i = 0; i < ports.length; i++)
 			ports[i].rotateShip(axis, angle);
-
-		for (int i = 0; i < shipList.size(); i++)
-			shipList.get(i).rotate(axis, angle);
 	}
 
 	public String getFullName() {
@@ -489,8 +468,6 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 		this.flock = flock;
 		if (flock != null)
 			flock.add(this);
-		for (int i = 0; i < shipList.size(); i++)
-			shipList.get(i).setFlock(flock);
 		return this;
 	}
 
@@ -510,35 +487,6 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 		removeContainers();
 		cargoEjectTime = MAX_CARGO_EJECT_TIME;
 		return this;
-	}
-
-	public boolean canPickShip(Ship ship) {
-		if (shipPickTime > 0f)
-			return false;
-		float shipSize = ship.getCollisionSize();
-		for (int i = 0; i < ports.length; i++)
-			if (!ports[i].occupied && shipSize >= ports[i].min && shipSize <= ports[i].max)
-				return true;
-		return false;
-	}
-
-	public Machine ejectShips() {
-		if (shipEjectTime > 0f || shipList.isEmpty())
-			return this;
-		removeShip(shipList.get(0));
-		return this;
-	}
-
-	public void requestPickShip(Ship ship) {
-		if (shipList.contains(ship))
-			return;
-		addShip(ship);
-	}
-
-	public void requestEjectShip(Ship ship) {
-		if (shipEjectTime > 0f || !shipList.contains(ship))
-			return;
-		removeShip(ship);
 	}
 
 	public boolean allPortsOccupied() {
@@ -649,67 +597,6 @@ public abstract class Machine extends GameObject implements ColliderHolder {
 	public Machine removeContainers() {
 		if (!containerList.isEmpty())
 			removeContainer(containerList.get(0));
-		return this;
-	}
-
-	public boolean isPickable(Ship ship) {
-		if (shipPickTime > 0f || ship == null || ship.getParent() != null)
-			return false;
-		for (int i = 0; i < ports.length; i++)
-			if (isPickable(ship, i))
-				return true;
-		return false;
-	}
-
-	public boolean isPickable(Ship ship, int index) {
-		if (shipPickTime > 0f || ship == null || ship.getParent() != null)
-			return false;
-		if (ports[index].occupied || ship.getCollisionSize() < ports[index].min
-				|| ship.getCollisionSize() > ports[index].max)
-			return false;
-		return ship.getParent() == null && Maths.distSq(ship.getPos(), pos) < Maths.sqr(MAX_SHIP_DIST * size);
-	}
-
-	public Machine addShip(Ship ship) {
-		if (ship.getParent() != null && ship.getParent() != this)
-			return this;
-		for (int i = 0; i < ports.length; i++)
-			if (isPickable(ship, i)) {
-				setShip(i, ship);
-				return this;
-			}
-		return this;
-	}
-
-	public Machine addShip(Ship ship, int index) {
-		if (ship.getParent() != null && ship.getParent() != this)
-			return this;
-		if (ports[index].occupied)
-			addShip(ship);
-		else
-			setShip(index, ship);
-		return this;
-	}
-
-	private Machine setShip(int index, Ship ship) {
-		ship.setParent(this, ports[index]);
-		shipList.add(ship);
-		shipPickTime = MAX_SHIP_PICK_TIME;
-		return this;
-	}
-
-	public Machine removeShip(Ship ship) {
-		if (shipEjectTime > 0f || ship == null || ship.getParent() != null && ship.getParent() != this)
-			return this;
-		ship.onEject();
-		shipList.remove(ship);
-		shipEjectTime = MAX_SHIP_EJECT_TIME;
-		return this;
-	}
-
-	public Machine removeShips() {
-		if (!shipList.isEmpty())
-			removeShip(shipList.get(0));
 		return this;
 	}
 

@@ -63,7 +63,13 @@ public class Intersector extends MainProgram {
 	}
 
 	public void postInit() {
-		AudioManager.setDistanceModel(AudioManager.EXPONENT_DISTANCE_CLAMPED);
+		AudioManager.setDistanceModel(AudioManager.LINEAR_DISTANCE_CLAMPED);
+
+		Source.setSourcesRolloffFactor(Constants.GAMEPLAY, 0.5f);
+
+		Source.setSourcesRolloffFactor(Constants.MUSIC, 0f);
+		Source.setSourcesRolloffFactor(Constants.MENU, 0f);
+
 		GameFile.prepareAllPostInit();
 		Fraction.init();
 
@@ -89,11 +95,7 @@ public class Intersector extends MainProgram {
 		processNextState();
 		currentState.update(dt);
 
-		Source.setSourcesRolloffFactor(Constants.GAMEPLAY, 0.5f);
-		Source.setSourcesRolloffFactor(Constants.MUSIC, 0f);
-		Source.setSourcesRolloffFactor(Constants.MENU, 0f);
-
-		float audioVolume = 5f * Settings.getAudioVolume();
+		float audioVolume = Settings.getAudioVolume();
 		Source.setSourcesVolume(Constants.GAMEPLAY, audioVolume * Settings.getGameplayVolume());
 		Source.setSourcesVolume(Constants.MUSIC, audioVolume * Settings.getMusicVolume());
 		Source.setSourcesVolume(Constants.MENU, audioVolume * Settings.getMenuVolume());

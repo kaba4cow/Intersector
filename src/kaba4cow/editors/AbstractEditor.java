@@ -108,8 +108,8 @@ public abstract class AbstractEditor extends JFrame implements ActionListener {
 		EditorUtils.setFont(getComponents());
 
 		new EditorWindowListener(this);
-		MainProgram.start(getViewport());
 		setEnabled(true);
+		MainProgram.start(getViewport());
 	}
 
 	protected abstract String getRootDirectory();
